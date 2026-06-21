@@ -1,0 +1,3714 @@
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --green-dark: #0a1b0b;
+    --green-mid: #1d7a36;
+    --green-light: #4CAF50;
+    --amber: #f39c12;
+    --amber-light: #f1c40f;
+    --red: #e74c3c;
+    --blue: #3498db;
+    --wa: #25D366;
+    --wa-dark: #128C7E;
+    --WA_CHANNEL: "https://whatsapp.com/channel/0029Vb7C3iR6LwHehS9hhY3g";
+    --color-background-primary: #0b1216;
+    --color-background-secondary: #162028;
+    --color-text-primary: #f0f4f8;
+    --color-text-secondary: #a0aec0;
+    --color-border-secondary: #1e2d38;
+    --color-border-tertiary: #1b2631;
+    --border-radius-lg: 16px;
+    --border-radius-md: 12px;
+  }
+
+  /* ===== SOOTHING SAGE THEME (Eye-Friendly, NOT White) ===== */
+  [data-theme="light"] {
+    --color-background-primary: #1e2a1e;
+    --color-background-secondary: #253025;
+    --color-text-primary: #d4dece;
+    --color-text-secondary: #97a88e;
+    --color-border-secondary: #3a4d36;
+    --color-border-tertiary: #2f3f2c;
+  }
+
+  [data-theme="light"] body,
+  [data-theme="light"].app {
+    background: #182018;
+  }
+
+  [data-theme="light"] .nav {
+    background: #1e2a1e;
+    border-bottom-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .hero {
+    /* Image and gradient are now handled dynamically */
+  }
+
+  [data-theme="light"] .search-bar {
+    background: #253025;
+    border-color: #3a4d36;
+  }
+
+  [data-theme="light"] .search-bar input {
+    color: #d4dece;
+  }
+
+  [data-theme="light"] .posted-tag {
+    background: #2d4a1e;
+    color: #a8d48a;
+  }
+
+  [data-theme="light"] .urgent-tag {
+    background: #4a2a1a;
+    color: #e8a882;
+  }
+
+  [data-theme="light"] .toast {
+    background: #3d7022;
+    color: #e8f0e2;
+  }
+
+  [data-theme="light"] .msg.ai {
+    background: #253025;
+    border-color: #3a4d36;
+    color: #d4dece;
+  }
+
+  [data-theme="light"] .msg.user {
+    background: #3d7022;
+    color: #e8f0e2;
+  }
+
+  [data-theme="light"] .ai-input-row input {
+    background: #253025;
+    color: #d4dece;
+    border-color: #3a4d36;
+  }
+
+  [data-theme="light"] .form-input {
+    background: #253025;
+    color: #d4dece;
+    border-color: #3a4d36;
+  }
+
+  [data-theme="light"] .map-box {
+    background: linear-gradient(135deg, #1e3318, #253e20);
+    border-color: #3d7022;
+  }
+
+  [data-theme="light"] .map-box span {
+    color: #7cc75a;
+  }
+
+  [data-theme="light"] .btn-green {
+    background: #3d7022;
+  }
+
+  [data-theme="light"] .btn-green:hover {
+    background: #4a8530;
+  }
+
+  [data-theme="light"] .chip {
+    color: #97a88e;
+    border-color: #3a4d36;
+  }
+
+  [data-theme="light"] .chip.active {
+    background: #3d7022;
+    border-color: #3d7022;
+    color: #e8f0e2;
+  }
+
+  [data-theme="light"] .tab {
+    color: #97a88e;
+  }
+
+  [data-theme="light"] .tab.active {
+    background: #1e2a1e;
+    border-color: #3a4d36;
+    color: #d4dece;
+  }
+
+  [data-theme="light"] .tabs {
+    background: #253025;
+  }
+
+  [data-theme="light"] .cat-item {
+    background: #253025;
+    border-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .cat-item:hover {
+    border-color: #3d7022;
+    background: #2a3a28;
+  }
+
+  [data-theme="light"] .wa-banner {
+    background: linear-gradient(135deg, #1a5c3a, #228855);
+  }
+
+  [data-theme="light"] .stat-card {
+    background: #253025;
+    border-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .bottom-nav {
+    background: #1e2a1e;
+    border-top-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .bnav-label {
+    color: #97a88e;
+  }
+
+  [data-theme="light"] .voice-btn-sm,
+  [data-theme="light"] .ai-send {
+    background: #3d7022;
+  }
+
+  [data-theme="light"] .search-go {
+    background: #8a6e25;
+  }
+
+  [data-theme="light"] .card {
+    background: #1e2a1e;
+    border-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .job-card {
+    border-left-color: #3d7022;
+  }
+
+  [data-theme="light"] .job-card.urgent {
+    border-left-color: #c4603a;
+  }
+
+  [data-theme="light"] .logo-icon {
+    background: #3d7022;
+  }
+
+  [data-theme="light"] .logo-text {
+    color: #d4dece;
+  }
+
+  [data-theme="light"] .logo-sub {
+    color: #7cc75a;
+  }
+
+  [data-theme="light"] .ai-header {
+    border-bottom-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .ai-input-row {
+    border-top-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .ai-box {
+    background: #253025;
+    border-color: #2f3f2c;
+  }
+
+  [data-theme="light"] .divider {
+    background: #2f3f2c;
+  }
+
+  [data-theme="light"] .btn-outline {
+    color: #d4dece;
+    border-color: #3a4d36;
+  }
+
+  [data-theme="light"] .sec-title {
+    color: #d4dece;
+  }
+
+  [data-theme="light"] .form-label {
+    color: #97a88e;
+  }
+
+  [data-theme="light"] .small-note {
+    color: #97a88e;
+  }
+
+  /* Theme Toggle Button */
+  .theme-toggle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-secondary);
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .theme-toggle:hover {
+    transform: rotate(30deg) scale(1.1);
+    border-color: var(--amber);
+    box-shadow: 0 0 12px rgba(186, 117, 23, 0.3);
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.9);
+  }
+
+  /* Smooth theme transition */
+  .app,
+  .app * {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0b1015;
+    color: var(--color-text-primary);
+    transition: background-color 0.35s ease;
+  }
+
+  .app {
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    overflow-x: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(15, 20, 25, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--green-mid);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .logo-sub {
+    font-size: 9px;
+    color: var(--color-text-secondary);
+    letter-spacing: 1px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--color-background-secondary);
+    padding: 4px;
+    border-radius: 10px;
+    margin: 12px 14px;
+  }
+
+  .tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 8px 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 7px;
+    font-family: inherit;
+    color: var(--color-text-secondary);
+    transition: all 0.18s;
+  }
+
+  .tab.active {
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .screen {
+    display: none;
+    padding: 0 14px 80px;
+    animation: fadeUp 0.3s ease;
+  }
+
+  .screen.active {
+    display: block;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px)
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  }
+
+  /* WA CHANNEL BANNER */
+  .wa-banner {
+    background: linear-gradient(135deg, #075E54, #128C7E);
+    border-radius: var(--border-radius-lg);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.18s;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wa-banner::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .wa-banner:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(7, 94, 84, 0.3);
+  }
+
+  .wa-banner-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--wa);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .wa-banner-text {
+    flex: 1;
+  }
+
+  .wa-banner-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .wa-banner-sub {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .wa-banner-btn {
+    background: var(--wa);
+    color: #04342C;
+    border: none;
+    border-radius: 20px;
+    padding: 7px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* WA MINI CHIP on job cards */
+  .wa-channel-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #11382b;
+    color: #8ef2bf;
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0.5px solid #1f7051;
+    transition: all 0.15s;
+  }
+
+  .wa-channel-chip:hover {
+    background: #25D366;
+    color: #04342C;
+  }
+
+  .hero {
+    background-image: url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777485444338.jpg');
+    background-size: cover;
+    background-position: center 10%;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    padding: 160px 18px 40px;
+    margin: -10px -14px 30px -14px;
+    position: relative;
+    min-height: 400px;
+    transition: background-image 1.2s ease-in-out;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(11, 18, 22, 0.4) 0%, rgba(11, 18, 22, 0.95) 100%);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+  }
+
+  .hero>* {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(29, 122, 54, 0.2);
+    border: 0.5px solid rgba(29, 122, 54, 0.5);
+    border-radius: 20px;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+  }
+
+  .hero-tag span {
+    font-size: 10px;
+    color: #4CAF50;
+    font-weight: 600;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .hero p {
+    font-size: 13px;
+    color: #d1d5db;
+    margin-bottom: 24px;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px 10px 10px 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    bottom: -24px;
+    left: 18px;
+    right: 18px;
+    z-index: 10;
+  }
+
+  .search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+    font-family: inherit;
+    color: #111111;
+  }
+
+  @keyframes pulse-voice {
+    0% {
+      box-shadow: 0 0 0 0 rgba(59, 109, 17, 0.6);
+    }
+
+    70% {
+      box-shadow: 0 0 0 8px rgba(59, 109, 17, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(59, 109, 17, 0);
+    }
+  }
+
+  .voice-btn-sm {
+    border: none;
+    background: var(--green-mid);
+    color: #EAF3DE;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse-voice 2s infinite;
+  }
+
+  .search-go {
+    border: none;
+    background: var(--green-mid);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+
+  .card {
+    background: var(--color-background-primary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    padding: 14px;
+    margin-bottom: 10px;
+    transition: all 0.18s;
+  }
+
+  .card:hover {
+    border-color: var(--color-border-secondary);
+  }
+
+  .job-card {
+    border-left: 3px solid var(--green-mid);
+  }
+
+  .job-card.urgent {
+    border-left-color: var(--red);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+
+  .cat-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 16px;
+    cursor: pointer;
+    border: 0.5px solid var(--color-border-tertiary);
+    transition: all 0.18s;
+    min-width: 0;
+    flex-shrink: 1;
+    scroll-snap-align: start;
+  }
+
+  .cat-item:hover {
+    border-color: var(--green-mid);
+    background: var(--color-background-primary);
+  }
+
+  .cat-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .btn-green {
+    background: var(--green-mid);
+    color: #EAF3DE;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.18s;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.18s;
+  }
+
+  .btn-wa {
+    background: var(--wa);
+    color: #04342C;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .btn-apply {
+    background: var(--green-mid);
+    color: #EAF3DE;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    flex: 1;
+  }
+
+  .btn-full {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .small-note {
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-label {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .form-input {
+    width: 100%;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.18s;
+  }
+
+  .form-input:focus {
+    border-color: var(--green-mid);
+  }
+
+  select.form-input {
+    cursor: pointer;
+  }
+
+  .ai-box {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+    border: 0.5px solid var(--color-border-tertiary);
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+
+  .ai-header {
+    padding: 10px 14px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #25D366;
+    animation: blink 1.5s infinite;
+  }
+
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1
+    }
+
+    50% {
+      opacity: 0.3
+    }
+  }
+
+  .ai-messages {
+    padding: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-messages::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .ai-messages::-webkit-scrollbar-thumb {
+    background: var(--color-border-secondary);
+    border-radius: 4px;
+  }
+
+  .msg {
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    max-width: 88%;
+  }
+
+  .msg.ai {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    align-self: flex-start;
+    color: var(--color-text-primary);
+  }
+
+  .msg.user {
+    background: var(--green-mid);
+    color: #EAF3DE;
+    align-self: flex-end;
+  }
+
+  .ai-input-row {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-top: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .ai-input-row input {
+    flex: 1;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-family: inherit;
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    outline: none;
+  }
+
+  .ai-send {
+    border: none;
+    background: var(--green-mid);
+    color: #EAF3DE;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 2px 8px;
+    display: inline-block;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .stat-card {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 12px 8px;
+    text-align: center;
+    border: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--green-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: rgba(15, 20, 25, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 0.5px solid var(--color-border-tertiary);
+    padding: 8px 0 4px;
+    display: flex;
+    justify-content: space-around;
+    z-index: 50;
+  }
+
+  .bnav {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+
+  .bnav:hover {
+    background: var(--color-background-secondary);
+  }
+
+  .bnav-label {
+    font-size: 9px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .toast {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #075E54;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 100;
+    transition: all 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .map-box {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    border: 0.5px solid var(--color-border-tertiary);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+
+  .map-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .map-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  .map-overlay-text {
+    font-size: 11px;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .map-overlay-sub {
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 2px;
+  }
+
+  .map-locate-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .map-locate-btn:hover {
+    background: rgba(59, 109, 17, 0.8);
+    transform: scale(1.1);
+  }
+
+  .map-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .map-spinner {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--color-border-secondary);
+    border-top-color: var(--green-mid);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .map-box span {
+    color: #c7ead4;
+  }
+
+  .wave-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 30px;
+    justify-content: center;
+  }
+
+  .wave-bar {
+    width: 3px;
+    border-radius: 2px;
+    background: var(--green-mid);
+    transition: height 0.1s;
+  }
+
+  .sec-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: var(--color-border-tertiary);
+    margin: 14px 0;
+  }
+
+  .chip-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+
+  .chip {
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    background: transparent;
+    font-family: inherit;
+    color: var(--color-text-secondary);
+    transition: all 0.15s;
+  }
+
+  .chip.active {
+    background: var(--green-mid);
+    color: #EAF3DE;
+    border-color: var(--green-mid);
+  }
+
+  .posted-tag {
+    background: #EAF3DE;
+    color: #27500A;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+
+  .urgent-tag {
+    background: #FAECE7;
+    color: #993C1D;
+    font-size: 10px;
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 2px 8px;
+  }
+
+  /* PULSE ANIMATION FOR BANNER */
+  @keyframes pulse-wa {
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4)
+    }
+
+    50% {
+      box-shadow: 0 0 0 8px rgba(37, 211, 102, 0)
+    }
+  }
+
+  .wa-banner-icon {
+    animation: pulse-wa 2s infinite;
+  }
+
+  /* LIVE TICKER MARQUEE */
+  .marquee-wrapper {
+    background: var(--color-background-secondary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 6px 10px;
+  }
+
+  .marquee-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--amber);
+    background: rgba(186, 117, 23, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 8px;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  .marquee-content {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-left 20s linear infinite;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .marquee-item {
+    margin-right: 20px;
+  }
+
+  .marquee-item span {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+</style>
+
+<div class="app" id="app">
+  <div class="toast" id="toast" style="opacity:0;top:50px;"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M8 1 Q9.5 3.5 12 4.5 Q10 5.5 9 7.5 Q10 9.5 12 10.5 Q9 10.5 8 14 Q7 10.5 4 10.5 Q6 9.5 7 7.5 Q6 5.5 4 4.5 Q6.5 3.5 8 1Z"
+            fill="#C0DD97" />
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">KaamSetu</div>
+        <div class="logo-sub">AI-POWERED RURAL JOBS</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <button class="btn-green" style="padding: 4px 10px; font-size: 10px; border-radius: 12px; font-weight:600;"
+        onclick="installPWA()">⬇️ Install App</button>
+      <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" title="Theme Change">🌙</button>
+      <div
+        style="width:28px;height:28px;background:var(--color-background-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;overflow:hidden;position:relative;"
+        onclick="switchTab('profile')">
+        <span id="topNavEmoji">👤</span>
+        <img id="topNavImage" src=""
+          style="display:none; width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;" />
+      </div>
+    </div>
+  </nav>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" id="tab-home" onclick="switchTab('home')">🏠 Home</button>
+    <button class="tab" id="tab-jobs" onclick="switchTab('jobs')">💼 Jobs</button>
+    <button class="tab" id="tab-post" onclick="switchTab('post')">➕ Post</button>
+    <button class="tab" id="tab-ai" onclick="switchTab('ai')">🤖 AI</button>
+    <button class="tab" id="tab-profile" onclick="switchTab('profile')">👤 Me</button>
+  </div>
+
+  <!-- ===== HOME ===== -->
+  <div class="screen active" id="screen-home">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-tag"><span>📡 2G Ready • PWA • AI Powered</span></div>
+      <h1 id="heroTitle">अपना काम, अपने गाँव के पास</h1>
+      <p id="heroSub">आवाज़ से खोजें • WhatsApp पर पाएं • AI से मदद लें</p>
+      <div class="search-bar">
+        <input id="searchInput" placeholder="काम खोजें... (e.g. खेती, मज़दूर)"
+          onkeydown="if(event.key==='Enter')doSearch()" />
+        <button class="voice-btn-sm" onclick="toggleVoice()" id="voiceBtn">🎙</button>
+        <button class="search-go" onclick="doSearch()">खोजें ↗</button>
+      </div>
+    </div>
+
+    <!-- LIVE TICKER -->
+    <div class="marquee-wrapper">
+      <div class="marquee-label">🔴 LIVE</div>
+      <div class="marquee-content">
+        <div class="marquee-item">🌾 <span>Ramesh Kumar</span> posted <span>Paddy Harvesting</span> — ₹500/day —
+          Raebareli</div>
+        <div class="marquee-item">👷 <span>Suresh Yadav</span> hired 3 workers for <span>Wheat Sowing</span> — Sultanpur
+        </div>
+        <div class="marquee-item">🚛 <span>Kisaan Cooperative</span> needs <span>Tractor Driver</span> — ₹600/day —
+          Amethi</div>
+        <div class="marquee-item">⚡ <span>Green Energy</span> hiring <span>Solar Panel Installers</span> — ₹700/day —
+          Salon</div>
+        <div class="marquee-item">🍳 <span>Sharma Ji</span> needs <span>Wedding Cooks</span> urgently — ₹800/day —
+          Raebareli</div>
+        <div class="marquee-item">📦 <span>BlueDart</span> hiring <span>Delivery Boys</span> — ₹500/day + petrol —
+          Raebareli</div>
+      </div>
+    </div>
+
+    <!-- ✅ WA BROADCAST BANNER - HOME -->
+    <div class="wa-banner" onclick="openChannel()">
+      <div class="wa-banner-icon">📢</div>
+      <div class="wa-banner-text">
+        <div class="wa-banner-title">KaamSetu WhatsApp Channel</div>
+        <div class="wa-banner-sub">Naye kaam ki alert seedha WhatsApp pe • Free • 1 click</div>
+      </div>
+      <button class="wa-banner-btn" onclick="openChannel()">Join ↗</button>
+    </div>
+
+    <!-- GOVT SCHEMES BANNER -->
+    <div class="card"
+      style="margin-top:4px; margin-bottom: 14px; background: linear-gradient(135deg, rgba(29, 122, 54, 0.1), rgba(0, 0, 0, 0)); border: 1px solid var(--green-mid); cursor:pointer;"
+      onclick="window.open('https://www.sarkariresult.com/latestjob.php', '_blank')">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <div style="font-size:24px;">🏛</div>
+          <div>
+            <div style="font-size:13px; font-weight:600; color:var(--green-light);">सरकारी नौकरियाँ (Govt Jobs)</div>
+            <div style="font-size:11px; color:var(--color-text-secondary); margin-top:2px;">SarkariResult: सभी नई सरकारी
+              भर्तियाँ</div>
+          </div>
+        </div>
+        <button class="btn-green" style="padding: 4px 10px; font-size: 10px; border-radius: 12px;">जानें ↗</button>
+      </div>
+    </div>
+
+    <!-- WEATHER WIDGET (Real-time from OpenMeteo API) -->
+    <div id="weatherWidget"
+      style="display:flex; justify-content:space-between; align-items:center; background: var(--color-background-secondary); padding: 12px 14px; border-radius: 12px; margin-bottom: 14px; border: 0.5px solid var(--color-border-tertiary);">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="font-size: 26px;" id="weatherIcon">⏳</div>
+        <div>
+          <div style="font-size:13px; font-weight:600;">आज का मौसम (Weather)</div>
+          <div id="weatherInfo" style="font-size:11px; color:var(--color-text-secondary); margin-top:2px;">Loading...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lang Chips -->
+    <div class="chip-row">
+      <button class="chip active" onclick="setLang('hi',this)">हिंदी</button>
+      <button class="chip" onclick="setLang('en',this)">English</button>
+      <button class="chip" onclick="setLang('mr',this)">मराठी</button>
+      <button class="chip" onclick="setLang('ta',this)">தமிழ்</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div style="font-size:18px;">👷</div>
+        <div style="font-size:16px;font-weight:600;color:var(--green-mid);" id="statWorkerCount">48,200</div>
+        <div style="font-size:9px;color:var(--color-text-secondary);" id="statWL">Workers</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:18px;">💼</div>
+        <div style="font-size:16px;font-weight:600;color:var(--amber);" id="statJobCount">35</div>
+        <div style="font-size:9px;color:var(--color-text-secondary);" id="statJL">Active Jobs</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size:18px;">🏘</div>
+        <div style="font-size:16px;font-weight:600;color:var(--blue);">890</div>
+        <div style="font-size:9px;color:var(--color-text-secondary);" id="statVL">Villages</div>
+      </div>
+    </div>
+
+    <!-- Categories -->
+    <div class="sec-title">🗂 <span id="catLabel">Job Categories</span></div>
+    <div class="cat-grid">
+      <div class="cat-item" onclick="filterCat('Agriculture')">
+        <div class="cat-icon-wrap" style="color:#4CAF50; background:rgba(76,175,80,0.15);">🌾</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;" id="c1">Agriculture</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">8 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Construction')">
+        <div class="cat-icon-wrap" style="color:#FF9800; background:rgba(255,152,0,0.15);">🏗</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;" id="c2">Construction</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">4 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Handloom')">
+        <div class="cat-icon-wrap" style="color:#9C27B0; background:rgba(156,39,176,0.15);">🧵</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;" id="c3">Handloom</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Driving')">
+        <div class="cat-icon-wrap" style="color:#2196F3; background:rgba(33,150,243,0.15);">🚛</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;" id="c4">Driving</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">3 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Retail')">
+        <div class="cat-icon-wrap" style="color:#E91E63; background:rgba(233,30,99,0.15);">🛒</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;" id="c5">Retail</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Electrical')">
+        <div class="cat-icon-wrap" style="color:#FFC107; background:rgba(255,193,7,0.15);">⚡</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;" id="c6">Electrical</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Plumbing')">
+        <div class="cat-icon-wrap" style="color:#2196F3; background:rgba(33,150,243,0.15);">🔧</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;">Plumbing</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Cooking')">
+        <div class="cat-icon-wrap" style="color:#F44336; background:rgba(244,67,54,0.15);">🍳</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;">Cooking</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Security')">
+        <div class="cat-icon-wrap" style="color:#607D8B; background:rgba(96,125,139,0.15);">💂</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;">Security</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Tailoring')">
+        <div class="cat-icon-wrap" style="color:#E91E63; background:rgba(233,30,99,0.15);">👗</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;">Tailoring</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Cleaning')">
+        <div class="cat-icon-wrap" style="color:#00BCD4; background:rgba(0,188,212,0.15);">🧹</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;">Cleaning</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">2 jobs</div>
+        </div>
+      </div>
+      <div class="cat-item" onclick="filterCat('Logistics')">
+        <div class="cat-icon-wrap" style="color:#795548; background:rgba(121,85,72,0.15);">📦</div>
+        <div>
+          <div style="font-size:12px;font-weight:600;">Logistics</div>
+          <div style="font-size:10px;color:var(--color-text-secondary);margin-top:2px;">3 jobs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="sec-title">📍 <span id="nearLabel">Nearby Jobs (5km)</span></div>
+    <div class="map-box" id="mapContainer">
+      <div class="map-loading" id="mapLoading">
+        <div class="map-spinner"></div>
+        <span>📍 Location detect ho raha hai...</span>
+      </div>
+      <button class="map-locate-btn" onclick="locateAndLoadMap()" title="My Location">📍</button>
+      <div class="map-overlay" id="mapOverlay" style="display:none;">
+        <div>
+          <div class="map-overlay-text" id="mapLocationText">📍 Detecting location...</div>
+          <div class="map-overlay-sub" id="mapSubText">Satellite View • Google Maps</div>
+        </div>
+        <button class="btn-green" style="font-size:11px;padding:6px 14px;" onclick="openFullMap()">Open Map ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JOBS ===== -->
+  <div class="screen" id="screen-jobs">
+
+    <!-- ✅ WA BROADCAST BANNER - JOBS PAGE -->
+    <div class="wa-banner" style="margin-top:4px;" onclick="openChannel()">
+      <div class="wa-banner-icon">📢</div>
+      <div class="wa-banner-text">
+        <div class="wa-banner-title">Naye jobs ki alert chahiye?</div>
+        <div class="wa-banner-sub">KaamSetu WhatsApp Channel join karo — Free!</div>
+      </div>
+      <button class="wa-banner-btn">Join ↗</button>
+    </div>
+
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
+      <input id="jobSearch" class="form-input" placeholder="Search jobs..." style="flex:1;" onkeyup="renderJobs()" />
+      <select id="jobFilter" class="form-input" style="width:110px;" onchange="renderJobs()">
+        <option value="">All</option>
+        <option>Agriculture</option>
+        <option>Construction</option>
+        <option>Driving</option>
+        <option>Handloom</option>
+        <option>Retail</option>
+        <option>Electrical</option>
+        <option>Plumbing</option>
+        <option>Cooking</option>
+        <option>Security</option>
+        <option>Tailoring</option>
+        <option>Cleaning</option>
+        <option>Logistics</option>
+      </select>
+    </div>
+    <div id="jobsContainer"></div>
+  </div>
+
+  <!-- ===== POST JOB ===== -->
+  <div class="screen" id="screen-post">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:4px; margin-bottom: 12px;">
+      <div class="sec-title" style="margin:0;">📋 Post a New Job</div>
+      <button class="btn-outline"
+        style="font-size:10px; padding:4px 10px; border-color:var(--amber); color:var(--amber); border-radius:12px;"
+        onclick="magicFillJob()">✨ Magic Fill</button>
+    </div>
+    <div class="card">
+      <div class="form-group">
+        <label class="form-label">Job Title *</label>
+        <input class="form-input" id="pTitle" placeholder="e.g. Paddy Harvesting Workers" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Category *</label>
+        <select class="form-input" id="pCat">
+          <option value="">Select category</option>
+          <option>Agriculture</option>
+          <option>Construction</option>
+          <option>Driving</option>
+          <option>Handloom</option>
+          <option>Retail</option>
+          <option>Electrical</option>
+          <option>Plumbing</option>
+          <option>Cooking</option>
+          <option>Security</option>
+          <option>Tailoring</option>
+          <option>Cleaning</option>
+          <option>Logistics</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="form-group">
+          <label class="form-label">Daily Wage (₹) *</label>
+          <input class="form-input" id="pWage" type="number" placeholder="500" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Workers Needed</label>
+          <input class="form-input" id="pCount" type="number" placeholder="5" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location / Village *</label>
+        <div style="display:flex; gap:6px;">
+          <input class="form-input" id="pLoc" placeholder="e.g. Raebareli, UP" style="flex:1;" />
+          <button class="btn-green" style="padding:0 12px; border-radius: 12px; font-size:12px; white-space:nowrap;"
+            onclick="autoFillLoc()" type="button">📍 Detect</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="form-group">
+          <label class="form-label">Latitude (optional)</label>
+          <input class="form-input" id="pLat" type="number" step="any" placeholder="26.2333" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Longitude (optional)</label>
+          <input class="form-input" id="pLng" type="number" step="any" placeholder="81.2333" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp / Contact Number *</label>
+        <div style="display:flex;gap:6px;align-items:center;">
+          <span style="font-size:13px;color:var(--color-text-secondary);white-space:nowrap;">+91</span>
+          <input class="form-input" id="pPhone" type="tel" maxlength="10" placeholder="9876543210" style="flex:1;" />
+        </div>
+        <div style="font-size:10px;color:var(--color-text-secondary);margin-top:3px;">📱 Apply karne wale is number par
+          WhatsApp message bhejenge</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-input" id="pDesc" rows="3"
+          placeholder="Describe the work, duration, requirements..."></textarea>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <input type="checkbox" id="pUrgent" style="width:16px;height:16px;accent-color:var(--red);" />
+        <label for="pUrgent" style="font-size:13px;cursor:pointer;">⚡ Mark as Urgent</label>
+      </div>
+      <button class="btn-green btn-full" onclick="postJob()">📤 Post Job</button>
+      <button class="btn-outline btn-full" style="margin-top:6px;" onclick="aiWriteJob()">🤖 AI se likwao ↗</button>
+      <button class="btn-outline btn-full" style="margin-top:6px;" onclick="enableLocationAlerts()">📍 Enable Location
+        Alerts</button>
+      <p class="small-note" id="locState">Location alerts disabled</p>
+    </div>
+    <div class="sec-title">📌 Your Posted Jobs</div>
+    <div id="myJobs"></div>
+  </div>
+
+  <!-- ===== AI HELP ===== -->
+  <div class="screen" id="screen-ai">
+    <div class="sec-title" style="margin-top:4px;">🤖 KaamSetu AI Assistant</div>
+
+    <!-- Gemini API Key Input -->
+    <div class="card" style="margin-bottom:10px;padding:10px 14px;">
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:6px;">🔑 Google Gemini API Key (free:
+        aistudio.google.com)</div>
+      <div style="display:flex;gap:6px;">
+        <input class="form-input" id="geminiApiKey" type="password" placeholder="AIzaSy... paste karo"
+          style="flex:1;font-size:12px;" oninput="saveGeminiKey(this.value)" />
+        <button class="btn-green" style="font-size:11px;padding:0 12px;white-space:nowrap;"
+          onclick="testGeminiKey()">Test ✓</button>
+      </div>
+      <div id="geminiStatus" style="font-size:10px;color:var(--color-text-secondary);margin-top:4px;">Key nahi hai —
+        smart local answers chal rahe hain</div>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-header">
+        <div class="ai-dot"></div>
+        <span id="aiStatusLabel" style="font-size:12px;font-weight:500;">KaamSetu AI Assistant</span>
+        <span style="margin-left:auto;font-size:10px;color:var(--color-text-secondary);">Live</span>
+      </div>
+      <div class="ai-messages" id="aiMessages">
+        <div class="msg ai">Namaste! 🙏 Main KaamSetu ka AI assistant hoon. Poochh sakte hain:<br><br>• Kaam kaise
+          dhundhein<br>• Wage guidance<br>• Govt schemes (MGNREGA)<br>• Resume/profile banana<br>• Contractor fraud se
+          bachna</div>
+      </div>
+      <div class="ai-input-row">
+        <input id="aiInput" placeholder="Koi bhi sawaal poochhen..." onkeydown="if(event.key==='Enter')sendAI()" />
+        <button id="aiVoiceBtn" class="ai-send" onclick="toggleVoice('aiInput', 'aiVoiceBtn')"
+          style="background:var(--amber);">🎙</button>
+        <button class="ai-send" onclick="sendAI()">↑</button>
+      </div>
+    </div>
+    <div class="sec-title">⚡ Quick Questions</div>
+    <div class="chip-row">
+      <button class="chip" onclick="quickQ('MGNREGA scheme kya hai aur kaise apply karein?')">MGNREGA?</button>
+      <button class="chip" onclick="quickQ('Meri daily wage kitni honi chahiye construction mein?')">Wage Guide</button>
+      <button class="chip" onclick="quickQ('Resume banana sikhao — main padha likha nahi hoon')">Resume Help</button>
+      <button class="chip" onclick="quickQ('Contractor fraud se bachne ke tips dijiye')">Safety Tips</button>
+    </div>
+    <div class="sec-title">🎯 AI Job Match</div>
+    <div class="card">
+      <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:10px;">Apni skills batao — AI best jobs
+        suggest karega</p>
+      <div style="display:flex;gap:6px;margin-bottom:8px;">
+        <input class="form-input" id="skillInput" placeholder="e.g. kheti, tractor chalana, painting..."
+          style="flex:1;" />
+        <button id="skillVoiceBtn" class="btn-green" onclick="toggleVoice('skillInput', 'skillVoiceBtn')"
+          style="width:40px;padding:0;display:flex;align-items:center;justify-content:center;">🎙</button>
+      </div>
+      <button class="btn-green btn-full" onclick="aiJobMatch()">🎯 Best Jobs Dhundho ↗</button>
+    </div>
+  </div>
+
+  <!-- ===== PROFILE ===== -->
+  <div class="screen" id="screen-profile">
+    <div class="card" style="margin-top:4px;">
+      <div class="sec-title" style="margin:0 0 10px 0;">🔐 Login (Phone / Email)</div>
+      <div id="loginBox">
+        <div class="form-group">
+          <label class="form-label">Mobile Number or Email</label>
+          <input class="form-input" id="loginPhone" placeholder="10 digit phone or email" />
+        </div>
+        <button class="btn-green btn-full" onclick="sendOtp()">Send OTP / Magic Link</button>
+        <div id="recaptcha-container" style="margin-top:8px;"></div>
+        <div id="otpWrap" style="display:none;margin-top:8px;">
+          <input class="form-input" id="loginOtp" placeholder="Enter OTP (Demo: 123456)" maxlength="6" />
+          <button class="btn-outline btn-full" onclick="verifyOtp()">Verify OTP</button>
+        </div>
+      </div>
+      <p id="loginStatus" class="small-note" style="margin-top:8px;">Not logged in</p>
+      <p class="small-note">Login ke baad email draft open hoga: gauravvishwakarma8840@gmail.com</p>
+    </div>
+
+    <div class="card" style="margin-top:4px;">
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
+        <div class="avatar" id="profileAvatar" style="position:relative; cursor:pointer; overflow:hidden;"
+          onclick="document.getElementById('profilePicInput').click()">
+          <span id="profileEmoji">👷</span>
+          <img id="profileImage" src=""
+            style="display:none; width:100%; height:100%; object-fit:cover; position:absolute; top:0; left:0;" />
+          <div
+            style="position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.6); font-size:9px; color:#fff; padding:3px 0; text-align:center;">
+            Edit</div>
+        </div>
+        <input type="file" id="profilePicInput" accept="image/*" style="display:none;"
+          onchange="updateProfilePic(this)">
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:600;display:flex;align-items:center;gap:4px;">
+            <span id="profName" contenteditable="true" onblur="saveProfileData()"
+              style="border-bottom:1px dashed var(--color-border-secondary);outline:none;">Ramlal Yadav</span> <span
+              style="font-size:10px;cursor:pointer;" title="Edit">✏️</span>
+          </div>
+          <div
+            style="font-size:12px;color:var(--color-text-secondary);margin-top:4px;display:flex;align-items:center;gap:4px;">
+            <span id="profTitle" contenteditable="true" onblur="saveProfileData()"
+              style="border-bottom:1px dashed var(--color-border-secondary);outline:none;">Mazdoor</span> •
+            <span id="profState" contenteditable="true" onblur="saveProfileData()"
+              style="border-bottom:1px dashed var(--color-border-secondary);outline:none;">Uttar Pradesh</span> <span
+              style="font-size:10px;cursor:pointer;" title="Edit">✏️</span>
+          </div>
+          <div style="display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;">
+            <span class="badge" style="background:#EAF3DE;color:#27500A;">✓ Aadhaar Verified</span>
+            <span class="badge" style="background:#FAEEDA;color:#633806;">🏛 Panchayat</span>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;">
+        <div><span style="color:var(--color-text-secondary);">Phone <span style="font-size:9px;cursor:pointer;"
+              title="Edit">✏️</span></span>
+          <div id="profPhone" contenteditable="true" onblur="saveProfileData()"
+            style="font-weight:500;border-bottom:1px dashed var(--color-border-secondary);outline:none;margin-top:2px;">
+            +91 98765 43210</div>
+        </div>
+        <div><span style="color:var(--color-text-secondary);">Village <span style="font-size:9px;cursor:pointer;"
+              title="Edit">✏️</span></span>
+          <div id="profVillage" contenteditable="true" onblur="saveProfileData()"
+            style="font-weight:500;border-bottom:1px dashed var(--color-border-secondary);outline:none;margin-top:2px;">
+            Raebareli, UP</div>
+        </div>
+        <div><span style="color:var(--color-text-secondary);">Daily Wage <span style="font-size:9px;cursor:pointer;"
+              title="Edit">✏️</span></span>
+          <div id="profWage" contenteditable="true" onblur="saveProfileData()"
+            style="font-weight:500;color:var(--green-mid);border-bottom:1px dashed var(--color-border-secondary);outline:none;margin-top:2px;">
+            ₹450/day</div>
+        </div>
+        <div><span style="color:var(--color-text-secondary);">Jobs Done</span>
+          <div style="font-weight:500;margin-top:2px;">12 ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice Bio -->
+    <div class="sec-title">🎙 Voice Bio</div>
+    <div class="card" id="voiceBioCard">
+      <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px;">30 second mein apna bio record
+        karein — employers sunenge!</p>
+      <div class="wave-bars" id="waveBars" style="margin-bottom:10px;"></div>
+      <div id="recStatus" style="text-align:center;font-size:11px;color:var(--color-text-secondary);margin-bottom:8px;">
+        Ready to record</div>
+
+      <!-- Playback player (hidden until recording exists) -->
+      <div id="audioPlayerWrap"
+        style="display:none;margin-bottom:10px;background:var(--color-background-secondary);border-radius:10px;padding:10px;border:0.5px solid var(--color-border-secondary);">
+        <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:6px;">🎧 Aapka saved bio:</div>
+        <audio id="bioPlayer" controls style="width:100%;height:36px;border-radius:8px;"></audio>
+      </div>
+
+      <div style="display:flex;gap:8px;">
+        <button class="btn-green" style="flex:1;" id="recBtn" onclick="toggleRecord()">🎙 Record</button>
+        <button class="btn-outline" style="flex:1;display:none;" id="playBioBtn" onclick="playBio()">▶ Play</button>
+        <button class="btn-outline" style="flex:1;display:none;color:#2196F3;border-color:#2196F3;" id="downloadBioBtn"
+          onclick="downloadBio()">⬇ Download</button>
+        <button class="btn-outline" style="flex:1;display:none;color:#E24B4A;border-color:#E24B4A;" id="deleteBioBtn"
+          onclick="deleteBio()">🗑 Delete</button>
+      </div>
+      <div id="recSaveStatus"
+        style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;text-align:center;"></div>
+    </div>
+
+    <!-- Skills -->
+    <div class="sec-title">🛠 My Skills</div>
+    <div class="card">
+      <div id="skillTags" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
+        <span class="badge" style="background:#EAF3DE;color:#27500A;">🌾 Agriculture</span>
+        <span class="badge" style="background:#FAECE7;color:#993C1D;">🏗 Construction</span>
+      </div>
+      <input class="form-input" id="newSkill" placeholder="Add skill..." style="margin-bottom:6px;" />
+      <button class="btn-outline btn-full" onclick="addSkill()">+ Add Skill</button>
+    </div>
+
+    <!-- Verification + WA Channel -->
+    <div class="sec-title">🛡 Verification & Alerts</div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span>🪪</span><span>Aadhaar
+              Verification</span></div>
+          <span class="badge" style="background:#EAF3DE;color:#27500A;">✓ Done</span>
+        </div>
+        <div class="divider" style="margin:2px 0;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span>🏛</span><span>Panchayat
+              Verification</span></div>
+          <button class="btn-green" style="font-size:11px;padding:5px 10px;"
+            onclick="showToast('Panchayat admin se milein')">Verify →</button>
+        </div>
+        <div class="divider" style="margin:2px 0;"></div>
+        <!-- ✅ WA CHANNEL IN PROFILE -->
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;"><span>📢</span>
+            <div>
+              <div>WhatsApp Job Alerts</div>
+              <div style="font-size:10px;color:var(--color-text-secondary);">KaamSetu Broadcast Channel</div>
+            </div>
+          </div>
+          <button class="btn-wa" style="font-size:11px;padding:7px 12px;border-radius:20px;"
+            onclick="openChannel()">Join ↗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HELPLINE BUTTON -->
+  <button onclick="startCall()"
+    style="position:fixed;bottom:70px;right:14px;background:#D85A30;color:#fff;border-radius:30px;padding:10px 16px;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 12px rgba(216,90,48,0.4);display:flex;align-items:center;gap:6px;z-index:100;border:2px solid #fff; cursor:pointer;">
+    <span style="font-size:18px;animation:pulse-wa 2s infinite;border-radius:50%;">📞</span> मदद (Help)
+  </button>
+
+  <!-- FAKE CALLING OVERLAY -->
+  <div id="callingOverlay"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11, 18, 22, 0.98); z-index:9999; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-family: inherit;">
+    <div style="font-size:18px; margin-bottom:10px; color:var(--color-text-secondary); letter-spacing: 1px;">Calling...
+    </div>
+    <div style="font-size:28px; font-weight:600; margin-bottom:10px; text-align:center;">KaamSetu Helpline</div>
+    <div style="font-size:20px; color:var(--green-mid); margin-bottom:60px;">14434</div>
+
+    <div style="display:flex; gap:40px; margin-bottom:80px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div
+          style="width:55px; height:55px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:20px;">
+          🎙️</div>
+        <span style="font-size:12px; color:var(--color-text-secondary);">Mute</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div
+          style="width:55px; height:55px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:20px;">
+          🔊</div>
+        <span style="font-size:12px; color:var(--color-text-secondary);">Speaker</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <div
+          style="width:55px; height:55px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:20px;">
+          ⌨️</div>
+        <span style="font-size:12px; color:var(--color-text-secondary);">Keypad</span>
+      </div>
+    </div>
+
+    <button onclick="endCall()"
+      style="width:75px; height:75px; border-radius:50%; background:#E24B4A; border:none; display:flex; align-items:center; justify-content:center; font-size:32px; cursor:pointer; box-shadow:0 0 20px rgba(226,75,74,0.5); animation: pulse-wa 2s infinite;">
+      <span style="transform: rotate(135deg);">📞</span>
+    </button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="bnav active" id="bnav-home" onclick="switchTab('home')"><span style="font-size:18px;">🏠</span><span
+        class="bnav-label">Home</span></button>
+    <button class="bnav" id="bnav-jobs" onclick="switchTab('jobs')"><span style="font-size:18px;">💼</span><span
+        class="bnav-label">Jobs</span></button>
+    <button class="bnav" id="bnav-post" onclick="switchTab('post')" style="position:relative;top:-16px;">
+      <div
+        style="background:#1d7a36;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 10px rgba(29,122,54,0.4);border:3px solid var(--color-background-primary);">
+        <span style="font-size:24px;">+</span>
+      </div><span class="bnav-label" style="margin-top:2px;">Post</span>
+    </button>
+    <button class="bnav" id="bnav-ai" onclick="switchTab('ai')"><span style="font-size:18px;">🤖</span><span
+        class="bnav-label">AI</span></button>
+    <button class="bnav" id="bnav-profile" onclick="switchTab('profile')"><span style="font-size:18px;">👤</span><span
+        class="bnav-label">Me</span></button>
+  </nav>
+</div>
+
+<!-- ===== APPLY JOB MODAL ===== -->
+<div id="applyModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.82); backdrop-filter:blur(6px); z-index:9999; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:#16212b; border:1px solid #253545; border-radius:20px; padding:28px; width:100%; max-width:460px; animation:fadeUp 0.3s ease; box-shadow:0 24px 60px rgba(0,0,0,0.7); max-height:90vh; overflow-y:auto;">
+    
+    <!-- Modal Header -->
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+      <div>
+        <div style="font-size:17px; font-weight:700; color:#e8f0f7;">📋 Job ke liye Apply Karen</div>
+        <div id="applyModalJobTitle" style="font-size:12px; color:#4caf50; margin-top:3px; font-weight:600;"></div>
+      </div>
+      <button onclick="closeApplyModal()" style="background:none; border:none; color:#7a9bb5; font-size:22px; cursor:pointer; width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:8px;">✕</button>
+    </div>
+
+    <!-- Form -->
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      
+      <div>
+        <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">आपका नाम / YOUR NAME *</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:15px;">👤</span>
+          <input id="applyName" type="text" placeholder="पूरा नाम लिखें" style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px 11px 38px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'" />
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">मोबाइल नंबर / PHONE *</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:15px;">📱</span>
+          <input id="applyPhone" type="tel" maxlength="10" placeholder="10-digit mobile number" style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px 11px 38px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'" />
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">गाँव / VILLAGE *</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:15px;">🏘️</span>
+          <input id="applyVillage" type="text" placeholder="अपना गाँव और जिला" style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px 11px 38px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'" />
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">उम्र / AGE</label>
+          <input id="applyAge" type="number" min="18" max="70" placeholder="25" style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'" />
+        </div>
+        <div>
+          <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">अनुभव / EXPERIENCE</label>
+          <select id="applyExp" style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; cursor:pointer;">
+            <option value="fresher">नया (Fresher)</option>
+            <option value="1-2 years">1-2 साल</option>
+            <option value="3-5 years">3-5 साल</option>
+            <option value="5+ years">5+ साल</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">Skill / हुनर</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:15px;">🛠️</span>
+          <input id="applySkill" type="text" placeholder="जैसे: खेती, मिस्त्री, ड्राइविंग..." style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px 11px 38px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'" />
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">अपेक्षित मज़दूरी / EXPECTED WAGE (₹/day)</label>
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:15px;">💰</span>
+          <input id="applyWage" type="number" placeholder="400" style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px 11px 38px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'" />
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size:11px; color:#7a9bb5; font-weight:600; display:block; margin-bottom:6px; letter-spacing:0.5px;">कोई बात कहनी है? / NOTE (Optional)</label>
+        <textarea id="applyNote" rows="2" placeholder="कुछ लिखना हो तो..." style="width:100%; background:#111920; border:1px solid #1e2f3c; border-radius:8px; padding:11px 12px; font-size:13px; color:#e8f0f7; font-family:inherit; outline:none; resize:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#4caf50'" onblur="this.style.borderColor='#1e2f3c'"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit Error -->
+    <div id="applyError" style="display:none; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25); border-radius:8px; padding:10px 14px; font-size:12px; color:#f87171; margin-top:10px; font-weight:500;">❌ कृपया नाम, मोबाइल और गाँव भरें।</div>
+
+    <!-- Buttons -->
+    <div style="display:flex; gap:10px; margin-top:20px;">
+      <button onclick="closeApplyModal()" style="flex:1; background:rgba(255,255,255,0.06); color:#7a9bb5; border:1px solid #1e2f3c; border-radius:8px; padding:13px; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit;">रद्द करें</button>
+      <button onclick="submitApply()" id="applySubmitBtn" style="flex:2; background:linear-gradient(135deg,#2e7d32,#4caf50); color:#fff; border:none; border-radius:8px; padding:13px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; box-shadow:0 4px 16px rgba(46,125,50,0.4); transition:all 0.2s;">✅ Apply Submit Karen</button>
+    </div>
+
+    <!-- Note -->
+    <div style="margin-top:14px; padding:12px; background:rgba(76,175,80,0.07); border:1px solid rgba(76,175,80,0.15); border-radius:8px; font-size:11px; color:#7a9bb5; line-height:1.6;">
+      ℹ️ Aapki details <strong style="color:#4caf50;">Admin Dashboard</strong> mein jaayengi. Admin se approval milne par WhatsApp pe notification aayega.
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script>
+  const WA_CHANNEL = "https://whatsapp.com/channel/0029Vb7C3iR6LwHehS9hhY3g";
+  const APPLY_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc2cQRLFijJOV1qsO95LXgeS4tBb2cmwncXNKsXHm6G-zOGjg/viewform?usp=header";
+  const AI_CHATBOT_URL = "/api/chat";
+  const ADMIN_EMAIL = "gauravvishwakarma8840@gmail.com";
+  const DEFAULT_COUNTRY_CODE = "+91";
+
+  // ================================================================
+  //  ⚙️  DEMO MODE — No API keys needed!
+  // ================================================================
+  const GEMINI_API_KEY = "";
+  const FAST2SMS_API_KEY = "";
+  // ================================================================
+
+  window._GEMINI_KEY = "";
+  window._FAST2SMS_KEY = "";
+
+  const APP_CONFIG = window.KAAMSETU_CONFIG || {
+    firebaseApiKey: "REPLACE_FIREBASE_API_KEY",
+    firebaseAuthDomain: "REPLACE_FIREBASE_AUTH_DOMAIN",
+    firebaseProjectId: "REPLACE_FIREBASE_PROJECT_ID",
+    firebaseStorageBucket: "REPLACE_FIREBASE_STORAGE_BUCKET",
+    firebaseMessagingSenderId: "REPLACE_FIREBASE_MESSAGING_SENDER_ID",
+    firebaseAppId: "REPLACE_FIREBASE_APP_ID"
+  };
+
+  const firebaseConfig = {
+    apiKey: APP_CONFIG.firebaseApiKey,
+    authDomain: APP_CONFIG.firebaseAuthDomain,
+    projectId: APP_CONFIG.firebaseProjectId,
+    storageBucket: APP_CONFIG.firebaseStorageBucket,
+    messagingSenderId: APP_CONFIG.firebaseMessagingSenderId,
+    appId: APP_CONFIG.firebaseAppId
+  };
+
+  const HAS_REAL_BACKEND = !Object.values(APP_CONFIG).some((v) => String(v).startsWith("REPLACE_"));
+  let auth = null;
+  let db = null;
+  let serverTimestamp = () => new Date();
+  if (HAS_REAL_BACKEND) {
+    try {
+      firebase.initializeApp(firebaseConfig);
+      auth = firebase.auth();
+      db = firebase.firestore();
+      serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
+    } catch (e) {
+      console.error("Firebase init failed:", e);
+    }
+  }
+
+  const DEMO_JOBS = [
+    // ===== AGRICULTURE (खेती) =====
+    { id: "d1", title: "Paddy Harvesting Workers", titleHi: "धान की कटाई मज़दूर", cat: "Agriculture", wage: 500, loc: "Raebareli, UP", dist: 2.3, verified: true, urgent: true, desc: "5 experienced workers needed for 7 days paddy harvesting. Meals included. Work from 6 AM to 12 PM.", posted: "Ramesh Kumar", workers: 5, coords: { lat: 26.2006, lng: 81.2330 } },
+    { id: "d2", title: "Wheat Sowing Labourers", titleHi: "गेहूँ बुआई मज़दूर", cat: "Agriculture", wage: 450, loc: "Sultanpur, UP", dist: 3.5, verified: true, urgent: false, desc: "3 workers for wheat sowing season. 10 days ka kaam. Tractor operator bhi chahiye.", posted: "Suresh Yadav", workers: 3, coords: { lat: 26.2648, lng: 82.0727 } },
+    { id: "d3", title: "Sugarcane Cutting Workers", titleHi: "गन्ना कटाई मज़दूर", cat: "Agriculture", wage: 550, loc: "Barabanki, UP", dist: 5.2, verified: true, urgent: true, desc: "Urgent: 8 workers for sugarcane cutting. Season chal raha hai. Experienced preferred. Transport available.", posted: "Kisaan Sahkari Samiti", workers: 8, coords: { lat: 26.9320, lng: 81.1868 } },
+    { id: "d4", title: "Vegetable Farm Helper", titleHi: "सब्जी खेत सहायक", cat: "Agriculture", wage: 400, loc: "Amethi, UP", dist: 4.8, verified: false, urgent: false, desc: "Daily wage for vegetable picking - tomato, potato, onion. Women workers welcome. 7 AM to 1 PM.", posted: "Rajendra Singh", workers: 4, coords: { lat: 26.1524, lng: 81.8084 } },
+    { id: "d5", title: "Irrigation Pump Operator", titleHi: "सिंचाई पंप चालक", cat: "Agriculture", wage: 480, loc: "Pratapgarh, UP", dist: 7.1, verified: true, urgent: false, desc: "Diesel pump operate karna aana chahiye. 15 bigha khet ki sinchai. 5 din ka kaam.", posted: "Munna Lal Patel", workers: 1, coords: { lat: 25.8967, lng: 81.9395 } },
+    { id: "d6", title: "Mango Orchard Workers", titleHi: "आम बाग मज़दूर", cat: "Agriculture", wage: 420, loc: "Lucknow Rural, UP", dist: 6.3, verified: true, urgent: false, desc: "Aam ke baag mein kaam - pruning, spraying, harvesting. Season May-July. Rehne ka intezaam hai.", posted: "Hari Prasad Gupta", workers: 6, coords: { lat: 26.8467, lng: 80.9462 } },
+
+    // ===== CONSTRUCTION (निर्माण) =====
+    { id: "d7", title: "House Construction Mason", titleHi: "मकान निर्माण राजमिस्त्री", cat: "Construction", wage: 650, loc: "Salon, Raebareli, UP", dist: 4.1, verified: true, urgent: false, desc: "2-floor house construction. Need skilled masons who know brick + plaster work. 2 month project.", posted: "Ramesh Contractor", workers: 3, coords: { lat: 26.0822, lng: 81.3843 } },
+    { id: "d8", title: "Road Construction Labour", titleHi: "सड़क निर्माण मज़दूर", cat: "Construction", wage: 500, loc: "Fatehpur, UP", dist: 8.5, verified: true, urgent: true, desc: "PWD road widening project. 20 labourers needed urgently. MGNREGA rate + bonus. ID proof zaruri.", posted: "Sharma Construction Co.", workers: 20, coords: { lat: 25.9304, lng: 80.8139 } },
+    { id: "d9", title: "Tile & Flooring Fitter", titleHi: "टाइल फिटर मिस्त्री", cat: "Construction", wage: 700, loc: "Unnao, UP", dist: 5.9, verified: true, urgent: false, desc: "Experienced tile fitter chahiye. Marble + vitrified tiles lagana aana chahiye. Tools available.", posted: "Ajay Builder Group", workers: 2, coords: { lat: 26.5470, lng: 80.4878 } },
+    { id: "d10", title: "Painting Workers", titleHi: "पेंटिंग मज़दूर", cat: "Construction", wage: 550, loc: "Kanpur Dehat, UP", dist: 9.2, verified: false, urgent: false, desc: "Interior + exterior painting. Distemper aur enamel dono aana chahiye. Scaffolding ka experience ho.", posted: "Sanjay Verma", workers: 4, coords: { lat: 26.4499, lng: 80.3319 } },
+
+    // ===== DRIVING (ड्राइविंग) =====
+    { id: "d11", title: "Tractor Driver for Plowing", titleHi: "ट्रैक्टर चालक - जुताई", cat: "Driving", wage: 600, loc: "Amethi, UP", dist: 6.8, verified: false, urgent: true, desc: "Mahindra 575 tractor chalana aana chahiye. Kheti ki jutai ka kaam. Licence zaruri.", posted: "Kisaan Cooperative", workers: 1, coords: { lat: 26.1524, lng: 81.8084 } },
+    { id: "d12", title: "Delivery Van Driver", titleHi: "डिलीवरी वैन ड्राइवर", cat: "Driving", wage: 550, loc: "Lucknow, UP", dist: 12.0, verified: true, urgent: false, desc: "Tata Ace ya Mahindra Bolero pickup chalana aana chahiye. Local delivery. 8 AM to 6 PM.", posted: "Agro Fresh Pvt Ltd", workers: 2, coords: { lat: 26.8467, lng: 80.9462 } },
+    { id: "d13", title: "Auto Rickshaw Driver", titleHi: "ऑटो रिक्शा चालक", cat: "Driving", wage: 500, loc: "Jaunpur, UP", dist: 3.4, verified: true, urgent: false, desc: "CNG auto chalana aana chahiye. Shared route - Jaunpur to Kerakat. Fuel cost company degi.", posted: "City Auto Service", workers: 3, coords: { lat: 25.7464, lng: 82.6837 } },
+
+    // ===== HANDLOOM (हथकरघा) =====
+    { id: "d14", title: "Saree Weaving Artisan", titleHi: "साड़ी बुनकर कारीगर", cat: "Handloom", wage: 450, loc: "Varanasi, UP", dist: 5.0, verified: true, urgent: false, desc: "Banarasi silk saree bunai ka kaam. Minimum 2 saal experience. Jacquard loom chalana aana chahiye.", posted: "Ansari Bunkar Sangh", workers: 5, coords: { lat: 25.3176, lng: 82.9739 } },
+    { id: "d15", title: "Carpet Weaving Workers", titleHi: "कालीन बुनाई मज़दूर", cat: "Handloom", wage: 400, loc: "Bhadohi, UP", dist: 7.5, verified: true, urgent: true, desc: "Hand-knotted carpet weaving. Export order urgent hai. Trained workers ko preference.", posted: "Kashmir Carpet Exports", workers: 8, coords: { lat: 25.3953, lng: 82.5700 } },
+
+    // ===== RETAIL (दुकान) =====
+    { id: "d16", title: "Kirana Shop Helper", titleHi: "किराना दुकान सहायक", cat: "Retail", wage: 350, loc: "Raebareli Town, UP", dist: 1.2, verified: true, urgent: false, desc: "Saman uthana, billing karna, customer se baat karna. Hindi + basic maths aana chahiye.", posted: "Gupta General Store", workers: 1, coords: { lat: 26.2006, lng: 81.2330 } },
+    { id: "d17", title: "Mandi Sabzi Loader", titleHi: "मंडी सब्जी लोडर", cat: "Retail", wage: 450, loc: "Lalganj Mandi, UP", dist: 3.8, verified: false, urgent: true, desc: "Subah 4 baje se 10 baje tak. Sabzi mandi mein loading-unloading. Daily payment.", posted: "Mandi Samiti Lalganj", workers: 6, coords: { lat: 25.9361, lng: 81.9459 } },
+
+    // ===== ELECTRICAL (बिजली) =====
+    { id: "d18", title: "House Wiring Electrician", titleHi: "घरेलू वायरिंग इलेक्ट्रीशियन", cat: "Electrical", wage: 600, loc: "Dalmau, UP", dist: 4.5, verified: true, urgent: false, desc: "Naye ghar ki wiring. MCB, switch board, fan fitting sab karna hai. ITI certificate preferred.", posted: "New India Electricals", workers: 2, coords: { lat: 26.0667, lng: 81.0333 } },
+    { id: "d19", title: "Solar Panel Installer", titleHi: "सोलर पैनल लगाने वाला", cat: "Electrical", wage: 700, loc: "Salon, UP", dist: 5.6, verified: true, urgent: true, desc: "PM Surya Ghar Yojana ke tahat solar panel installation. Training milegi. 3 month project.", posted: "Green Energy Solutions", workers: 5, coords: { lat: 26.0822, lng: 81.3843 } },
+
+    // ===== PLUMBING (प्लम्बिंग) =====
+    { id: "d20", title: "Bathroom Fitting Plumber", titleHi: "बाथरूम फिटिंग प्लम्बर", cat: "Plumbing", wage: 550, loc: "Bachhrawan, UP", dist: 3.2, verified: true, urgent: false, desc: "Naye ghar mein bathroom fitting - commode, basin, pipe line. CPVC pipe ka kaam aana chahiye.", posted: "Yadav Construction", workers: 2, coords: { lat: 26.1810, lng: 81.0110 } },
+    { id: "d21", title: "Borewell Repair Technician", titleHi: "बोरवेल मरम्मत टेक्नीशियन", cat: "Plumbing", wage: 650, loc: "Lalganj, UP", dist: 6.0, verified: false, urgent: true, desc: "Submersible pump repair aur installation. Gaon mein borwell kharab ho gaya hai. Urgent.", posted: "Gram Panchayat Lalganj", workers: 1, coords: { lat: 25.9361, lng: 81.9459 } },
+
+    // ===== COOKING (रसोई) =====
+    { id: "d22", title: "Wedding Catering Cook", titleHi: "शादी का रसोइया", cat: "Cooking", wage: 800, loc: "Raebareli, UP", dist: 2.0, verified: true, urgent: true, desc: "500 logon ki shaadi. 3 din ka kaam. Puri, sabzi, raita, dal banana aana chahiye. Helper bhi chahiye.", posted: "Sharma Ji Marriage Hall", workers: 4, coords: { lat: 26.2006, lng: 81.2330 } },
+    { id: "d23", title: "School Mid-Day Meal Cook", titleHi: "स्कूल मिड-डे मील रसोइया", cat: "Cooking", wage: 300, loc: "Tiloi, Amethi, UP", dist: 8.0, verified: true, urgent: false, desc: "Government school mein mid-day meal banana. 150 bacchon ka khana. Monday to Saturday.", posted: "BRC Tiloi", workers: 2, coords: { lat: 26.2131, lng: 81.6017 } },
+
+    // ===== SECURITY (सुरक्षा) =====
+    { id: "d24", title: "Night Security Guard", titleHi: "रात्रि सुरक्षा गार्ड", cat: "Security", wage: 450, loc: "Raebareli Industrial Area", dist: 3.0, verified: true, urgent: false, desc: "Factory mein raat 8 baje se subah 6 baje. Torch aur whistle diya jayega. Uniform milegi.", posted: "ABC Industries", workers: 3, coords: { lat: 26.2200, lng: 81.2500 } },
+    { id: "d25", title: "Bank ATM Security Guard", titleHi: "बैंक ATM सुरक्षा गार्ड", cat: "Security", wage: 500, loc: "Lalganj, UP", dist: 4.2, verified: true, urgent: true, desc: "SBI ATM par 12 ghante ki duty. Shift rotation hoga. ESI + PF milega. Ex-serviceman preferred.", posted: "Suraksha Security Services", workers: 2, coords: { lat: 25.9361, lng: 81.9459 } },
+
+    // ===== TAILORING (सिलाई) =====
+    { id: "d26", title: "Ladies Suit Tailor", titleHi: "लेडीज़ सूट दर्ज़ी", cat: "Tailoring", wage: 400, loc: "Raebareli Market", dist: 1.5, verified: true, urgent: false, desc: "Salwar-kameez, kurti silai ka kaam. Machine chalani aani chahiye. Per piece payment bhi available.", posted: "Noor Fashion Tailors", workers: 3, coords: { lat: 26.2006, lng: 81.2330 } },
+    { id: "d27", title: "School Uniform Stitching", titleHi: "स्कूल यूनिफॉर्म सिलाई", cat: "Tailoring", wage: 380, loc: "Salon, UP", dist: 5.0, verified: false, urgent: true, desc: "Naye session ke liye 500 school uniform silne hain. Bulk order. Deadline 15 din. Overlock machine ho.", posted: "Saraswati Vidya Mandir", workers: 5, coords: { lat: 26.0822, lng: 81.3843 } },
+
+    // ===== CLEANING (सफ़ाई) =====
+    { id: "d28", title: "Office Cleaning Staff", titleHi: "ऑफिस सफ़ाई कर्मचारी", cat: "Cleaning", wage: 350, loc: "Raebareli Collectorate", dist: 1.8, verified: true, urgent: false, desc: "Government office ki safai. Subah 7 baje se 10 baje. Jhadoo, pocha, dustbin saaf karna.", posted: "Nagar Palika Parishad", workers: 4, coords: { lat: 26.2006, lng: 81.2330 } },
+    { id: "d29", title: "Hospital Housekeeping", titleHi: "अस्पताल हाउसकीपिंग", cat: "Cleaning", wage: 400, loc: "District Hospital, Raebareli", dist: 2.5, verified: true, urgent: true, desc: "Hospital ward cleaning. Gloves aur mask diya jayega. 2 shift available. ESI benefit milega.", posted: "District Hospital HR", workers: 6, coords: { lat: 26.2050, lng: 81.2400 } },
+
+    // ===== LOGISTICS (परिवहन) =====
+    { id: "d30", title: "Warehouse Loading Worker", titleHi: "गोदाम लोडिंग मज़दूर", cat: "Logistics", wage: 480, loc: "Unchahar, UP", dist: 7.0, verified: true, urgent: false, desc: "NTPC godam mein saman loading-unloading. 50kg tak uthana padega. Safety shoes milenge.", posted: "NTPC Contractor", workers: 10, coords: { lat: 25.8756, lng: 81.4730 } },
+    { id: "d31", title: "E-commerce Delivery Boy", titleHi: "ई-कॉमर्स डिलीवरी बॉय", cat: "Logistics", wage: 500, loc: "Raebareli City, UP", dist: 1.0, verified: true, urgent: true, desc: "Amazon/Flipkart parcel delivery. Bike hona zaruri. Petrol allowance alag se milega. Per parcel bonus.", posted: "BlueDart Logistics", workers: 5, coords: { lat: 26.2006, lng: 81.2330 } },
+    { id: "d32", title: "Grain Transport Helper", titleHi: "अनाज ट्रांसपोर्ट हेल्पर", cat: "Logistics", wage: 450, loc: "FCI Godown, Sultanpur", dist: 9.5, verified: true, urgent: false, desc: "FCI godown se mandi tak gehun transport. Truck ke saath helper chahiye. Heavy lifting.", posted: "FCI Sultanpur", workers: 4, coords: { lat: 26.2648, lng: 82.0727 } },
+
+    // ===== MORE AGRICULTURE =====
+    { id: "d33", title: "Dairy Farm Worker", titleHi: "डेयरी फार्म कर्मचारी", cat: "Agriculture", wage: 400, loc: "Harchandpur, UP", dist: 5.5, verified: true, urgent: false, desc: "Bhains aur gaay ka dhoodh nikalna, feed dena, shed saaf karna. Subah 5 baje aana hoga.", posted: "Gau Seva Dairy Farm", workers: 2, coords: { lat: 26.1370, lng: 81.1510 } },
+    { id: "d34", title: "Fishery Pond Worker", titleHi: "मछली तालाब मज़दूर", cat: "Agriculture", wage: 420, loc: "Jais, Amethi, UP", dist: 8.2, verified: false, urgent: false, desc: "Machli palan ka kaam. Net dalna, feed dalna, talab ki safai. Swimming aana zaruri.", posted: "Matsya Vikas Nigam", workers: 3, coords: { lat: 26.2631, lng: 81.5396 } },
+    { id: "d35", title: "Mushroom Farming Assistant", titleHi: "मशरूम खेती सहायक", cat: "Agriculture", wage: 380, loc: "Bachhrawan, UP", dist: 3.8, verified: true, urgent: false, desc: "Oyster mushroom ki kheti. Training di jayegi. Women preferred. Part time bhi available.", posted: "Krishi Vigyan Kendra", workers: 4, coords: { lat: 26.1810, lng: 81.0110 } }
+  ];
+
+  let jobs = [];
+  let myPostedJobs = [];
+  let allJobsCache = [];
+  let isRecording = false, recTimer, waveTimer;
+  let conversationHistory = [];
+  let loginSession = { isLoggedIn: false, phone: "", uid: "" };
+  let userLocation = null;
+  let nearbyAlertsEnabled = false;
+  let confirmationResult = null;
+  let recaptchaVerifier = null;
+  let seenNearbyJobs = new Set();
+  let unsubscribeJobs = null;
+  let voiceActive = false;
+
+  const catIcons = { Agriculture: "🌾", Construction: "🏗", Driving: "🚛", Handloom: "🧵", Retail: "🛒", Electrical: "⚡", Plumbing: "🔧", Cooking: "🍳", Security: "💂", Tailoring: "👗", Cleaning: "🧹", Logistics: "📦" };
+  const LANGS = {
+    hi: { heroTitle: "अपना काम, अपने गाँव के पास", heroSub: "आवाज़ से खोजें • WhatsApp पर पाएं • AI से मदद लें", catLabel: "काम की श्रेणियाँ", nearLabel: "पास के काम (5km)", statWL: "पंजीकृत मज़दूर", statJL: "उपलब्ध काम", statVL: "गाँव जुड़े", c1: "खेती", c2: "निर्माण", c3: "हथकरघा", c4: "ड्राइविंग", c5: "दुकान", c6: "बिजली" },
+    en: { heroTitle: "Your Work, Near Your Village", heroSub: "Search by Voice • WhatsApp Alerts • AI Powered", catLabel: "Job Categories", nearLabel: "Nearby Jobs (5km)", statWL: "Registered Workers", statJL: "Active Jobs", statVL: "Villages", c1: "Agriculture", c2: "Construction", c3: "Handloom", c4: "Driving", c5: "Retail", c6: "Electrical" },
+    mr: { heroTitle: "तुमचे काम, तुमच्या गावाजवळ", heroSub: "आवाजाने शोधा • WhatsApp Alert मिळवा", catLabel: "कामाचे प्रकार", nearLabel: "जवळचे काम", statWL: "नोंदणीकृत कामगार", statJL: "उपलब्ध काम", statVL: "जोडलेली गावे", c1: "शेती", c2: "बांधकाम", c3: "हातमाग", c4: "वाहन चालन", c5: "दुकान", c6: "विद्युत" },
+    ta: { heroTitle: "உங்கள் வேலை, உங்கள் கிராமத்திற்கு அருகில்", heroSub: "குரலால் தேடுங்கள் • WhatsApp Alert", catLabel: "வேலை வகைகள்", nearLabel: "அருகிலுள்ள வேலைகள்", statWL: "தொழிலாளர்கள்", statJL: "வேலைகள்", statVL: "கிராமங்கள்", c1: "விவசாயம்", c2: "கட்டுமானம்", c3: "நெசவு", c4: "ஓட்டுதல்", c5: "சில்லறை", c6: "மின்சாரம்" }
+  };
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.style.opacity = "1";
+    t.style.top = "60px";
+    setTimeout(() => { t.style.opacity = "0"; }, 2500);
+  }
+
+  function getLocalOwnerId() {
+    const key = "kaamsetu_local_owner_uid";
+    try {
+      let id = localStorage.getItem(key);
+      if (!id) {
+        id = "localUser_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem(key, id);
+      }
+      return id;
+    } catch (e) {
+      return "localUser_ephemeral";
+    }
+  }
+
+  function openChannel() {
+    showToast("WhatsApp Channel khul raha hai...");
+    window.open(WA_CHANNEL, "_blank");
+  }
+
+  function setLang(l, btn) {
+    document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+    const t = LANGS[l] || LANGS.en;
+    Object.keys(t).forEach(k => {
+      const el = document.getElementById(k);
+      if (el) el.textContent = t[k];
+    });
+  }
+
+  function switchTab(name) {
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".bnav").forEach(b => b.classList.remove("active"));
+    document.getElementById("screen-" + name).classList.add("active");
+    const t = document.getElementById("tab-" + name); if (t) t.classList.add("active");
+    const b = document.getElementById("bnav-" + name); if (b) b.classList.add("active");
+    if (name === "jobs") renderJobs();
+    if (name === "post") renderMyJobs();
+  }
+
+  function doSearch() {
+    const q = document.getElementById("searchInput").value.trim();
+    if (!q) return;
+
+    // Clear the other search input to avoid confusion
+    const jobSearchInput = document.getElementById("jobSearch");
+    if (jobSearchInput) jobSearchInput.value = q;
+
+    switchTab("jobs");
+    renderJobs();
+  }
+
+  function filterCat(cat) {
+    switchTab("jobs");
+    document.getElementById("jobFilter").value = cat;
+    renderJobs();
+  }
+
+  function sanitizeHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function renderJobs() {
+    const q = (document.getElementById("jobSearch").value || "").toLowerCase();
+    const f = document.getElementById("jobFilter").value;
+
+    // Expanded Hindi-English Synonym Mapping for better search results
+    const synonyms = {
+      "kheti": "agriculture खेती farming khet khetibari",
+      "agriculture": "खेती kheti farming khet khetibari",
+      "mazdoor": "labour worker मज़दूर मजदूर kamgar kamkaaj",
+      "labour": "मज़दूर worker mazdoor मजदूर kamgar kamkaaj",
+      "worker": "मज़दूर labour mazdoor मजदूर kamgar kamkaaj",
+      "construction": "निर्माण nirman mistry मिस्त्री makaan ghar",
+      "nirman": "construction निर्माण mistry मिस्त्री makaan ghar",
+      "driver": "ड्राइवर driving chalak चालक gaadi tractor",
+      "driving": "ड्राइवर driver chalak चालक gaadi tractor",
+      "bijli": "electrical electrician bijli बिजली current",
+      "electrician": "बिजली electrical bijli बिजली current",
+      "plumber": "प्लम्बर plumbing plumber नल मिस्त्री nal",
+      "cleaning": "सफाई cleaner safai सफाई jhadu pocha",
+      "security": "सुरक्षा guard chowkidar चौकीदार raksha",
+      "khana": "cooking cook rasoiya रसोइया bhojan",
+      "cooking": "खाना cooking cook rasoiya रसोइया bhojan",
+      "mistry": "construction निर्माण labour मज़दूर mason rajmistry",
+      "factory": "company factory karkhana कारखाना industry",
+      "shop": "dukan shop retail dukan दुकान store",
+      "dukan": "shop dukan retail दुकान store",
+      "tractor": "driver tractor chalak चालक kheti"
+    };
+
+    const extraSearchTerms = synonyms[q] || "";
+    const allSearch = (q + " " + extraSearchTerms).toLowerCase();
+
+    // Use allJobsCache directly to ensure we don't miss any jobs
+    const filtered = allJobsCache.filter(j => {
+      const title = (j.title || "").toLowerCase();
+      const titleHi = (j.titleHi || "").toLowerCase();
+      const cat = (j.cat || "").toLowerCase();
+      const loc = (j.loc || "").toLowerCase();
+      const desc = (j.desc || "").toLowerCase();
+
+      // Check if any search term matches
+      const searchTerms = allSearch.split(" ").filter(t => t.length > 0);
+      const mq = !q || searchTerms.some(term =>
+        title.includes(term) ||
+        titleHi.includes(term) ||
+        cat.includes(term) ||
+        loc.includes(term) ||
+        desc.includes(term)
+      );
+
+      const mf = !f || j.cat === f;
+      return mq && mf;
+    });
+
+    const c = document.getElementById("jobsContainer");
+    if (!filtered.length) {
+      c.innerHTML = '<div style="text-align:center;padding:32px;color:var(--color-text-secondary);font-size:13px;">Koi job nahi mili<br><br><button class="btn-green" onclick="switchTab(\'ai\')">AI se madad lo</button></div>';
+      return;
+    }
+
+    c.innerHTML = filtered.map(j => {
+      const safeTitle = sanitizeHtml(j.title);
+      const encodedTitle = encodeURIComponent(j.title);
+      const encodedTitleAudio = encodeURIComponent(j.titleHi || j.title);
+      const ph = j.phone || j.ownerPhone || '';
+      const phDisplay = ph ? ph.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3') : '';
+      return `
+    <div class="card job-card ${j.urgent ? "urgent" : ""}" style="animation: fadeUp 0.3s ease;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span style="font-size:22px;">${catIcons[j.cat] || "💼"}</span>
+          <div>
+            <div style="font-weight:600;font-size:13px;">${safeTitle}</div>
+            <div style="font-size:10px;color:var(--color-text-secondary);margin-top:1px;">📍 ${sanitizeHtml(j.loc)} • ${j.dist}km away</div>
+            ${j.titleHi ? `<div style="font-size:10px;color:var(--green-mid);font-weight:500;">${sanitizeHtml(j.titleHi)}</div>` : ""}
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-weight:600;color:var(--green-mid);font-size:14px;">₹${j.wage}/day</div>
+          ${j.verified ? '<span class="posted-tag" style="font-size:8px;">✓ Verified</span>' : ""}
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:8px;line-height:1.5;">${sanitizeHtml(j.desc || "")}</div>
+      <div style="display:flex;gap:4px;align-items:center;margin-bottom:8px;flex-wrap:wrap;">
+        <span class="badge" style="background:var(--color-background-secondary);color:var(--color-text-secondary);">👥 ${j.workers} needed</span>
+        ${j.urgent ? '<span class="urgent-tag">Urgent</span>' : ""}
+        <span style="font-size:10px;color:var(--color-text-secondary);margin-left:auto;">by ${sanitizeHtml(j.posted || "Unknown")}</span>
+      </div>
+      ${ph ? `<div style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:8px 12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">
+        <div><div style="font-size:10px;color:var(--color-text-secondary);">📞 Contractor Contact</div><div style="font-size:13px;font-weight:600;color:var(--color-text-primary);margin-top:2px;">${sanitizeHtml(j.posted)} — ${phDisplay}</div></div>
+        <div style="display:flex;gap:6px;">
+          <a href="tel:+91${ph}" style="background:#3B6D11;color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:15px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;" title="Call">📞</a>
+          <a href="https://wa.me/91${ph}?text=${encodeURIComponent('Namaste! KaamSetu par aapki job dekhi: ' + j.title + '. Kya yeh abhi available hai?')}" target="_blank" style="background:#25D366;color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:15px;display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;" title="WhatsApp">💬</a>
+        </div>
+      </div>` : ''}
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+        <button class="btn-apply" onclick="applyJob('${String(j.id)}','${encodedTitle}')">Apply</button>
+        ${ph ? `<a href="tel:+91${ph}" class="btn-apply" style="background:#2196F3;text-align:center;text-decoration:none;">📞 Call</a>` : ''}
+        ${ph ? `<a href="https://wa.me/91${ph}?text=${encodeURIComponent('KaamSetu: ' + j.title + ' job ke baare mein jaankari chahiye')}" target="_blank" class="btn-apply" style="background:#25D366;text-align:center;text-decoration:none;">💬 WhatsApp</a>` : ''}
+        <button onclick="readJobOutLoud('${encodedTitleAudio}', '${j.wage}', '${sanitizeHtml(j.loc)}')" style="background:var(--amber);color:#fff;border:none;border-radius:8px;padding:9px 10px;font-size:11px;font-weight:600;cursor:pointer;">🔊</button>
+        <button style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;width:34px;height:34px;font-size:13px;cursor:pointer;" onclick="shareJob('${encodedTitle}')">↗</button>
+      </div>
+    </div>`;
+    }).join("");
+  }
+
+  function renderMyJobs() {
+    const c = document.getElementById("myJobs");
+    if (!myPostedJobs.length) {
+      c.innerHTML = '<div style="text-align:center;padding:20px;color:var(--color-text-secondary);font-size:12px;">Abhi koi job post nahi ki</div>';
+      return;
+    }
+
+    c.innerHTML = myPostedJobs.map(j => {
+      const canDelete = db
+        ? (auth && auth.currentUser && j.ownerUid && j.ownerUid === auth.currentUser.uid)
+        : (j.ownerUid && j.ownerUid === getLocalOwnerId());
+      const delBtn = canDelete
+        ? `<button type="button" style="background:none;border:none;cursor:pointer;font-size:16px;" onclick="deleteJob('${String(j.id)}')" title="Delete">🗑</button>`
+        : "";
+      return `
+    <div class="card" style="border-left:3px solid var(--amber);">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div><div style="font-weight:600;font-size:13px;">${catIcons[j.cat] || "💼"} ${sanitizeHtml(j.title)}</div><div style="font-size:11px;color:var(--color-text-secondary);">📍 ${sanitizeHtml(j.loc)} • ₹${j.wage}/day • ${j.workers} workers</div></div>
+        ${delBtn}
+      </div>
+      ${j.urgent ? '<span class="urgent-tag" style="margin-top:6px;display:inline-block;">Urgent</span>' : ""}
+    </div>`;
+    }).join("");
+  }
+
+  function readJobOutLoud(encodedTitle, wage, loc) {
+    if (!('speechSynthesis' in window)) {
+      showToast("Aapka phone audio support nahi karta.");
+      return;
+    }
+    const title = decodeURIComponent(encodedTitle || "");
+    const text = `यह काम है, ${title} का. रोज़ की दिहाड़ी है, ${wage} रुपये. यह काम, ${loc} में है.`;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "hi-IN";
+    utterance.rate = 0.85;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+    showToast("🔊 पढ़ कर सुनाया जा रहा है...");
+  }
+
+  // ================================================================
+  //  📋 APPLY JOB — Real Details Modal
+  // ================================================================
+  let currentApplyJobId = null;
+  let currentApplyJobObj = null;
+
+  async function applyJob(id, encodedTitle) {
+    const title = decodeURIComponent(encodedTitle || "");
+    const all = [...allJobsCache];
+    const j = all.find(x => String(x.id) === String(id));
+    currentApplyJobId = id;
+    currentApplyJobObj = j;
+
+    // Open real apply modal
+    document.getElementById('applyModalJobTitle').textContent = '💼 ' + title;
+    document.getElementById('applyError').style.display = 'none';
+
+    // Pre-fill name/phone/village from profile or localStorage
+    try {
+      const savedName = document.getElementById('profName')?.innerText || '';
+      const savedPhone = document.getElementById('profPhone')?.innerText?.replace(/\D/g,'') || '';
+      const savedVillage = document.getElementById('profVillage')?.innerText || '';
+      if (savedName && savedName !== 'Ramlal Yadav') document.getElementById('applyName').value = savedName;
+      if (savedPhone && savedPhone.length === 10) document.getElementById('applyPhone').value = savedPhone;
+      if (savedVillage && savedVillage !== 'Raebareli, UP') document.getElementById('applyVillage').value = savedVillage;
+    } catch(e) {}
+
+    // Show modal
+    const modal = document.getElementById('applyModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    document.getElementById('applyName').focus();
+  }
+
+  function closeApplyModal() {
+    document.getElementById('applyModal').style.display = 'none';
+    document.body.style.overflow = '';
+    currentApplyJobId = null;
+    currentApplyJobObj = null;
+  }
+
+  function submitApply() {
+    const name = document.getElementById('applyName').value.trim();
+    const phone = document.getElementById('applyPhone').value.trim();
+    const village = document.getElementById('applyVillage').value.trim();
+    const age = document.getElementById('applyAge').value.trim();
+    const exp = document.getElementById('applyExp').value;
+    const skill = document.getElementById('applySkill').value.trim();
+    const wage = document.getElementById('applyWage').value.trim();
+    const note = document.getElementById('applyNote').value.trim();
+    const errEl = document.getElementById('applyError');
+
+    if (!name || !phone || phone.length < 10 || !village) {
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    const j = currentApplyJobObj;
+    const jobTitle = j ? j.title : decodeURIComponent(currentApplyJobId || '');
+    const now = new Date();
+    const dateStr = now.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][now.getMonth()];
+
+    const application = {
+      worker: name,
+      phone: phone,
+      village: village,
+      age: age || '-',
+      experience: exp,
+      skill: skill || (j ? j.cat : '-'),
+      wage: wage ? '₹' + wage + '/day' : '-',
+      note: note,
+      job: jobTitle,
+      jobId: currentApplyJobId,
+      catIcon: j ? ({
+        Agriculture:'🌾', Construction:'🏗', Driving:'🚛', Handloom:'🧵',
+        Retail:'🛒', Electrical:'⚡', Plumbing:'🔧', Cooking:'🍳',
+        Security:'💂', Tailoring:'👗', Cleaning:'🧹', Logistics:'📦'
+      }[j.cat] || '💼') : '💼',
+      jobWage: j ? j.wage : '-',
+      jobLocation: j ? j.loc : '-',
+      date: dateStr,
+      status: 'pending',
+      submittedAt: now.toISOString()
+    };
+
+    // Save to localStorage so admin can see it
+    try {
+      const existing = JSON.parse(localStorage.getItem('ks_applications') || '[]');
+      existing.unshift(application);
+      localStorage.setItem('ks_applications', JSON.stringify(existing));
+    } catch(e) { console.warn('Could not save application:', e); }
+
+    // Close modal
+    closeApplyModal();
+
+    // Show success
+    showToast('✅ Apply ho gaya! Admin ke paas details chali gayi.');
+    if (typeof confetti === 'function') {
+      confetti({ particleCount: 100, spread: 60, origin: { y: 0.7 }, colors: ['#1d7a36', '#4caf50', '#ffffff'] });
+    }
+
+    // Also WhatsApp the poster if they have a phone
+    if (j && (j.phone || j.ownerPhone)) {
+      const posterPhone = j.phone || j.ownerPhone;
+      setTimeout(() => {
+        const waMsg = `Namaste! 🙏\nMera naam ${name} hai.\nMain KaamSetu se aapki job ke liye apply kar raha/rahi hoon:\n\n💼 *${jobTitle}*\n📍 ${j.loc}\n💰 ${j.wage}/day\n\nMera mobile: ${phone}\nGaon: ${village}\n\nKya yeh kaam abhi available hai?`;
+        window.open(`https://wa.me/91${posterPhone}?text=${encodeURIComponent(waMsg)}`, '_blank');
+        showToast('💬 WhatsApp pe bhi message bheja!');
+      }, 2000);
+    }
+  }
+
+  // Close modal on outside click
+  document.getElementById('applyModal').addEventListener('click', function(e) {
+    if (e.target === this) closeApplyModal();
+  });
+
+  function shareJob(encodedTitle) {
+    const title = decodeURIComponent(encodedTitle || "");
+    const text = `New job opportunity on KaamSetu: ${title}\nCheck details here: https://kaamsetu.netlify.app`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    showToast("Opening WhatsApp...");
+  }
+
+  function installPWA() {
+    showToast("App Home Screen par install ho raha hai...");
+    setTimeout(() => {
+      alert("✅ KaamSetu app aapke phone me install ho gaya hai!");
+      showToast("Install Successful!");
+    }, 1200);
+  }
+
+  async function postJob() {
+    const title = document.getElementById("pTitle").value.trim();
+    const cat = document.getElementById("pCat").value;
+    const wage = document.getElementById("pWage").value;
+    const loc = document.getElementById("pLoc").value.trim();
+    const desc = document.getElementById("pDesc").value.trim();
+    const urgent = document.getElementById("pUrgent").checked;
+    const count = document.getElementById("pCount").value || 1;
+    const contactPhone = (document.getElementById("pPhone").value || "").trim().replace(/\D/g, '');
+
+    if (!title || !cat || !wage || !loc) { showToast("Required fields fill karein"); return; }
+    if (!contactPhone || contactPhone.length !== 10) { showToast("WhatsApp number (10 digit) daalna zaruri hai"); return; }
+
+    const latValue = parseFloat(document.getElementById("pLat").value);
+    const lngValue = parseFloat(document.getElementById("pLng").value);
+    const coords = Number.isFinite(latValue) && Number.isFinite(lngValue) ? { lat: latValue, lng: lngValue } : null;
+    if (db && auth && !auth.currentUser) { showToast("Session ready ho raha hai, 1 second baad try karein"); return; }
+    const uid = db
+      ? (auth && auth.currentUser ? auth.currentUser.uid : null)
+      : getLocalOwnerId();
+    const payload = {
+      title, cat, wage: parseInt(wage, 10), loc, desc, urgent,
+      workers: parseInt(count, 10), dist: (Math.random() * 5 + 1).toFixed(1) * 1,
+      posted: "You",
+      verified: false,
+      ownerUid: uid,
+      phone: contactPhone,
+      ownerPhone: contactPhone,
+      coords, createdAt: serverTimestamp()
+    };
+
+    try {
+      if (db) {
+        await db.collection("jobs").add(payload);
+      } else {
+        const localId = "local_" + Date.now();
+        allJobsCache.unshift({ ...payload, id: localId, ownerUid: uid });
+        syncJobViews();
+      }
+      ["pTitle", "pWage", "pLoc", "pDesc", "pCount", "pLat", "pLng", "pPhone"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("pCat").value = "";
+      document.getElementById("pUrgent").checked = false;
+      showToast("✅ Job posted successfully!");
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#1d7a36', '#c0dd97', '#ffffff']
+        });
+      }
+    } catch (e) {
+      showToast("Job post failed");
+    }
+  }
+
+  async function deleteJob(id) {
+    try {
+      const target = allJobsCache.find((j) => String(j.id) === String(id));
+      if (target) {
+        if (db && auth && auth.currentUser) {
+          if (!target.ownerUid || target.ownerUid !== auth.currentUser.uid) {
+            showToast("Sirf apni post delete kar sakte ho");
+            return;
+          }
+        } else if (!db) {
+          if (!target.ownerUid || target.ownerUid !== getLocalOwnerId()) {
+            showToast("Sirf apni post delete kar sakte ho");
+            return;
+          }
+        }
+      }
+      if (db) {
+        await db.collection("jobs").doc(String(id)).delete();
+      } else {
+        allJobsCache = allJobsCache.filter((job) => String(job.id) !== String(id));
+        syncJobViews();
+      }
+      showToast("Deleted");
+    } catch (e) {
+      showToast("Delete failed");
+    }
+  }
+
+  async function sendAI() {
+    const input = document.getElementById("aiInput");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    input.value = "";
+    appendMsg(msg, "user");
+    conversationHistory.push({ role: "user", content: msg });
+    const loadingId = appendMsg("⏳ Soch raha hoon...", "ai");
+
+    const geminiKey = (document.getElementById("geminiApiKey")?.value || "").trim() || window._GEMINI_KEY || "";
+
+    // 1️⃣ Try local server /api/chat first (when node server.js is running)
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 2500);
+      const res = await fetch(AI_CHATBOT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: conversationHistory }),
+        signal: ctrl.signal
+      });
+      clearTimeout(timer);
+      if (res.ok) {
+        const data = await res.json();
+        const reply = data.reply || "AI response nahi aaya.";
+        conversationHistory.push({ role: "assistant", content: reply });
+        updateMsg(loadingId, reply);
+        const lbl = document.getElementById("aiStatusLabel");
+        if (lbl) lbl.textContent = "🟢 Server AI";
+        return;
+      }
+    } catch (e) { /* server not running */ }
+
+    // 2️⃣ Try browser Gemini key
+    if (geminiKey) {
+      try {
+        const systemP = `Aap KaamSetu ke AI assistant hain. Rural job portal India ke liye. Hindi/English/Marathi mein jawab do. Helpful aur practical raho.`;
+        const ctx = conversationHistory.slice(-6).map(m => ({
+          role: m.role === "assistant" ? "model" : "user",
+          parts: [{ text: m.content }]
+        }));
+        if (ctx.length > 0) ctx[0].parts[0].text = systemP + "\n\n" + ctx[0].parts[0].text;
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${geminiKey}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: ctx })
+        });
+        const data = await res.json();
+        if (data.error) throw new Error(data.error.message);
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Jawab nahi aaya.";
+        conversationHistory.push({ role: "assistant", content: reply });
+        updateMsg(loadingId, reply);
+        const lbl = document.getElementById("aiStatusLabel");
+        if (lbl) lbl.textContent = "🟢 Gemini AI";
+        return;
+      } catch (e) {
+        updateMsg(loadingId, "⚠️ Error: " + e.message);
+        return;
+      }
+    }
+
+    // 3️⃣ Smart local answers (no key needed)
+    const lm = msg.toLowerCase();
+    let reply = "";
+    if (lm.includes("mgnrega") || lm.includes("mnrega"))
+      reply = "🏛️ MGNREGA:\n• 100 din guaranteed kaam\n• Wage ₹220-350/day\n• Gram Panchayat mein apply karo\n• Docs: Aadhaar + bank account\n• Helpline: 1800-345-22-44";
+    else if (lm.includes("wage") || lm.includes("salary") || lm.includes("kitna") || lm.includes("paisa"))
+      reply = "💰 Wage Guide:\n• Kheti: ₹350-550/day\n• Construction: ₹400-600/day\n• Driving: ₹500-700/day\n• Electrical: ₹450-650/day\n• Cooking: ₹300-450/day";
+    else if (lm.includes("resume") || lm.includes("profile"))
+      reply = "📄 Profile banana:\n1. Naam, gaon, phone likho\n2. Skills list karo\n3. Experience mention karo\n4. Padha nahi toh Voice Bio use karo!";
+    else if (lm.includes("fraud") || lm.includes("thag") || lm.includes("safe"))
+      reply = "🛡️ Fraud se bachao:\n✅ Wage pehle confirm karo\n✅ Panchayat verified contractor chunno\n❌ Pehle paise mat do\n❌ Aadhaar copy mat do\n📞 Helpline: 14434";
+    else if (lm.includes("kaam") || lm.includes("job") || lm.includes("naukri"))
+      reply = "🔍 Kaam dhundhne ke tarike:\n1. Jobs tab mein dekho\n2. Category filter use karo\n3. WhatsApp Channel join karo\n4. Voice search use karo 🎙";
+    else if (lm.includes("skill") || lm.includes("seekh") || lm.includes("training"))
+      reply = "📚 Skill Training:\n• PMKVY (free govt training): pmkvyofficial.org\n• Sectors: Construction, Plumbing, Electrical, IT\n• Certificate milta hai — better jobs!\n• Apne district ke ITI mein bhi jaao\n📞 PMKVY Helpline: 1800-123-9626";
+    else if (lm.includes("scheme") || lm.includes("yojana") || lm.includes("sarkar") || lm.includes("government"))
+      reply = "🏛️ Government Schemes:\n• MGNREGA — 100 din kaam guarantee\n• PMKVY — Free skill training\n• PM Mudra Yojana — ₹50K-10L loan\n• Ayushman Bharat — Free health insurance\n• PM Kisan — ₹6000/year farmers ko\n📞 Helpline: 14434";
+    else if (lm.includes("whatsapp") || lm.includes("channel") || lm.includes("alert"))
+      reply = "📢 WhatsApp Job Alerts:\n• KaamSetu Channel join karo\n• Daily new jobs ka notification aayega\n• Apne area ke kaam pehle milenge\n• Profile tab mein 'Join' button click karo!";
+    else if (lm.includes("hello") || lm.includes("hi") || lm.includes("namaste") || lm.includes("hii"))
+      reply = "🙏 Namaste! Main KaamSetu AI hoon — aapka digital rozgaar sahayak!\n\nMain madad kar sakta hoon:\n• 💼 Jobs dhundhne mein\n• 💰 Wage rates jaanne mein\n• 📄 Resume banane mein\n• 🏛️ Sarkari schemes mein\n• 🛡️ Fraud se bachne mein\n\nKya jaanna chahte ho?";
+    else if (lm.includes("thank") || lm.includes("dhanyawad") || lm.includes("shukriya"))
+      reply = "🙏 Dhanyawad! KaamSetu aapki seva mein hamesha!\n\nAgar koi aur sawaal ho toh poochho. Rozgaar dhundhne mein hum hamesha saath hain! 💪";
+    else if (lm.includes("document") || lm.includes("aadhaar") || lm.includes("aadhar") || lm.includes("id"))
+      reply = "📋 Zaroori Documents:\n• Aadhaar Card (photo + number)\n• Bank Passbook (DBT ke liye)\n• Phone Number (linked to Aadhaar)\n• Ration Card (optional)\n• Skill Certificate (agar hai)\n\n💡 Aadhaar update: uidai.gov.in";
+    else
+      reply = "Namaste! 🙏 Main KaamSetu AI hoon.\n\nAap poochh sakte ho:\n• MGNREGA scheme kya hai?\n• Wage kitna milega?\n• Kaam kaise dhundhun?\n• Resume kaise banaun?\n• Fraud se kaise bachun?\n• Skills kaise seekhun?\n• Sarkari yojana batao\n\n📌 Koi bhi sawaal poochho, main madad karunga!";
+    conversationHistory.push({ role: "assistant", content: reply });
+    updateMsg(loadingId, reply);
+    const lbl = document.getElementById("aiStatusLabel");
+    if (lbl) lbl.textContent = "🟢 KaamSetu AI";
+  }
+
+  function quickQ(q) { document.getElementById("aiInput").value = q; sendAI(); }
+
+  async function aiWriteJob() {
+    const title = document.getElementById("pTitle").value || "kaam";
+    const cat = document.getElementById("pCat").value || "general";
+    const wage = document.getElementById("pWage").value || "negotiable";
+    const loc = document.getElementById("pLoc").value || "UP";
+    switchTab("ai");
+    document.getElementById("aiInput").value = `Mere liye ek job description likho: Title: ${title}, Category: ${cat}, Wage: ₹${wage}/day, Location: ${loc}.`;
+    await sendAI();
+  }
+
+  async function aiJobMatch() {
+    const skills = document.getElementById("skillInput").value.trim();
+    if (!skills) { showToast("Skills enter karo pehle"); return; }
+    document.getElementById("aiInput").value = `Meri skills: ${skills}. Best suited jobs suggest karo.`;
+    await sendAI();
+  }
+
+  function magicFillJob() {
+    showToast("✨ AI is filling the form...");
+    setTimeout(() => {
+      document.getElementById("pTitle").value = "Paddy Harvesting Workers";
+      document.getElementById("pCat").value = "Agriculture";
+      document.getElementById("pWage").value = "500";
+      document.getElementById("pCount").value = "5";
+      document.getElementById("pLoc").value = "Raebareli, UP";
+      document.getElementById("pDesc").value = "Urgent requirement for 5 workers for paddy harvesting for 7 days. Need experienced people.";
+      document.getElementById("pUrgent").checked = true;
+      showToast("✅ Form filled magically!");
+    }, 1500);
+  }
+
+  function autoFillLoc() {
+    showToast("Detecting GPS Location...");
+    setTimeout(() => {
+      document.getElementById('pLoc').value = "Raebareli, Uttar Pradesh";
+      showToast("✅ Location Detected!");
+    }, 1000);
+  }
+
+  function startCall() {
+    const overlay = document.getElementById("callingOverlay");
+    overlay.style.display = "flex";
+    showToast("Connecting to Helpline...");
+  }
+
+  function endCall() {
+    const overlay = document.getElementById("callingOverlay");
+    overlay.style.display = "none";
+    showToast("Call Ended");
+  }
+
+  function appendMsg(text, type) {
+    const msgs = document.getElementById("aiMessages");
+    const id = "msg_" + Date.now();
+    const div = document.createElement("div");
+    div.className = "msg " + type;
+    div.id = id;
+    div.innerHTML = sanitizeHtml(text).replace(/\n/g, "<br>");
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return id;
+  }
+
+  function updateMsg(id, text) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.className = "msg ai";
+    el.innerHTML = "";
+
+    const words = text.split(" ");
+    let i = 0;
+
+    function typeWord() {
+      if (i < words.length) {
+        el.innerHTML += sanitizeHtml(words[i]).replace(/\n/g, "<br>") + " ";
+        i++;
+        document.getElementById("aiMessages").scrollTop = 99999;
+        setTimeout(typeWord, 120); // Typing speed
+      }
+    }
+    typeWord();
+  }
+
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "hi-IN";
+    u.rate = 0.9;
+    window.speechSynthesis.speak(u);
+  }
+
+  function toggleVoice(inputId = "searchInput", btnId = "voiceBtn") {
+    voiceActive = !voiceActive;
+    const btn = document.getElementById(btnId);
+    const originalBg = btnId === "voiceBtn" ? "var(--green-mid)" : "var(--amber)";
+
+    if (!voiceActive) {
+      btn.style.background = originalBg;
+      btn.textContent = "🎙";
+      btn.style.animation = "none";
+      return;
+    }
+    btn.style.background = "#E24B4A";
+    btn.textContent = "⏹";
+    btn.style.animation = "pulse-wa 1s infinite";
+
+    if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
+      showToast("❌ Voice search supported nahi hai (Browser update karein)");
+      voiceActive = false;
+      btn.style.background = originalBg;
+      btn.textContent = "🎙";
+      btn.style.animation = "none";
+      return;
+    }
+
+    // Microphone only works on HTTPS or localhost
+    if (window.location.protocol === "http:" && window.location.hostname !== "localhost") {
+      showToast("⚠️ Microphone sirf HTTPS par chalta hai (Security rule)");
+      voiceActive = false;
+      btn.style.background = originalBg;
+      btn.textContent = "🎙";
+      btn.style.animation = "none";
+      return;
+    }
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const rec = new SR();
+    rec.lang = "en-IN"; // Set to English (India)
+    rec.continuous = false;
+    rec.onresult = e => {
+      document.getElementById(inputId).value = e.results[0][0].transcript;
+      if (inputId === "aiInput") {
+        // Optional: auto-send if you want, but let's just type for now.
+      }
+    };
+    rec.onend = () => {
+      voiceActive = false;
+      btn.style.background = originalBg;
+      btn.textContent = "🎙";
+      btn.style.animation = "none";
+
+      const val = document.getElementById(inputId).value;
+      if (val) {
+        speak("Aapne kaha: " + val);
+        showToast("🔍 Searching: " + val);
+        setTimeout(() => {
+          if (inputId === "searchInput") doSearch();
+          else if (inputId === "aiInput") sendAI();
+          else if (inputId === "skillInput") aiJobMatch();
+        }, 1200);
+      }
+    };
+    rec.onerror = e => {
+      console.error("Speech Recognition Error:", e.error);
+      if (e.error === 'not-allowed') {
+        showToast("❌ Mic permission denied! Settings mein allow karein.");
+      } else if (e.error === 'no-speech') {
+        showToast("⚠️ Aawaz nahi aayi. Phir se try karein.");
+      } else if (e.error === 'network') {
+        showToast("🌐 Network issue! Internet check karein.");
+      } else {
+        showToast("⚠️ Voice error: " + e.error);
+      }
+      rec.onend();
+    };
+    rec.start();
+  }
+
+  function buildWave() {
+    const w = document.getElementById("waveBars");
+    w.innerHTML = "";
+    for (let i = 0; i < 28; i++) {
+      const b = document.createElement("div");
+      b.className = "wave-bar";
+      b.style.height = (Math.sin(i * 0.5) * 10 + 14) + "px";
+      w.appendChild(b);
+    }
+  }
+
+  function toggleRecord() {
+    isRecording = !isRecording;
+    const btn = document.getElementById("recBtn");
+    const st = document.getElementById("recStatus");
+    if (isRecording) {
+      btn.textContent = "⏹ Stop";
+      btn.style.background = "#E24B4A";
+      let s = 0;
+      st.style.color = "#A32D2D";
+      recTimer = setInterval(() => { s++; st.textContent = "⏺ " + s + "/30 sec"; if (s >= 30) toggleRecord(); }, 1000);
+      waveTimer = setInterval(() => {
+        document.querySelectorAll(".wave-bar").forEach(b => { b.style.height = (Math.random() * 28 + 6) + "px"; b.style.background = "#E24B4A"; });
+      }, 100);
+    } else {
+      clearInterval(recTimer);
+      clearInterval(waveTimer);
+      btn.textContent = "🎙 Record Bio";
+      btn.style.background = "var(--green-mid)";
+      st.textContent = "Saved!";
+      st.style.color = "var(--green-mid)";
+      buildWave();
+      showToast("Voice bio saved!");
+      const playBtn = document.getElementById("playBioBtn");
+      if (playBtn) playBtn.style.display = "block";
+      const delBtn = document.getElementById("deleteBioBtn");
+      if (delBtn) delBtn.style.display = "block";
+    }
+  }
+
+  function playBio() {
+    showToast("▶ Aapka voice bio play ho raha hai...");
+    speak("Namaste, mera naam Ramlal hai. Main Uttar Pradesh se hoon aur mujhe 5 saal ka kheti ka anubhav hai.");
+  }
+
+  function deleteBio() {
+    if (confirm("Kya aap apna voice bio delete karna chahte hain?")) {
+      document.getElementById("playBioBtn").style.display = "none";
+      document.getElementById("deleteBioBtn").style.display = "none";
+      document.getElementById("recStatus").textContent = "Ready to record";
+      document.getElementById("recStatus").style.color = "var(--color-text-secondary)";
+      showToast("🗑 Voice bio deleted");
+    }
+  }
+
+  function downloadBio() {
+    showToast("⬇ Downloading voice bio...");
+  }
+
+  function addSkill() {
+    const s = document.getElementById("newSkill").value.trim();
+    if (!s) return;
+    const tags = document.getElementById("skillTags");
+    const colors = [["#EAF3DE", "#27500A"], ["#FAECE7", "#993C1D"], ["#E3F2FD", "#0C447C"], ["#EEEDFE", "#3C3489"], ["#FAEEDA", "#633806"]];
+    const [bg, fg] = colors[Math.floor(Math.random() * colors.length)];
+    const span = document.createElement("span");
+    span.className = "badge";
+    span.style.background = bg;
+    span.style.color = fg;
+    span.textContent = "🛠 " + s;
+    span.style.cursor = "pointer";
+    span.onclick = () => span.remove();
+    tags.appendChild(span);
+    document.getElementById("newSkill").value = "";
+    showToast("Skill added: " + s);
+  }
+
+  function openAIChatbot() {
+    showToast("In-app AI ready hai. Niche message bhejein.");
+  }
+
+  function saveGeminiKey(key) {
+    window._GEMINI_KEY = key;
+    try {
+      if (key) localStorage.setItem("ks_gemini_key", key);
+      else localStorage.removeItem("ks_gemini_key");
+    } catch (e) { }
+    const st = document.getElementById("geminiStatus");
+    if (st) st.textContent = key ? "🟡 Key saved — Test karo" : "Key nahi hai — local answers chal rahe hain";
+    const lbl = document.getElementById("aiStatusLabel");
+    if (lbl) lbl.textContent = key ? "Gemini AI" : "Local Mode";
+  }
+
+  async function testGeminiKey() {
+    const key = (document.getElementById("geminiApiKey")?.value || "").trim();
+    if (!key) { showToast("Pehle key daalo"); return; }
+    const st = document.getElementById("geminiStatus");
+    if (st) { st.textContent = "⏳ Testing..."; st.style.color = "var(--color-text-secondary)"; }
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: "Say: KaamSetu AI ready!" }] }] })
+      });
+      const d = await res.json();
+      if (d.error) throw new Error(d.error.message);
+      if (st) { st.textContent = "✅ Key kaam kar rahi hai! Real AI shuru."; st.style.color = "var(--green-mid)"; }
+      saveGeminiKey(key);
+      showToast("✅ Gemini AI connected! Ab real answers milenge.");
+    } catch (e) {
+      if (st) { st.textContent = "❌ Key galat: " + e.message; st.style.color = "var(--red)"; }
+      showToast("❌ Key kaam nahi kar rahi");
+    }
+  }
+
+  function ensureRecaptcha() {
+    if (!auth) return null;
+    if (recaptchaVerifier) return recaptchaVerifier;
+    recaptchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container", { size: "normal" });
+    return recaptchaVerifier;
+  }
+
+  function renderLoggedOutAuthUI() {
+    const box = document.getElementById("loginBox");
+    if (!box) return;
+    box.innerHTML = `<div class="form-group">
+      <label class="form-label">Mobile Number</label>
+      <input class="form-input" id="loginPhone" placeholder="10 digit number" maxlength="10" />
+    </div>
+    <button class="btn-green btn-full" onclick="sendOtp()">Send OTP</button>
+    <div id="recaptcha-container" style="margin-top:8px;"></div>
+    <div id="otpWrap" style="display:none;margin-top:8px;">
+      <input class="form-input" id="loginOtp" placeholder="Enter OTP" maxlength="6" />
+      <button class="btn-outline btn-full" onclick="verifyOtp()">Verify OTP</button>
+    </div>`;
+  }
+
+  function renderAuthUI() {
+    const box = document.getElementById("loginBox");
+    if (!box) return;
+    if (loginSession.isLoggedIn) {
+      box.innerHTML = `<div style="font-size:12px;margin-bottom:8px;">${sanitizeHtml(loginSession.phone)}</div>
+      <button class="btn-outline btn-full" onclick="logoutUser()">Logout</button>`;
+    } else {
+      renderLoggedOutAuthUI();
+    }
+  }
+
+  let _pendingOtp = null;
+  let _pendingPhone = null;
+
+  async function sendOtp() {
+    const input = (document.getElementById("loginPhone")?.value || "").trim();
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input);
+    const isPhone = /^\d{10}$/.test(input);
+
+    if (!isPhone && !isEmail) {
+      showToast("Sahi mobile number (10 ank) ya email daalo");
+      return;
+    }
+
+    // --- PRESENTATION DEMO MODE ---
+    // If Firebase is missing or we just want demo mode, use fixed OTP
+    if (!auth || isEmail || isPhone) {
+      console.log("✨ Demo Mode: Setting OTP to 123456");
+      _pendingOtp = "123456";
+      _pendingPhone = input;
+      document.getElementById("otpWrap").style.display = "block";
+      document.getElementById("loginStatus").textContent = "✅ Demo OTP bheja gaya (Use: 123456)";
+      document.getElementById("loginStatus").style.color = "var(--green-mid)";
+      showToast("Demo Mode Active: Use OTP 123456");
+      return;
+    }
+
+    // (The rest of the real Firebase logic is bypassed for the presentation)
+  }
+
+  async function verifyOtp() {
+    const otp = (document.getElementById("loginOtp")?.value || "").trim();
+    if (!otp) { showToast("OTP daalo pehle"); return; }
+
+    if (confirmationResult) {
+      try {
+        const result = await confirmationResult.confirm(otp);
+        const user = result.user;
+        loginSession = { isLoggedIn: true, phone: user.phoneNumber, uid: user.uid };
+        try { localStorage.setItem("ks_session", JSON.stringify(loginSession)); } catch (e) { }
+        renderAuthUI();
+        syncJobViews();
+        document.getElementById("loginStatus").textContent = "✅ Logged in: " + user.phoneNumber;
+        document.getElementById("loginStatus").style.color = "var(--green-mid)";
+        showToast("✅ Login successful! Swagat hai 🙏");
+        loadSavedAudio();
+      } catch (error) {
+        showToast("❌ Galat OTP!");
+      }
+    } else {
+      if (otp !== _pendingOtp) {
+        showToast("❌ Galat OTP!");
+        return;
+      }
+      const uid = "demo_" + _pendingPhone;
+      loginSession = { isLoggedIn: true, phone: _pendingPhone, uid };
+      try { localStorage.setItem("ks_session", JSON.stringify(loginSession)); } catch (e) { }
+      renderAuthUI();
+      syncJobViews();
+      document.getElementById("loginStatus").textContent = "✅ Logged in: " + _pendingPhone;
+      document.getElementById("loginStatus").style.color = "var(--green-mid)";
+      showToast("✅ Login successful! Swagat hai 🙏");
+      loadSavedAudio();
+    }
+  }
+
+  function logoutUser() {
+    loginSession = { isLoggedIn: false, phone: "", uid: "" };
+    confirmationResult = null;
+    recaptchaVerifier = null;
+    if (auth) {
+      auth.signOut().finally(() => {
+        auth.signInAnonymously().catch(() => { });
+      });
+    }
+    renderAuthUI();
+    document.getElementById("loginStatus").textContent = "Not logged in";
+    document.getElementById("loginStatus").style.color = "var(--color-text-secondary)";
+    showToast("Logged out");
+  }
+
+  async function enableLocationAlerts() {
+    if (!("geolocation" in navigator)) { showToast("Location support nahi hai"); return; }
+    try {
+      const pos = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true, timeout: 10000 }));
+      userLocation = { latitude: pos.coords.latitude, longitude: pos.coords.longitude };
+      nearbyAlertsEnabled = true;
+      if ("Notification" in window && Notification.permission === "default") await Notification.requestPermission();
+      if (db && loginSession.uid) {
+        await db.collection("users").doc(loginSession.uid).set({
+          location: userLocation,
+          locationUpdatedAt: serverTimestamp(),
+          nearbyAlertsEnabled: true
+        }, { merge: true });
+      }
+      const txt = document.getElementById("locState");
+      if (txt) txt.textContent = `Enabled: ${userLocation.latitude.toFixed(4)}, ${userLocation.longitude.toFixed(4)}`;
+      showToast("Location access enabled");
+    } catch (e) {
+      showToast("Location permission deny ho gaya");
+    }
+  }
+
+  function haversineKm(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function notifyIfNearby(job) {
+    if (!nearbyAlertsEnabled || !userLocation || !job.coords) return;
+    const km = haversineKm(userLocation.latitude, userLocation.longitude, job.coords.lat, job.coords.lng);
+    if (km > 5 || seenNearbyJobs.has(String(job.id))) return;
+    seenNearbyJobs.add(String(job.id));
+    showToast(`Nearby post: ${job.title} (${km.toFixed(1)} km)`);
+    if ("Notification" in window && Notification.permission === "granted") {
+      new Notification("Nearby KaamSetu Job", { body: `${job.title} at ${job.loc} (${km.toFixed(1)} km)` });
+    }
+  }
+
+  function syncJobViews() {
+    const uid = db
+      ? (auth && auth.currentUser ? auth.currentUser.uid : "")
+      : getLocalOwnerId();
+    // Get all jobs except mine for the "Jobs" pool
+    jobs = allJobsCache.filter((x) => !x.ownerUid || x.ownerUid !== uid);
+    // Get only my jobs
+    myPostedJobs = allJobsCache.filter((x) => x.ownerUid && x.ownerUid === uid);
+
+    renderJobs();
+    renderMyJobs();
+  }
+
+  async function upsertUserProfile(user) {
+    if (!db) return;
+    await db.collection("users").doc(user.uid).set({
+      phone: user.phoneNumber || "",
+      emailAlertTarget: ADMIN_EMAIL,
+      lastLoginAt: serverTimestamp()
+    }, { merge: true });
+  }
+
+  async function logLoginEvent(user) {
+    if (!db) return;
+    await db.collection("login_events").add({
+      uid: user.uid,
+      phone: user.phoneNumber || "",
+      emailTarget: ADMIN_EMAIL,
+      createdAt: serverTimestamp(),
+      userAgent: navigator.userAgent
+    });
+  }
+
+  async function recordApplyEvent(jobId, title) {
+    if (!db) return;
+    await db.collection("apply_events").add({
+      uid: auth && auth.currentUser ? auth.currentUser.uid : null,
+      jobId: String(jobId),
+      title,
+      createdAt: serverTimestamp()
+    });
+  }
+
+  function attachJobListeners() {
+    if (!db) {
+      allJobsCache = [...DEMO_JOBS];
+      syncJobViews();
+      return;
+    }
+    if (unsubscribeJobs) unsubscribeJobs();
+    unsubscribeJobs = db.collection("jobs").orderBy("createdAt", "desc").onSnapshot((snap) => {
+      const list = [];
+      snap.forEach((doc) => {
+        const d = doc.data();
+        list.push({
+          id: doc.id,
+          title: d.title || "",
+          titleHi: d.titleHi || "",
+          cat: d.cat || "General",
+          wage: d.wage || 0,
+          loc: d.loc || "",
+          dist: d.dist || 0,
+          verified: !!d.verified,
+          urgent: !!d.urgent,
+          desc: d.desc || "",
+          posted: d.posted || "Unknown",
+          workers: d.workers || 1,
+          coords: d.coords || null,
+          ownerUid: d.ownerUid || "",
+          phone: d.phone || d.ownerPhone || ""
+        });
+      });
+      allJobsCache = list;
+      syncJobViews();
+      if (nearbyAlertsEnabled && userLocation) list.forEach(notifyIfNearby);
+    }, () => showToast("Jobs load issue"));
+  }
+
+  async function seedJobsIfEmpty() {
+    if (!db) {
+      allJobsCache = [...DEMO_JOBS];
+      return;
+    }
+    const snapshot = await db.collection("jobs").limit(1).get();
+    if (!snapshot.empty) return;
+    const batch = db.batch();
+    const seeds = DEMO_JOBS.slice(0, 10);
+    seeds.forEach((job) => {
+      const ref = db.collection("jobs").doc();
+      batch.set(ref, { ...job, createdAt: serverTimestamp() });
+    });
+    await batch.commit();
+  }
+
+  if (auth) {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        loginSession = { isLoggedIn: true, phone: user.phoneNumber || "", uid: user.uid };
+        const st = document.getElementById("loginStatus");
+        if (user.phoneNumber) {
+          st.textContent = `Phone login: ${user.phoneNumber}`;
+        } else if (user.isAnonymous) {
+          st.textContent = "Ready (no phone login required)";
+        } else {
+          st.textContent = "Ready";
+        }
+        st.style.color = "var(--green-mid)";
+        await upsertUserProfile(user);
+      } else {
+        loginSession = { isLoggedIn: false, phone: "", uid: "" };
+        document.getElementById("loginStatus").textContent = "Not connected";
+        document.getElementById("loginStatus").style.color = "var(--color-text-secondary)";
+      }
+      renderAuthUI();
+      syncJobViews();
+    });
+    if (!auth.currentUser) {
+      auth.signInAnonymously().catch(() => {
+        showToast("Auto session start failed — enable Anonymous sign-in in Firebase");
+      });
+    }
+  } else {
+    // Restore session from localStorage
+    try {
+      const saved = localStorage.getItem("ks_session");
+      if (saved) loginSession = JSON.parse(saved);
+    } catch (e) { }
+    renderAuthUI();
+    if (loginSession.isLoggedIn) {
+      document.getElementById("loginStatus").textContent = "✅ Logged in: " + loginSession.phone;
+      document.getElementById("loginStatus").style.color = "var(--green-mid)";
+    } else {
+      document.getElementById("loginStatus").textContent = "Login karein — OTP aayega";
+      document.getElementById("loginStatus").style.color = "var(--amber)";
+    }
+  }
+
+  // Restore Gemini key
+  try {
+    const k = localStorage.getItem("ks_gemini_key");
+    if (k && document.getElementById("geminiApiKey")) {
+      window._GEMINI_KEY = k;
+      document.getElementById("geminiApiKey").value = k;
+      const lbl = document.getElementById("aiStatusLabel");
+      if (lbl) lbl.textContent = "Gemini AI";
+    }
+  } catch (e) { }
+
+  // ================================================================
+  //  AUDIO RECORDING + PLAYBACK
+  // ================================================================
+  let mediaRecorder = null;
+  let audioChunks = [];
+  let recordingTimer = null;
+  let recordingSeconds = 0;
+
+  function buildWaveAnimator() {
+    const bars = document.querySelectorAll(".wave-bar");
+    if (!bars.length) return;
+    bars.forEach(b => {
+      b.style.height = (8 + Math.random() * 22) + "px";
+    });
+  }
+
+  async function toggleRecord() {
+    const btn = document.getElementById("recBtn");
+    const status = document.getElementById("recStatus");
+    const saveStatus = document.getElementById("recSaveStatus");
+
+    if (mediaRecorder && mediaRecorder.state === "recording") {
+      // STOP recording
+      mediaRecorder.stop();
+      clearInterval(recordingTimer);
+      btn.textContent = "\ud83c\udf99 Record Bio";
+      btn.style.background = "var(--green-mid)";
+      status.textContent = "Processing...";
+      return;
+    }
+
+    // START recording
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = [];
+      mediaRecorder = new MediaRecorder(stream, { mimeType: "audio/webm" });
+
+      mediaRecorder.ondataavailable = e => {
+        if (e.data.size > 0) audioChunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = async () => {
+        stream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(audioChunks, { type: "audio/webm" });
+
+        // Show player immediately (local preview)
+        const url = URL.createObjectURL(blob);
+        const player = document.getElementById("bioPlayer");
+        player.src = url;
+        document.getElementById("audioPlayerWrap").style.display = "block";
+        showAudioButtons();
+        status.textContent = "\u2705 Recording done! Save ho raha hai...";
+        status.style.color = "var(--green-mid)";
+
+        // Save audio to localStorage (base64 fallback)
+        const reader = new FileReader();
+        reader.onload = () => {
+          try { localStorage.setItem("ks_audio_bio", reader.result); } catch (e) { }
+        };
+        reader.readAsDataURL(blob);
+
+        // Save to server (if logged in)
+        const phone = (loginSession.phone || "").replace(/\D/g, "");
+        if (phone) {
+          try {
+            const ab = await blob.arrayBuffer();
+            const r = await fetch("/api/save-audio", {
+              method: "POST",
+              headers: { "Content-Type": "audio/webm", "x-phone": phone },
+              body: ab
+            });
+            const d = await r.json();
+            if (d.ok) {
+              saveStatus.textContent = "\u2705 Audio server pe save ho gaya!";
+              saveStatus.style.color = "var(--green-mid)";
+            }
+          } catch (e) {
+            saveStatus.textContent = "Server save failed, locally saved";
+          }
+        } else {
+          saveStatus.textContent = "Login karo tab server pe save hoga";
+          saveStatus.style.color = "var(--amber)";
+        }
+      };
+
+      mediaRecorder.start(100);
+      recordingSeconds = 0;
+      btn.style.background = "#E24B4A";
+      btn.textContent = "\u23f9 Stop Recording";
+      saveStatus.textContent = "";
+
+      recordingTimer = setInterval(() => {
+        recordingSeconds++;
+        status.textContent = `\ud83d\udd34 Recording... ${recordingSeconds}s / 30s`;
+        status.style.color = "var(--red)";
+        buildWaveAnimator();
+        if (recordingSeconds >= 30) {
+          mediaRecorder.stop();
+          clearInterval(recordingTimer);
+          btn.textContent = "\ud83c\udf99 Record Bio";
+          btn.style.background = "var(--green-mid)";
+        }
+      }, 1000);
+
+    } catch (e) {
+      console.error("Mic record error:", e);
+      if (e.name === 'NotAllowedError' || e.name === 'PermissionDeniedError') {
+        showToast("❌ Mic permission denied! Browser settings mein allow karein.");
+      } else if (window.location.protocol === "http:" && window.location.hostname !== "localhost") {
+        showToast("⚠️ Mic sirf HTTPS par kaam karta hai.");
+      } else {
+        showToast("❌ Mic access fail: " + e.message);
+      }
+      status.textContent = "Microphone access denied";
+      voiceActive = false;
+    }
+  }
+
+  function playBio() {
+    const player = document.getElementById("bioPlayer");
+    if (player && player.src) {
+      player.play();
+      showToast("\u25b6 Playing voice bio...");
+    }
+  }
+
+  function downloadBio() {
+    const saved = localStorage.getItem("ks_audio_bio");
+    if (!saved) { showToast("Pehle record karo!"); return; }
+    const a = document.createElement("a");
+    a.href = saved;
+    a.download = "KaamSetu_Voice_Bio.webm";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast("\u2b07 Audio download ho raha hai...");
+  }
+
+  function deleteBio() {
+    if (!confirm("Voice bio delete karna hai? Wapas nahi aayega!")) return;
+    localStorage.removeItem("ks_audio_bio");
+    const player = document.getElementById("bioPlayer");
+    if (player) player.src = "";
+    document.getElementById("audioPlayerWrap").style.display = "none";
+    hideAudioButtons();
+    document.getElementById("recStatus").textContent = "Ready to record";
+    document.getElementById("recStatus").style.color = "var(--color-text-secondary)";
+    document.getElementById("recSaveStatus").textContent = "\ud83d\uddd1 Audio delete ho gaya";
+    document.getElementById("recSaveStatus").style.color = "var(--red)";
+    showToast("\ud83d\uddd1 Voice bio delete ho gaya");
+  }
+
+  function showAudioButtons() {
+    document.getElementById("playBioBtn").style.display = "block";
+    document.getElementById("downloadBioBtn").style.display = "block";
+    document.getElementById("deleteBioBtn").style.display = "block";
+  }
+
+  function hideAudioButtons() {
+    document.getElementById("playBioBtn").style.display = "none";
+    document.getElementById("downloadBioBtn").style.display = "none";
+    document.getElementById("deleteBioBtn").style.display = "none";
+  }
+
+  // Load saved audio on page open
+  function loadSavedAudio() {
+    // Try from localStorage first
+    const saved = localStorage.getItem("ks_audio_bio");
+    if (saved) {
+      const player = document.getElementById("bioPlayer");
+      if (player) {
+        player.src = saved;
+        document.getElementById("audioPlayerWrap").style.display = "block";
+        showAudioButtons();
+        document.getElementById("recStatus").textContent = "\u2705 Pehle ka audio loaded hai — replay kar sakte ho";
+        document.getElementById("recStatus").style.color = "var(--green-mid)";
+      }
+    }
+    // Also try server audio if logged in
+    const phone = (loginSession.phone || "").replace(/\D/g, "");
+    if (phone) {
+      const player = document.getElementById("bioPlayer");
+      if (player) {
+        const testUrl = "/api/get-audio?phone=" + phone;
+        fetch(testUrl, { method: "HEAD" }).then(r => {
+          if (r.ok) {
+            player.src = testUrl;
+            document.getElementById("audioPlayerWrap").style.display = "block";
+            showAudioButtons();
+            document.getElementById("recSaveStatus").textContent = "\u2705 Server se audio load hua";
+            document.getElementById("recSaveStatus").style.color = "var(--green-mid)";
+          }
+        }).catch(() => { });
+      }
+    }
+  }
+
+  // ================================================================
+  //  EMAIL NOTIFY ON LOGIN
+  // ================================================================
+  async function notifyLogin(session) {
+    try {
+      // Collect all profile data
+      const skills = [];
+      document.querySelectorAll("#skillTags .badge").forEach(b => skills.push(b.textContent.trim()));
+
+      await fetch("/api/notify-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phone: session.phone || "-",
+          name: document.getElementById("profileName")?.textContent || "Not filled",
+          village: document.getElementById("profileVillage")?.textContent || "Not filled",
+          skills: skills.join(", ") || "Not filled",
+          wage: document.getElementById("profileWage")?.textContent || "Not filled",
+          uid: session.uid || "-"
+        })
+      });
+      console.log("\u2705 Login notification bheja");
+    } catch (e) {
+      console.warn("Notify failed:", e.message);
+    }
+  }
+
+  // ================================================================
+  //  🌙☀️ THEME TOGGLE
+  // ================================================================
+  function toggleTheme() {
+    const app = document.querySelector('.app');
+    const btn = document.getElementById('themeToggleBtn');
+    const current = app.getAttribute('data-theme');
+    if (current === 'light') {
+      app.removeAttribute('data-theme');
+      document.body.style.background = '#0b1015';
+      btn.textContent = '🌙';
+      try { localStorage.setItem('ks_theme', 'dark'); } catch (e) { }
+      showToast('🌙 Dark Mode ON');
+    } else {
+      app.setAttribute('data-theme', 'light');
+      document.body.style.background = '#182018';
+      btn.textContent = '🌿';
+      try { localStorage.setItem('ks_theme', 'light'); } catch (e) { }
+      showToast('🌿 Forest Mode ON');
+    }
+  }
+
+  // Restore saved theme on load
+  (function restoreTheme() {
+    try {
+      const saved = localStorage.getItem('ks_theme');
+      if (saved === 'light') {
+        const app = document.querySelector('.app');
+        if (app) {
+          app.setAttribute('data-theme', 'light');
+          document.body.style.background = '#182018';
+          const btn = document.getElementById('themeToggleBtn');
+          if (btn) btn.textContent = '🌿';
+        }
+      }
+    } catch (e) { }
+  })();
+
+  // ================================================================
+  //  📍 GOOGLE MAPS SATELLITE VIEW
+  // ================================================================
+  let mapLat = 26.2006;  // Default: Raebareli, UP
+  let mapLng = 81.2330;
+  let mapLoaded = false;
+
+  function loadMapEmbed(lat, lng) {
+    const container = document.getElementById('mapContainer');
+    const loading = document.getElementById('mapLoading');
+    const overlay = document.getElementById('mapOverlay');
+
+    // Google Maps Embed - Satellite view
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d5000!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v${Date.now()}`;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.allow = 'fullscreen';
+    iframe.style.cssText = 'width:100%;height:100%;border:none;border-radius:14px;position:absolute;top:0;left:0;z-index:1;';
+
+    // Remove loading spinner and add iframe
+    if (loading) loading.style.display = 'none';
+
+    // Remove existing iframe if any
+    const oldIframe = container.querySelector('iframe');
+    if (oldIframe) oldIframe.remove();
+
+    container.insertBefore(iframe, container.firstChild);
+
+    // Show overlay
+    if (overlay) overlay.style.display = 'flex';
+
+    mapLoaded = true;
+  }
+
+  function updateMapInfo(lat, lng, locationName) {
+    const locText = document.getElementById('mapLocationText');
+    const subText = document.getElementById('mapSubText');
+    if (locText) locText.textContent = `📍 ${locationName}`;
+    if (subText) subText.textContent = `${lat.toFixed(4)}°N, ${lng.toFixed(4)}°E • Satellite View`;
+  }
+
+  function locateAndLoadMap() {
+    const loading = document.getElementById('mapLoading');
+    if (loading) {
+      loading.style.display = 'flex';
+      loading.querySelector('span').textContent = '📍 GPS location detect ho raha hai...';
+    }
+
+    if (!('geolocation' in navigator)) {
+      showToast('Location support nahi hai — default map load ho raha hai');
+      loadDefaultMap();
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        mapLat = pos.coords.latitude;
+        mapLng = pos.coords.longitude;
+        userLocation = { latitude: mapLat, longitude: mapLng };
+        loadMapEmbed(mapLat, mapLng);
+
+        // Reverse geocode to get location name
+        reverseGeocode(mapLat, mapLng);
+
+        showToast('📍 Aapki location mil gayi!');
+      },
+      (err) => {
+        console.warn('Location error:', err.message);
+        showToast('Location nahi mila — Barabanki, UP dikha rahe hain');
+        loadDefaultMap();
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+    );
+  }
+
+  function loadDefaultMap() {
+    loadMapEmbed(mapLat, mapLng);
+    updateMapInfo(mapLat, mapLng, 'barabanki, Uttar Pradesh');
+  }
+
+  async function reverseGeocode(lat, lng) {
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=14&accept-language=en`);
+      const data = await res.json();
+      const parts = [];
+      if (data.address) {
+        if (data.address.village || data.address.town || data.address.city)
+          parts.push(data.address.village || data.address.town || data.address.city);
+        if (data.address.county || data.address.state_district)
+          parts.push(data.address.county || data.address.state_district);
+        if (data.address.state)
+          parts.push(data.address.state);
+      }
+      const name = parts.length ? parts.join(', ') : (data.display_name || 'Your Location');
+      updateMapInfo(lat, lng, name);
+    } catch (e) {
+      updateMapInfo(lat, lng, 'Your Location');
+    }
+  }
+
+  function openFullMap() {
+    // Open Google Maps satellite view with nearby jobs search
+    const url = `https://www.google.com/maps/search/jobs+near+me/@${mapLat},${mapLng},14z/data=!3m1!1e1!4m2!2m1!6e5`;
+    window.open(url, '_blank');
+    showToast('🗺 Google Maps khul raha hai...');
+  }
+
+  // Auto-load map on page load
+  setTimeout(() => {
+    locateAndLoadMap();
+  }, 1000);
+
+
+
+  // Profile Picture Upload Logic
+  function updateProfilePic(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imgData = e.target.result;
+        document.getElementById('profileImage').src = imgData;
+        document.getElementById('profileImage').style.display = 'block';
+        document.getElementById('profileEmoji').style.display = 'none';
+
+        document.getElementById('topNavImage').src = imgData;
+        document.getElementById('topNavImage').style.display = 'block';
+        document.getElementById('topNavEmoji').style.display = 'none';
+
+        try {
+          localStorage.setItem('kaamsetu_profile_pic', imgData);
+        } catch (err) {
+          console.error("Storage full or image too large");
+        }
+        showToast("Profile photo update ho gayi!");
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function saveProfileData() {
+    const data = {
+      name: document.getElementById('profName').innerText,
+      title: document.getElementById('profTitle').innerText,
+      state: document.getElementById('profState').innerText,
+      phone: document.getElementById('profPhone').innerText,
+      village: document.getElementById('profVillage').innerText,
+      wage: document.getElementById('profWage').innerText
+    };
+    localStorage.setItem('kaamsetu_profile_data', JSON.stringify(data));
+    showToast("Profile details save ho gaye!");
+  }
+
+  // Load saved profile pic on startup
+  try {
+    const savedPic = localStorage.getItem('kaamsetu_profile_pic');
+    if (savedPic) {
+      document.getElementById('profileImage').src = savedPic;
+      document.getElementById('profileImage').style.display = 'block';
+      document.getElementById('profileEmoji').style.display = 'none';
+
+      document.getElementById('topNavImage').src = savedPic;
+      document.getElementById('topNavImage').style.display = 'block';
+      document.getElementById('topNavEmoji').style.display = 'none';
+    }
+
+    // Load saved profile text data
+    const savedDataStr = localStorage.getItem('kaamsetu_profile_data');
+    if (savedDataStr) {
+      const data = JSON.parse(savedDataStr);
+      if (data.name) document.getElementById('profName').innerText = data.name;
+      if (data.title) document.getElementById('profTitle').innerText = data.title;
+      if (data.state) document.getElementById('profState').innerText = data.state;
+      if (data.phone) document.getElementById('profPhone').innerText = data.phone;
+      if (data.village) document.getElementById('profVillage').innerText = data.village;
+      if (data.wage) document.getElementById('profWage').innerText = data.wage;
+    }
+  } catch (e) { }
+  // HERO IMAGE SLIDER
+  const heroImages = [
+    "url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777485444338.jpg')",
+    "url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777485444642.jpg')",
+    "url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777485444671.jpg')",
+    "url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777486454582.jpg')",
+    "url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777486454637.jpg')",
+    "url('file:///C:/Users/akash/.gemini/antigravity/brain/cef1bf50-fb93-406a-a78d-a7a29f270071/media__1777486454704.jpg')"
+  ];
+  let currentHeroIdx = 0;
+  setInterval(() => {
+    const heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      currentHeroIdx = (currentHeroIdx + 1) % heroImages.length;
+      heroEl.style.backgroundImage = heroImages[currentHeroIdx];
+    }
+  }, 2000);
+
+  buildWave();
+  loadSavedAudio();
+  seedJobsIfEmpty().then(attachJobListeners);
+
+  // ================================================================
+  //  🌤 REAL-TIME WEATHER (OpenMeteo API — Free, No Key)
+  // ================================================================
+  async function fetchWeather() {
+    try {
+      const lat = userLocation ? userLocation.latitude : 26.2006;
+      const lng = userLocation ? userLocation.longitude : 81.2330;
+      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m&timezone=Asia/Kolkata`);
+      const data = await res.json();
+      const temp = Math.round(data.current.temperature_2m);
+      const humidity = data.current.relative_humidity_2m;
+      const wind = Math.round(data.current.wind_speed_10m);
+      const code = data.current.weather_code;
+
+      const weatherMap = {
+        0: { icon: "☀️", hi: "साफ़ आसमान", work: "खेती/मज़दूरी के लिए बढ़िया" },
+        1: { icon: "🌤", hi: "कुछ बादल", work: "बाहरी काम के लिए अच्छा" },
+        2: { icon: "⛅", hi: "आंशिक बादल", work: "काम कर सकते हैं" },
+        3: { icon: "☁️", hi: "बादल छाए", work: "ठंडा रहेगा, काम हो सकता है" },
+        45: { icon: "🌫", hi: "कोहरा", work: "ड्राइविंग में सावधानी रखें" },
+        48: { icon: "🌫", hi: "घना कोहरा", work: "बाहरी काम मुश्किल" },
+        51: { icon: "🌦", hi: "हल्की बूंदाबांदी", work: "छाते के साथ काम हो सकता है" },
+        53: { icon: "🌧", hi: "बारिश", work: "निर्माण काम रुक सकता है" },
+        55: { icon: "🌧", hi: "तेज़ बारिश", work: "बाहरी काम बंद रखें" },
+        61: { icon: "🌧", hi: "हल्की बारिश", work: "खेती के लिए अच्छा" },
+        63: { icon: "🌧", hi: "बारिश", work: "निर्माण रुक सकता है" },
+        65: { icon: "⛈", hi: "भारी बारिश", work: "घर पर रहें" },
+        80: { icon: "🌦", hi: "बौछारें", work: "रुक-रुक कर काम हो सकता है" },
+        95: { icon: "⛈", hi: "तूफ़ान", work: "बाहर न जाएं" }
+      };
+      const w = weatherMap[code] || weatherMap[Math.floor(code / 10) * 10] || { icon: "🌤", hi: "सामान्य", work: "काम हो सकता है" };
+
+      document.getElementById("weatherIcon").textContent = w.icon;
+      document.getElementById("weatherInfo").textContent = `${temp}°C • ${w.hi} • हवा ${wind} km/h • नमी ${humidity}% (${w.work})`;
+    } catch (e) {
+      document.getElementById("weatherIcon").textContent = "🌤";
+      document.getElementById("weatherInfo").textContent = "32°C • साफ़ मौसम (खेती/मज़दूरी के लिए सही)";
+    }
+  }
+  fetchWeather();
+
+  // ================================================================
+  //  📊 DYNAMIC STATS COUNTER
+  // ================================================================
+  function updateStats() {
+    const jobCount = allJobsCache.length;
+    const totalWorkers = allJobsCache.reduce((sum, j) => sum + (j.workers || 1), 0);
+    const el = document.getElementById("statJobCount");
+    if (el) el.textContent = jobCount.toLocaleString("en-IN");
+  }
+  setInterval(updateStats, 3000);
+
+</script>

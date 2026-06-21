@@ -1,0 +1,3445 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KaamSetu Admin Portal — प्रशासन पैनल</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0b1116;
+      --bg-secondary: #111920;
+      --bg-card: #16212b;
+      --bg-hover: #1a2a35;
+      --green: #2e7d32;
+      --green-light: #4caf50;
+      --green-glow: rgba(76, 175, 80, 0.18);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.18);
+      --red: #ef4444;
+      --red-glow: rgba(239, 68, 68, 0.18);
+      --blue: #3b82f6;
+      --blue-glow: rgba(59, 130, 246, 0.18);
+      --purple: #8b5cf6;
+      --border: #1e2f3c;
+      --border-light: #253545;
+      --text-primary: #e8f0f7;
+      --text-secondary: #7a9bb5;
+      --text-muted: #4a6a80;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== LOGIN SCREEN ===== */
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at 60% 30%, #0d2a1a 0%, #0b1116 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #loginScreen::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46, 125, 50, 0.08) 0%, transparent 70%);
+      top: -200px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    #loginScreen::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
+      bottom: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .login-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      position: relative;
+      z-index: 1;
+      animation: loginFadeIn 0.6s ease;
+    }
+
+    @keyframes loginFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .login-logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 16px rgba(46, 125, 50, 0.4);
+    }
+
+    .login-logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .login-logo-sub {
+      font-size: 10px;
+      color: var(--green-light);
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    /* Role Switcher Tabs */
+    .role-tabs {
+      display: flex;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 4px;
+      margin: 20px 0 28px;
+      gap: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .role-tab {
+      flex: 1;
+      padding: 10px 8px;
+      border: none;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.22s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .role-tab.active-admin {
+      background: linear-gradient(135deg, rgba(245,158,11,0.25), rgba(245,158,11,0.1));
+      color: var(--amber);
+      border: 1px solid rgba(245,158,11,0.3);
+      box-shadow: 0 2px 12px rgba(245,158,11,0.15);
+    }
+
+    .role-tab.active-worker {
+      background: linear-gradient(135deg, rgba(76,175,80,0.25), rgba(76,175,80,0.1));
+      color: var(--green-light);
+      border: 1px solid rgba(76,175,80,0.3);
+      box-shadow: 0 2px 12px rgba(76,175,80,0.15);
+    }
+
+    .role-tab:hover:not(.active-admin):not(.active-worker) {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .login-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .login-badge.admin-badge {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: var(--amber);
+    }
+
+    .login-badge.worker-badge {
+      background: rgba(76, 175, 80, 0.12);
+      border: 1px solid rgba(76, 175, 80, 0.25);
+      color: var(--green-light);
+    }
+
+    .login-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .login-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .login-panel {
+      display: none;
+    }
+    .login-panel.active {
+      display: block;
+      animation: loginFadeIn 0.3s ease;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .input-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-bottom: 7px;
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .input-field {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px 12px 42px;
+      font-size: 14px;
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-field:focus {
+      border-color: var(--green-light);
+      box-shadow: 0 0 0 3px var(--green-glow);
+    }
+
+    .input-field::placeholder {
+      color: var(--text-muted);
+    }
+
+    .login-btn {
+      width: 100%;
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 8px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-btn.admin-btn {
+      background: linear-gradient(135deg, #b45309, #f59e0b);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .login-btn.admin-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245, 158, 11, 0.45);
+    }
+
+    .login-btn.worker-btn {
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      box-shadow: 0 4px 20px rgba(46, 125, 50, 0.35);
+    }
+
+    .login-btn.worker-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(46, 125, 50, 0.45);
+    }
+
+    .login-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .login-btn:hover::after { opacity: 1; }
+    .login-btn:active { transform: translateY(0); }
+
+    .login-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #f87171;
+      margin-top: 12px;
+      display: none;
+      font-weight: 500;
+    }
+
+    .login-hint {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .login-hint span {
+      color: var(--green-light);
+      font-weight: 600;
+    }
+
+    /* Worker Dashboard */
+    #workerDashboard {
+      display: none;
+      min-height: 100vh;
+      background: var(--bg-primary);
+    }
+
+    .worker-dash-header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .worker-profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .worker-avatar-lg {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ===== MAIN DASHBOARD ===== */
+    #dashboard {
+      display: none;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 240px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-logo {
+      padding: 20px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-logo-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 2px 10px rgba(46, 125, 50, 0.35);
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo-name {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--text-primary);
+    }
+
+    .sidebar-logo-sub {
+      font-size: 9px;
+      color: var(--green-light);
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+
+    .sidebar-admin-badge {
+      margin: 12px 14px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-avatar {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .admin-info-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .admin-info-role {
+      font-size: 10px;
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 10px 10px;
+      overflow-y: auto;
+    }
+
+    .nav-section-title {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+      padding: 10px 8px 6px;
+      text-transform: uppercase;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.18s;
+      margin-bottom: 2px;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: var(--green-glow);
+      color: var(--green-light);
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 18px;
+      background: var(--green-light);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .nav-item-icon {
+      font-size: 17px;
+      width: 22px;
+      text-align: center;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 10px;
+      padding: 2px 7px;
+    }
+
+    .sidebar-footer {
+      padding: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .logout-btn {
+      width: 100%;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border-radius: 8px;
+      padding: 9px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .logout-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 240px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      background: rgba(11, 17, 22, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+    }
+
+    .topbar-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .topbar-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 1px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-time {
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-weight: 500;
+    }
+
+    .topbar-notif {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      position: relative;
+      transition: all 0.18s;
+    }
+
+    .topbar-notif:hover {
+      border-color: var(--green-light);
+    }
+
+    .notif-dot {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      border-radius: 50%;
+      border: 2px solid var(--bg-primary);
+    }
+
+    /* Page content */
+    .page {
+      display: none;
+      padding: 28px;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stat cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 0 0 0 80px;
+      opacity: 0.07;
+    }
+
+    .stat-card.green::before {
+      background: var(--green-light);
+    }
+
+    .stat-card.amber::before {
+      background: var(--amber);
+    }
+
+    .stat-card.red::before {
+      background: var(--red);
+    }
+
+    .stat-card.blue::before {
+      background: var(--blue);
+    }
+
+    .stat-card.purple::before {
+      background: var(--purple);
+    }
+
+    .stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .stat-card.green .stat-icon {
+      background: var(--green-glow);
+    }
+
+    .stat-card.amber .stat-icon {
+      background: var(--amber-glow);
+    }
+
+    .stat-card.red .stat-icon {
+      background: var(--red-glow);
+    }
+
+    .stat-card.blue .stat-icon {
+      background: var(--blue-glow);
+    }
+
+    .stat-num {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-card.green .stat-num {
+      color: var(--green-light);
+    }
+
+    .stat-card.amber .stat-num {
+      color: var(--amber);
+    }
+
+    .stat-card.red .stat-num {
+      color: var(--red);
+    }
+
+    .stat-card.blue .stat-num {
+      color: var(--blue);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .stat-change {
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .stat-change.up {
+      color: var(--green-light);
+    }
+
+    .stat-change.down {
+      color: var(--red);
+    }
+
+    /* Grid layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Section headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-light);
+    }
+
+    .view-all-btn {
+      font-size: 12px;
+      color: var(--green-light);
+      background: var(--green-glow);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+      border-radius: 6px;
+      padding: 5px 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: all 0.18s;
+    }
+
+    .view-all-btn:hover {
+      background: rgba(76, 175, 80, 0.25);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    /* Worker tracking map card */
+    .map-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .map-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .map-body {
+      padding: 20px;
+    }
+
+    /* Live Map Visualization */
+    .village-map {
+      position: relative;
+      height: 280px;
+      background: linear-gradient(135deg, #0d1f12 0%, #0b1a15 50%, #0b1610 100%);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(46, 125, 50, 0.2);
+    }
+
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(46, 125, 50, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 125, 50, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .map-road-h {
+      position: absolute;
+      height: 3px;
+      background: rgba(100, 120, 80, 0.25);
+      border-radius: 2px;
+    }
+
+    .map-road-v {
+      position: absolute;
+      width: 3px;
+      background: rgba(100, 120, 80, 0.25);
+      border-radius: 2px;
+    }
+
+    .map-label {
+      position: absolute;
+      font-size: 9px;
+      color: rgba(150, 200, 150, 0.6);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .map-zone {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(76, 175, 80, 0.2);
+    }
+
+    /* Worker dot on map */
+    .worker-dot {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 10;
+    }
+
+    .worker-dot.working {
+      background: radial-gradient(circle, #4caf50, #2e7d32);
+      box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.25), 0 0 16px rgba(76, 175, 80, 0.3);
+    }
+
+    .worker-dot.idle {
+      background: radial-gradient(circle, #f59e0b, #b45309);
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.25), 0 0 16px rgba(245, 158, 11, 0.3);
+    }
+
+    .worker-dot.available {
+      background: radial-gradient(circle, #3b82f6, #1d4ed8);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25), 0 0 16px rgba(59, 130, 246, 0.3);
+    }
+
+    .worker-dot:hover {
+      transform: scale(1.3);
+      z-index: 20;
+    }
+
+    .worker-dot-pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      animation: mapPulse 2s infinite;
+    }
+
+    .working .worker-dot-pulse {
+      background: rgba(76, 175, 80, 0.3);
+    }
+
+    .idle .worker-dot-pulse {
+      background: rgba(245, 158, 11, 0.3);
+    }
+
+    .available .worker-dot-pulse {
+      background: rgba(59, 130, 246, 0.3);
+    }
+
+    @keyframes mapPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    .worker-tooltip {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 10px;
+      white-space: nowrap;
+      color: var(--text-primary);
+      pointer-events: none;
+      display: none;
+      z-index: 30;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .worker-dot:hover .worker-tooltip {
+      display: block;
+    }
+
+    .map-legend {
+      display: flex;
+      gap: 14px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.working {
+      background: var(--green-light);
+    }
+
+    .legend-dot.idle {
+      background: var(--amber);
+    }
+
+    .legend-dot.available {
+      background: var(--blue);
+    }
+
+    /* Job cards in list */
+    .job-list-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 10px;
+      transition: all 0.18s;
+      cursor: pointer;
+    }
+
+    .job-list-item:hover {
+      border-color: var(--border-light);
+      background: var(--bg-hover);
+    }
+
+    .job-list-item.urgent {
+      border-left: 3px solid var(--red);
+    }
+
+    .job-list-item.active {
+      border-left: 3px solid var(--green-light);
+    }
+
+    .job-list-item.vacant {
+      border-left: 3px solid var(--amber);
+    }
+
+    /* Status badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 3px 10px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge.green {
+      background: var(--green-glow);
+      color: var(--green-light);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+    }
+
+    .badge.amber {
+      background: var(--amber-glow);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .badge.red {
+      background: var(--red-glow);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .badge.blue {
+      background: var(--blue-glow);
+      color: var(--blue);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .badge.purple {
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--purple);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    /* Worker cards */
+    .worker-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .worker-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .worker-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .worker-avatar-status {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-card);
+    }
+
+    .worker-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .worker-meta {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .worker-stats-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .worker-stat {
+      text-align: center;
+      flex: 1;
+    }
+
+    .worker-stat-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green-light);
+    }
+
+    .worker-stat-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 1px;
+      font-weight: 500;
+    }
+
+    /* Progress bar */
+    .prog-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .prog-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+
+    /* Application list */
+    .application-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .application-row:last-child {
+      border-bottom: none;
+    }
+
+    /* Action buttons */
+    .btn {
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2e7d32, #4caf50);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(46, 125, 50, 0.4);
+    }
+
+    .btn-amber {
+      background: var(--amber-glow);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-amber:hover {
+      background: rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-red {
+      background: var(--red-glow);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-red:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 11px;
+    }
+
+    /* Search/filter bar */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--green-light);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .filter-select {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Activity feed */
+    .activity-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .activity-time {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Assign modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 28px;
+      width: 100%;
+      max-width: 480px;
+      animation: modalIn 0.25s ease;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 20px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: all 0.18s;
+    }
+
+    .modal-close:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--green-light);
+      color: var(--green-light);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-light);
+      border-radius: 4px;
+    }
+
+    /* Mobile sidebar toggle */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 22px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page {
+        padding: 16px;
+      }
+
+      .topbar {
+        padding: 12px 16px;
+      }
+    }
+
+    /* Kanban columns */
+    .kanban-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .kanban-col {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .kanban-col-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kanban-col-title {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .kanban-count {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .kanban-items {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 200px;
+    }
+
+    .kanban-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .kanban-item:hover {
+      border-color: var(--border-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .kanban-item-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .kanban-item-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      padding: 12px 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    td {
+      padding: 14px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: var(--bg-hover);
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0;
+    }
+
+    /* Mini pulse live indicator */
+    .live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: var(--green-light);
+      font-weight: 600;
+    }
+
+    .live-dot-circle {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green-light);
+      animation: livePulse 1.5s infinite;
+    }
+
+    @keyframes livePulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    .donut-ring {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .donut-ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .donut-center-num {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .donut-center-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== LOGIN SCREEN ==================== -->
+  <div id="loginScreen">
+    <div class="login-box">
+      <!-- Logo -->
+      <div class="login-logo">
+        <div class="login-logo-icon">🌱</div>
+        <div>
+          <div class="login-logo-text">KaamSetu</div>
+          <div class="login-logo-sub">ग्राम रोज़गार पोर्टल</div>
+        </div>
+      </div>
+
+      <!-- Role Tabs -->
+      <div class="role-tabs">
+        <button class="role-tab active-admin" id="tabAdmin" onclick="switchLoginRole('admin')">
+          🏛️ Admin Login
+        </button>
+        <button class="role-tab" id="tabWorker" onclick="switchLoginRole('worker')">
+          👷 Worker Login
+        </button>
+      </div>
+
+      <!-- ADMIN PANEL -->
+      <div class="login-panel active" id="panelAdmin">
+        <div class="login-badge admin-badge">🔒 केवल अधिकृत अधिकारी</div>
+        <div class="login-title">Admin Login</div>
+        <div class="login-sub">प्रशासन पैनल · District Admin Access</div>
+
+        <div class="input-group">
+          <label class="input-label">USERNAME / यूज़रनेम</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input id="loginUser" class="input-field" type="text" placeholder="admin" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">PASSWORD / पासवर्ड</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔑</span>
+            <input id="loginPass" class="input-field" type="password" placeholder="••••••••" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">DISTRICT / जिला</label>
+          <div class="input-wrap">
+            <span class="input-icon">📍</span>
+            <select class="input-field" id="loginDistrict" style="padding-left: 42px;">
+              <option value="">-- जिला चुनें --</option>
+              <option>Lucknow — लखनऊ</option>
+              <option>Varanasi — वाराणसी</option>
+              <option>Gorakhpur — गोरखपुर</option>
+              <option>Allahabad — प्रयागराज</option>
+              <option>Jhansi — झाँसी</option>
+              <option>Raebareli — रायबरेली</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="login-btn admin-btn" onclick="doLogin()">
+          🚀 Admin Login / प्रवेश करें
+        </button>
+
+        <div class="login-error" id="loginError">
+          ❌ गलत Username या Password। फिर कोशिश करें।
+        </div>
+
+        <div class="login-hint">
+          Demo: username = <span>admin</span> · password = <span>kaamsetu123</span>
+        </div>
+      </div>
+
+      <!-- WORKER PANEL -->
+      <div class="login-panel" id="panelWorker">
+        <div class="login-badge worker-badge">👷 मज़दूर पोर्टल · Worker Access</div>
+        <div class="login-title">Worker Login</div>
+        <div class="login-sub">अपने काम और आवेदन देखें</div>
+
+        <div class="input-group">
+          <label class="input-label">MOBILE NUMBER / मोबाइल नंबर</label>
+          <div class="input-wrap">
+            <span class="input-icon">📱</span>
+            <input id="workerPhone" class="input-field" type="tel" placeholder="10-digit mobile number" maxlength="10" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">नाम / NAME</label>
+          <div class="input-wrap">
+            <span class="input-icon">👤</span>
+            <input id="workerName" class="input-field" type="text" placeholder="अपना नाम डालें" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">गाँव / VILLAGE</label>
+          <div class="input-wrap">
+            <span class="input-icon">🏘️</span>
+            <input id="workerVillage" class="input-field" type="text" placeholder="अपना गाँव डालें" autocomplete="off" />
+          </div>
+        </div>
+
+        <button class="login-btn worker-btn" onclick="doWorkerLogin()">
+          ✅ Worker Login / दाखिल हों
+        </button>
+
+        <div class="login-error" id="workerLoginError">
+          ❌ कृपया नाम, मोबाइल और गाँव भरें।
+        </div>
+
+        <div class="login-hint">
+          नया मज़दूर है? <span>सीधे अपना नाम + नंबर से login करें</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== WORKER DASHBOARD ==================== -->
+  <div id="workerDashboard">
+    <div class="worker-dash-header">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:38px; height:38px; background:linear-gradient(135deg,#2e7d32,#4caf50); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;">🌱</div>
+        <div>
+          <div style="font-weight:800; font-size:16px;">KaamSetu</div>
+          <div style="font-size:9px; color:var(--green-light); letter-spacing:1.5px;">WORKER PORTAL</div>
+        </div>
+      </div>
+      <button class="logout-btn" style="width:auto; padding:8px 16px;" onclick="doWorkerLogout()">🚪 Logout</button>
+    </div>
+
+    <div class="worker-profile-card">
+      <div class="worker-avatar-lg" id="wDashAvatar">R</div>
+      <div style="flex:1;">
+        <div style="font-size:20px; font-weight:700; margin-bottom:4px;" id="wDashName">Worker Name</div>
+        <div style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;" id="wDashMeta">📱 — · 🏘️ —</div>
+        <span class="badge green">✅ Registered Worker</span>
+      </div>
+    </div>
+
+    <div style="margin: 0 24px 16px;">
+      <div class="section-header">
+        <div class="section-title"><div class="section-title-dot"></div> मेरे आवेदन / My Applications</div>
+      </div>
+      <div id="workerApplicationsList" style="display:flex; flex-direction:column; gap:10px;">
+        <div style="text-align:center; padding:40px; color:var(--text-muted); font-size:13px;">⏳ आवेदन लोड हो रहे हैं...</div>
+      </div>
+    </div>
+
+    <div style="margin: 0 24px 32px;">
+      <div class="section-header">
+        <div class="section-title"><div class="section-title-dot"></div> उपलब्ध काम / Available Jobs</div>
+      </div>
+      <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:20px; text-align:center;">
+        <div style="font-size:32px; margin-bottom:12px;">💼</div>
+        <div style="font-size:14px; font-weight:600; margin-bottom:6px;">KaamSetu Main App पर जाएं</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:16px;">नए काम ढूंढें और Apply करें</div>
+        <a href="jobs.html" style="display:inline-block; background:linear-gradient(135deg,#2e7d32,#4caf50); color:#fff; border-radius:8px; padding:10px 24px; font-weight:700; text-decoration:none; font-size:13px;">🔗 Jobs देखें →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DASHBOARD ==================== -->
+  <div id="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">🌱</div>
+        <div>
+          <div class="sidebar-logo-name">KaamSetu</div>
+          <div class="sidebar-logo-sub">ADMIN PANEL</div>
+        </div>
+      </div>
+
+      <div class="sidebar-admin-badge">
+        <div class="admin-avatar">A</div>
+        <div>
+          <div class="admin-info-name">Admin User</div>
+          <div class="admin-info-role">🏛️ District Admin</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">मुख्य पैनल</div>
+
+        <div class="nav-item active" onclick="switchPage('overview', this)">
+          <span class="nav-item-icon">📊</span>
+          <span>Overview / सारांश</span>
+        </div>
+
+        <div class="nav-item" onclick="switchPage('tracker', this)">
+          <span class="nav-item-icon">📍</span>
+          <span>Worker Tracker</span>
+          <span class="nav-badge live-pulse" id="liveCount">12</span>
+        </div>
+
+        <div class="nav-item" onclick="switchPage('applications', this)">
+          <span class="nav-item-icon">📋</span>
+          <span>Job Applications</span>
+          <span class="nav-badge" id="pendingCount">7</span>
+        </div>
+
+        <div class="nav-section-title">प्रबंधन</div>
+
+        <div class="nav-item" onclick="switchPage('jobs', this)">
+          <span class="nav-item-icon">💼</span>
+          <span>Jobs / काम</span>
+        </div>
+
+        <div class="nav-item" onclick="switchPage('workers', this)">
+          <span class="nav-item-icon">👷</span>
+          <span>Workers / मज़दूर</span>
+        </div>
+
+        <div class="nav-item" onclick="switchPage('assign', this)">
+          <span class="nav-item-icon">🤝</span>
+          <span>Assign Jobs / काम दें</span>
+        </div>
+
+        <div class="nav-section-title">रिपोर्ट</div>
+
+        <div class="nav-item" onclick="switchPage('reports', this)">
+          <span class="nav-item-icon">📈</span>
+          <span>Reports / रिपोर्ट</span>
+        </div>
+
+        <div class="nav-item" onclick="switchPage('activity', this)">
+          <span class="nav-item-icon">⚡</span>
+          <span>Activity Feed</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="doLogout()">🚪 Logout / बाहर जाएं</button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+      <!-- Top bar -->
+      <div class="topbar">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+          <div>
+            <div class="topbar-title" id="pageTitle">📊 Overview — सारांश</div>
+            <div class="topbar-sub" id="pageSubtitle">KaamSetu ग्राम रोज़गार पोर्टल · जिला प्रशासन</div>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="live-dot">
+            <div class="live-dot-circle"></div> LIVE
+          </div>
+          <div class="topbar-time" id="clockDisplay">--:--</div>
+          <div class="topbar-notif" onclick="showToast('📬 3 नए आवेदन आए हैं!')">
+            🔔
+            <div class="notif-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PAGE: OVERVIEW ========== -->
+      <div class="page active" id="page-overview">
+
+        <!-- Stat cards -->
+        <div class="stats-grid">
+          <div class="stat-card green"
+            onclick="switchPage('applications', document.querySelector('[onclick*=applications]'))">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num" id="s-applied">142</div>
+            <div class="stat-label">कुल आवेदन / Total Applied</div>
+            <div class="stat-change up">↑ +18 आज</div>
+          </div>
+          <div class="stat-card green" onclick="switchPage('tracker', document.querySelector('[onclick*=tracker]'))">
+            <div class="stat-icon">⚙️</div>
+            <div class="stat-num" id="s-working">38</div>
+            <div class="stat-label">काम पर हैं / Working Now</div>
+            <div class="stat-change up">↑ +5 आज</div>
+          </div>
+          <div class="stat-card amber" onclick="switchPage('jobs', document.querySelector('[onclick*=jobs]'))">
+            <div class="stat-icon">🔓</div>
+            <div class="stat-num" id="s-vacant">24</div>
+            <div class="stat-label">खाली पद / Vacant Jobs</div>
+            <div class="stat-change down">↓ 3 भरे गए</div>
+          </div>
+          <div class="stat-card blue" onclick="switchPage('workers', document.querySelector('[onclick*=workers]'))">
+            <div class="stat-icon">👷</div>
+            <div class="stat-num" id="s-workers">218</div>
+            <div class="stat-label">पंजीकृत मज़दूर / Workers</div>
+            <div class="stat-change up">↑ +12 इस हफ़्ते</div>
+          </div>
+        </div>
+
+        <!-- Map + Activity grid -->
+        <div class="grid-2" style="margin-bottom: 20px;">
+          <!-- Live Tracker Preview -->
+          <div class="map-card">
+            <div class="map-header">
+              <div>
+                <div class="section-title" style="font-size:14px;">🗺️ Worker Live Map</div>
+                <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">मज़दूर की लाइव स्थिति</div>
+              </div>
+              <div class="live-dot">
+                <div class="live-dot-circle"></div> 12 Active
+              </div>
+            </div>
+            <div class="map-body">
+              <div class="village-map" id="miniMap">
+                <div class="map-grid"></div>
+                <!-- Roads -->
+                <div class="map-road-h" style="top:50%; left:0; right:0;"></div>
+                <div class="map-road-v" style="left:40%; top:0; bottom:0;"></div>
+                <!-- Labels -->
+                <div class="map-label" style="top:8px; left:8px;">🌾 Ramnagar</div>
+                <div class="map-label" style="bottom:8px; right:8px;">🏘️ Shekhpur</div>
+                <div class="map-label" style="top:8px; right:8px;">🌿 Hasnabad</div>
+                <!-- Zone ring -->
+                <div class="map-zone"
+                  style="width:120px; height:120px; top:50%; left:40%; transform:translate(-50%,-50%);"></div>
+
+                <!-- Worker dots populated by JS -->
+              </div>
+              <div class="map-legend">
+                <div class="legend-item">
+                  <div class="legend-dot working"></div> काम पर (Working)
+                </div>
+                <div class="legend-item">
+                  <div class="legend-dot idle"></div> रुके हुए (Idle)
+                </div>
+                <div class="legend-item">
+                  <div class="legend-dot available"></div> उपलब्ध (Available)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick stats donut + breakdown -->
+          <div class="card">
+            <div class="section-header">
+              <div class="section-title">
+                <div class="section-title-dot"></div> Job Status Breakdown
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap: 24px; margin-bottom:16px;">
+              <div class="donut-ring">
+                <svg viewBox="0 0 100 100" width="100" height="100">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#1e2f3c" stroke-width="12" />
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#4caf50" stroke-width="12"
+                    stroke-dasharray="89 150" stroke-dashoffset="0" />
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#f59e0b" stroke-width="12"
+                    stroke-dasharray="60 179" stroke-dashoffset="-89" />
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="#ef4444" stroke-width="12"
+                    stroke-dasharray="30 209" stroke-dashoffset="-149" />
+                </svg>
+                <div class="donut-center">
+                  <div class="donut-center-num">204</div>
+                  <div class="donut-center-label">TOTAL</div>
+                </div>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:10px;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                    <span style="color:var(--green-light); font-weight:600;">✅ पूरे हुए</span>
+                    <span style="font-weight:700;">89</span>
+                  </div>
+                  <div class="prog-bar">
+                    <div class="prog-fill" style="width:62%; background:var(--green-light);"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                    <span style="color:var(--amber); font-weight:600;">⚙️ चल रहे हैं</span>
+                    <span style="font-weight:700;">60</span>
+                  </div>
+                  <div class="prog-bar">
+                    <div class="prog-fill" style="width:42%; background:var(--amber);"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px;">
+                    <span style="color:#f87171; font-weight:600;">🔓 खाली हैं</span>
+                    <span style="font-weight:700;">55</span>
+                  </div>
+                  <div class="prog-bar">
+                    <div class="prog-fill" style="width:28%; background:var(--red);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="font-size:12px; font-weight:700; margin-bottom:10px; color:var(--text-secondary);">📂 Category
+              Wise Jobs</div>
+            <div style="display:flex; flex-direction:column; gap:7px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px;">
+                <span>🌾 खेती (Agriculture)</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:80px;" class="prog-bar">
+                    <div class="prog-fill" style="width:75%; background:var(--green-light);"></div>
+                  </div>
+                  <span style="font-weight:700; color:var(--green-light);">42</span>
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px;">
+                <span>🏗️ निर्माण (Construction)</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:80px;" class="prog-bar">
+                    <div class="prog-fill" style="width:55%; background:var(--amber);"></div>
+                  </div>
+                  <span style="font-weight:700; color:var(--amber);">31</span>
+                </div>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px;">
+                <span>🚛 ड्राइविंग (Driving)</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <div style="width:80px;" class="prog-bar">
+                    <div class="prog-fill" style="width:38%; background:var(--blue);"></div>
+                  </div>
+                  <span style="font-weight:700; color:var(--blue);">21</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Applications + Pending Assignments -->
+        <div class="grid-2">
+          <div class="card">
+            <div class="section-header">
+              <div class="section-title">
+                <div class="section-title-dot"></div> हाल के आवेदन
+              </div>
+              <button class="view-all-btn"
+                onclick="switchPage('applications', document.querySelector('[onclick*=applications]'))">सब देखें
+                →</button>
+            </div>
+            <div id="recentApps"></div>
+          </div>
+
+          <div class="card">
+            <div class="section-header">
+              <div class="section-title">
+                <div class="section-title-dot" style="background:var(--amber);"></div> खाली काम — जल्द भरें
+              </div>
+              <button class="view-all-btn"
+                onclick="switchPage('assign', document.querySelector('[onclick*=assign]'))">असाइन करें →</button>
+            </div>
+            <div id="vacantJobsList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PAGE: WORKER TRACKER ========== -->
+      <div class="page" id="page-tracker">
+        <div style="display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+          <div class="stat-card green" style="flex:1; min-width:120px; padding:16px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px; font-weight:600;">WORKING NOW</div>
+            <div class="stat-num" style="font-size:24px;">38</div>
+            <div class="stat-label">काम पर हैं</div>
+          </div>
+          <div class="stat-card amber" style="flex:1; min-width:120px; padding:16px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px; font-weight:600;">IDLE / रुके</div>
+            <div class="stat-num" style="font-size:24px; color:var(--amber);">14</div>
+            <div class="stat-label">आराम कर रहे</div>
+          </div>
+          <div class="stat-card blue" style="flex:1; min-width:120px; padding:16px;">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px; font-weight:600;">AVAILABLE</div>
+            <div class="stat-num" style="font-size:24px; color:var(--blue);">52</div>
+            <div class="stat-label">उपलब्ध हैं</div>
+          </div>
+          <div class="stat-card" style="flex:1; min-width:120px; padding:16px; border-color:rgba(139,92,246,0.3);">
+            <div style="font-size:11px; color:var(--text-muted); margin-bottom:4px; font-weight:600;">TOTAL TRACKED
+            </div>
+            <div class="stat-num" style="font-size:24px; color:var(--purple);">104</div>
+            <div class="stat-label">ट्रैक किए जा रहे</div>
+          </div>
+        </div>
+
+        <!-- Full Map -->
+        <div class="map-card" style="margin-bottom:20px;">
+          <div class="map-header">
+            <div>
+              <div class="section-title">🗺️ लाइव वर्कर ट्रैकर — Zomato जैसा मगर मज़दूरों के लिए</div>
+              <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">हर मज़दूर की असल-वक्त में स्थिति
+                देखें</div>
+            </div>
+            <div class="live-dot">
+              <div class="live-dot-circle"></div> LIVE TRACKING
+            </div>
+          </div>
+          <div class="map-body">
+            <div class="village-map" id="fullMap" style="height:380px;">
+              <div class="map-grid"></div>
+              <div class="map-road-h" style="top:40%; left:0; right:0;"></div>
+              <div class="map-road-h" style="top:72%; left:0; right:0;"></div>
+              <div class="map-road-v" style="left:35%; top:0; bottom:0;"></div>
+              <div class="map-road-v" style="left:70%; top:0; bottom:0;"></div>
+              <div class="map-label" style="top:10px; left:10px; font-size:11px;">🌾 Ramnagar Gram</div>
+              <div class="map-label" style="top:10px; right:10px; font-size:11px;">🏘️ Hasnabad</div>
+              <div class="map-label" style="bottom:10px; left:10px; font-size:11px;">🌿 Shekhpur</div>
+              <div class="map-label" style="bottom:10px; right:10px; font-size:11px;">🏗️ Nawabganj</div>
+              <!-- Job site markers -->
+              <div
+                style="position:absolute; top:36%; left:32%; transform:translate(-50%,-50%); font-size:22px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5));">
+                🌾</div>
+              <div
+                style="position:absolute; top:68%; left:68%; transform:translate(-50%,-50%); font-size:22px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5));">
+                🏗️</div>
+              <div
+                style="position:absolute; top:20%; left:65%; transform:translate(-50%,-50%); font-size:22px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.5));">
+                🚜</div>
+              <div class="map-zone"
+                style="width:100px; height:100px; top:34%; left:30%; transform:translate(-50%,-50%);"></div>
+              <div class="map-zone" style="width:80px; height:80px; top:66%; left:66%; transform:translate(-50%,-50%);">
+              </div>
+            </div>
+            <div class="map-legend" style="margin-top:14px;">
+              <div class="legend-item">
+                <div class="legend-dot working"></div> काम पर (Working)
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot idle"></div> रुके हुए (Idle)
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot available"></div> उपलब्ध (Available)
+              </div>
+              <span style="margin-left:auto; font-size:11px; color:var(--text-muted);">डॉट पर क्लिक करें → विवरण
+                देखें</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Worker status list -->
+        <div class="card">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-title-dot"></div> मज़दूर स्थिति सूची
+            </div>
+            <input class="search-input" style="width:220px; flex:none;" placeholder="🔍 नाम खोजें..."
+              oninput="filterWorkerList(this.value)" />
+          </div>
+          <div id="workerStatusList"></div>
+        </div>
+      </div>
+
+      <!-- ========== PAGE: APPLICATIONS ========== -->
+      <div class="page" id="page-applications">
+        <div class="filter-bar">
+          <input class="search-input" placeholder="🔍 नाम / काम खोजें..." oninput="filterTable(this.value)" />
+          <select class="filter-select" onchange="filterByStatus(this.value)">
+            <option value="">सभी — All Status</option>
+            <option value="pending">⏳ Pending</option>
+            <option value="approved">✅ Approved</option>
+            <option value="working">⚙️ Working</option>
+            <option value="rejected">❌ Rejected</option>
+          </select>
+          <select class="filter-select">
+            <option>सभी काम — All Jobs</option>
+            <option>🌾 खेती</option>
+            <option>🏗️ निर्माण</option>
+            <option>🚛 ड्राइविंग</option>
+            <option>⚡ बिजली</option>
+          </select>
+          <button class="btn btn-primary" onclick="exportData()">📥 Export</button>
+        </div>
+
+        <div class="card">
+          <div class="section-header">
+            <div class="section-title">
+              <div class="section-title-dot"></div> Job Applications — आवेदन सूची
+            </div>
+            <div style="font-size:12px; color:var(--text-muted);">कुल <span id="appCount"
+                style="color:var(--green-light); font-weight:700;">142</span> आवेदन</div>
+          </div>
+          <div class="table-wrap">
+            <table id="applicationsTable">
+              <thead>
+                <tr>
+                  <th>मज़दूर / Worker</th>
+                  <th>काम / Job</th>
+                  <th>स्थान / Location</th>
+                  <th>किए काम / Done</th>
+                  <th>दिनांक / Date</th>
+                  <th>स्थिति / Status</th>
+                  <th>कार्य / Action</th>
+                </tr>
+              </thead>
+              <tbody id="appTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PAGE: JOBS ========== -->
+      <div class="page" id="page-jobs">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <div>
+            <div style="font-size:16px; font-weight:700;">💼 काम की सूची — Job Board</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">सभी उपलब्ध, चल रहे और खाली पद</div>
+          </div>
+          <button class="btn btn-primary" onclick="openAddJobModal()">+ नया काम जोड़ें</button>
+        </div>
+
+        <!-- Kanban View -->
+        <div class="kanban-grid" id="jobKanban"></div>
+      </div>
+
+      <!-- ========== PAGE: WORKERS ========== -->
+      <div class="page" id="page-workers">
+        <div class="filter-bar">
+          <input class="search-input" placeholder="🔍 मज़दूर का नाम खोजें..." />
+          <select class="filter-select">
+            <option>सभी — All</option>
+            <option>⚙️ Working</option>
+            <option>✅ Available</option>
+            <option>⏸️ Idle</option>
+          </select>
+          <select class="filter-select">
+            <option>सभी क्षेत्र</option>
+            <option>🌾 खेती</option>
+            <option>🏗️ निर्माण</option>
+            <option>🚛 ड्राइविंग</option>
+          </select>
+          <button class="btn btn-primary" onclick="openAddWorkerModal()">+ मज़दूर जोड़ें</button>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:14px;"
+          id="workersGrid"></div>
+      </div>
+
+      <!-- ========== PAGE: ASSIGN ========== -->
+      <div class="page" id="page-assign">
+        <div style="font-size:16px; font-weight:700; margin-bottom:4px;">🤝 काम असाइन करें — Assign Jobs</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:20px;">मज़दूरों को सही काम से जोड़ें</div>
+
+        <div class="grid-2">
+          <!-- Available workers -->
+          <div class="card">
+            <div class="section-header">
+              <div class="section-title" style="color:var(--blue);">👷 उपलब्ध मज़दूर</div>
+              <span class="badge blue">52 Available</span>
+            </div>
+            <div id="availableWorkerList" style="display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+
+          <!-- Vacant Jobs -->
+          <div class="card">
+            <div class="section-header">
+              <div class="section-title" style="color:var(--amber);">🔓 खाली पद</div>
+              <span class="badge amber">24 Vacant</span>
+            </div>
+            <div id="vacantJobAssignList" style="display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+        </div>
+
+        <!-- Quick assign panel -->
+        <div class="card" style="margin-top:16px;">
+          <div class="section-title" style="margin-bottom:16px;">
+            <div class="section-title-dot" style="background:var(--purple);"></div> ⚡ Quick Assign — तुरंत असाइन करें
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:end;">
+            <div>
+              <div class="input-label" style="margin-bottom:7px;">मज़दूर चुनें</div>
+              <select class="input-field" id="assignWorkerSelect" style="padding-left:14px;">
+                <option value="">-- मज़दूर --</option>
+              </select>
+            </div>
+            <div>
+              <div class="input-label" style="margin-bottom:7px;">काम चुनें</div>
+              <select class="input-field" id="assignJobSelect" style="padding-left:14px;">
+                <option value="">-- काम --</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" style="height:44px; padding:0 24px;" onclick="quickAssign()">
+              🤝 Assign करें
+            </button>
+          </div>
+          <div style="margin-top:14px; font-size:11px; color:var(--text-muted);">
+            💡 टिप: मज़दूर और काम दोनों चुनने के बाद "Assign करें" दबाएं। मज़दूर को WhatsApp पर सूचना जाएगी।
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PAGE: REPORTS ========== -->
+      <div class="page" id="page-reports">
+        <div style="font-size:16px; font-weight:700; margin-bottom:20px;">📈 Reports — मासिक रिपोर्ट</div>
+        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card green">
+            <div class="stat-icon">💰</div>
+            <div class="stat-num">₹4.2L</div>
+            <div class="stat-label">इस महीने मज़दूरी</div>
+          </div>
+          <div class="stat-card amber">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-num">1,284</div>
+            <div class="stat-label">कुल कार्य-दिवस</div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-icon">🏘️</div>
+            <div class="stat-num">47</div>
+            <div class="stat-label">गाँव — Villages</div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:16px;">
+          <div class="card">
+            <div class="section-title" style="margin-bottom:16px;">
+              <div class="section-title-dot"></div> श्रेणी-वार रोज़गार
+            </div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>🌾
+                    खेती</span><span style="font-weight:700; color:var(--green-light);">89 काम · ₹1,78,000</span></div>
+                <div class="prog-bar" style="height:8px;">
+                  <div class="prog-fill" style="width:70%; background:linear-gradient(90deg,#2e7d32,#4caf50);"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>🏗️
+                    निर्माण</span><span style="font-weight:700; color:var(--amber);">56 काम · ₹1,12,000</span></div>
+                <div class="prog-bar" style="height:8px;">
+                  <div class="prog-fill" style="width:50%; background:linear-gradient(90deg,#b45309,#f59e0b);"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>🚛
+                    ड्राइविंग</span><span style="font-weight:700; color:var(--blue);">31 काम · ₹62,000</span></div>
+                <div class="prog-bar" style="height:8px;">
+                  <div class="prog-fill" style="width:30%; background:linear-gradient(90deg,#1d4ed8,#3b82f6);"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px;"><span>⚡
+                    बिजली</span><span style="font-weight:700; color:var(--purple);">18 काम · ₹36,000</span></div>
+                <div class="prog-bar" style="height:8px;">
+                  <div class="prog-fill" style="width:18%; background:linear-gradient(90deg,#6d28d9,#8b5cf6);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title" style="margin-bottom:16px;">
+              <div class="section-title-dot" style="background:var(--amber);"></div> Top मज़दूर — सबसे ज़्यादा काम
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div
+                style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg-secondary); border-radius:10px;">
+                <div
+                  style="width:28px; height:28px; background:linear-gradient(135deg,#f59e0b,#ef4444); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff;">
+                  1</div>
+                <div style="flex:1;">
+                  <div style="font-size:13px; font-weight:600;">रामलाल यादव</div>
+                  <div style="font-size:10px; color:var(--text-muted);">🌾 खेती · Ramnagar</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:14px; font-weight:800; color:var(--green-light);">23</div>
+                  <div style="font-size:9px; color:var(--text-muted);">काम</div>
+                </div>
+              </div>
+              <div
+                style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg-secondary); border-radius:10px;">
+                <div
+                  style="width:28px; height:28px; background:linear-gradient(135deg,#6b7280,#9ca3af); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff;">
+                  2</div>
+                <div style="flex:1;">
+                  <div style="font-size:13px; font-weight:600;">सुरेश मौर्य</div>
+                  <div style="font-size:10px; color:var(--text-muted);">🏗️ निर्माण · Shekhpur</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:14px; font-weight:800; color:var(--green-light);">19</div>
+                  <div style="font-size:9px; color:var(--text-muted);">काम</div>
+                </div>
+              </div>
+              <div
+                style="display:flex; align-items:center; gap:12px; padding:10px; background:var(--bg-secondary); border-radius:10px;">
+                <div
+                  style="width:28px; height:28px; background:linear-gradient(135deg,#92400e,#d97706); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff;">
+                  3</div>
+                <div style="flex:1;">
+                  <div style="font-size:13px; font-weight:600;">मुन्नी देवी</div>
+                  <div style="font-size:10px; color:var(--text-muted);">🌾 खेती · Hasnabad</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:14px; font-weight:800; color:var(--green-light);">17</div>
+                  <div style="font-size:9px; color:var(--text-muted);">काम</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== PAGE: ACTIVITY ========== -->
+      <div class="page" id="page-activity">
+        <div style="font-size:16px; font-weight:700; margin-bottom:20px;">⚡ Activity Feed — गतिविधि</div>
+        <div class="card">
+          <div id="activityFeed" style="display:flex; flex-direction:column;"></div>
+        </div>
+      </div>
+
+    </div><!-- /main-content -->
+  </div><!-- /dashboard -->
+
+  <!-- ========== MODALS ========== -->
+  <!-- Add Job Modal -->
+  <div class="modal-overlay" id="addJobModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">💼 नया काम जोड़ें</div>
+        <button class="modal-close" onclick="closeModal('addJobModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div>
+          <div class="input-label">काम का नाम (Job Title)</div>
+          <input id="newJobTitle" class="input-field" style="padding-left:14px;" placeholder="जैसे: धान की कटाई" />
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <div class="input-label">श्रेणी (Category)</div>
+            <select id="newJobCat" class="input-field" style="padding-left:14px;">
+              <option>🌾 खेती</option>
+              <option>🏗️ निर्माण</option>
+              <option>🚛 ड्राइविंग</option>
+              <option>⚡ बिजली</option>
+              <option>🪣 प्लंबर</option>
+              <option>🍳 रसोई</option>
+            </select>
+          </div>
+          <div>
+            <div class="input-label">मज़दूरी (₹/दिन)</div>
+            <input id="newJobWage" class="input-field" style="padding-left:14px;" type="number" placeholder="450" />
+          </div>
+        </div>
+        <div>
+          <div class="input-label">स्थान (Location / Village)</div>
+          <input id="newJobLoc" class="input-field" style="padding-left:14px;" placeholder="गाँव का नाम" />
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <div class="input-label">ज़रूरी मज़दूर (Workers Needed)</div>
+            <input id="newJobWorkers" class="input-field" style="padding-left:14px;" type="number" placeholder="5" />
+          </div>
+          <div>
+            <div class="input-label">अत्यावश्यक? (Urgent?)</div>
+            <select id="newJobUrgent" class="input-field" style="padding-left:14px;">
+              <option value="0">नहीं — No</option>
+              <option value="1">हाँ — Yes ⚡</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full"
+          style="width:100%; padding:12px; font-size:14px; justify-content:center;" onclick="addNewJob()">
+          ✅ काम जोड़ें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Worker Modal -->
+  <div class="modal-overlay" id="addWorkerModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">👷 नया मज़दूर जोड़ें</div>
+        <button class="modal-close" onclick="closeModal('addWorkerModal')">✕</button>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <div class="input-label">नाम (Name)</div>
+            <input id="newWorkerName" class="input-field" style="padding-left:14px;" placeholder="पूरा नाम" />
+          </div>
+          <div>
+            <div class="input-label">फ़ोन (Mobile)</div>
+            <input id="newWorkerPhone" class="input-field" style="padding-left:14px;" placeholder="10 अंक" />
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div>
+            <div class="input-label">गाँव (Village)</div>
+            <input id="newWorkerVillage" class="input-field" style="padding-left:14px;" placeholder="गाँव का नाम" />
+          </div>
+          <div>
+            <div class="input-label">हुनर (Skill)</div>
+            <select id="newWorkerSkill" class="input-field" style="padding-left:14px;">
+              <option>🌾 खेती</option>
+              <option>🏗️ निर्माण</option>
+              <option>🚛 ड्राइविंग</option>
+              <option>⚡ बिजली</option>
+              <option>🪣 प्लंबर</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="input-label">आधार नंबर (Aadhaar) — वैकल्पिक</div>
+          <input class="input-field" style="padding-left:14px;" placeholder="XXXX-XXXX-XXXX" />
+        </div>
+        <button class="btn btn-primary" style="width:100%; padding:12px; font-size:14px; justify-content:center;"
+          onclick="addNewWorker()">
+          ✅ मज़दूर जोड़ें
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Worker Detail Modal -->
+  <div class="modal-overlay" id="workerDetailModal">
+    <div class="modal" style="max-width:520px;">
+      <div class="modal-header">
+        <div class="modal-title" id="workerDetailTitle">मज़दूर विवरण</div>
+        <button class="modal-close" onclick="closeModal('workerDetailModal')">✕</button>
+      </div>
+      <div id="workerDetailBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ============================================================
+    // DATA
+    // ============================================================
+    const ADMIN_CREDS = { user: 'admin', pass: 'kaamsetu123' };
+
+    const workers = [
+      { id: 1, name: 'रामलाल यादव', village: 'Ramnagar', skill: '🌾 खेती', phone: '9876543210', jobsDone: 23, status: 'working', currentJob: 'धान की कटाई', wage: '₹500/दिन', gender: 'M', mapX: 28, mapY: 42, age: 34 },
+      { id: 2, name: 'सुरेश मौर्य', village: 'Shekhpur', skill: '🏗️ निर्माण', phone: '9876543211', jobsDone: 19, status: 'working', currentJob: 'मकान निर्माण', wage: '₹450/दिन', gender: 'M', mapX: 62, mapY: 68, age: 28 },
+      { id: 3, name: 'मुन्नी देवी', village: 'Hasnabad', skill: '🌾 खेती', phone: '9876543212', jobsDone: 17, status: 'idle', currentJob: null, wage: '₹400/दिन', gender: 'F', mapX: 72, mapY: 22, age: 40 },
+      { id: 4, name: 'राजकुमार पटेल', village: 'Nawabganj', skill: '🚛 ड्राइविंग', phone: '9876543213', jobsDone: 14, status: 'available', currentJob: null, wage: '₹600/दिन', gender: 'M', mapX: 15, mapY: 65, age: 32 },
+      { id: 5, name: 'गीता बाई', village: 'Ramnagar', skill: '🌾 खेती', phone: '9876543214', jobsDone: 12, status: 'working', currentJob: 'धान की कटाई', wage: '₹400/दिन', gender: 'F', mapX: 38, mapY: 35, age: 45 },
+      { id: 6, name: 'मोहन लाल', village: 'Shekhpur', skill: '⚡ बिजली', phone: '9876543215', jobsDone: 10, status: 'available', currentJob: null, wage: '₹550/दिन', gender: 'M', mapX: 55, mapY: 55, age: 38 },
+      { id: 7, name: 'दुर्गा प्रसाद', village: 'Hasnabad', skill: '🏗️ निर्माण', phone: '9876543216', jobsDone: 8, status: 'idle', currentJob: null, wage: '₹450/दिन', gender: 'M', mapX: 80, mapY: 48, age: 26 },
+      { id: 8, name: 'कमला देवी', village: 'Nawabganj', skill: '🌾 खेती', phone: '9876543217', jobsDone: 15, status: 'working', currentJob: 'गेहूँ बुआई', wage: '₹380/दिन', gender: 'F', mapX: 45, mapY: 72, age: 42 },
+      { id: 9, name: 'रमेश कुमार', village: 'Ramnagar', skill: '🪣 प्लंबर', phone: '9876543218', jobsDone: 6, status: 'available', currentJob: null, wage: '₹500/दिन', gender: 'M', mapX: 20, mapY: 28, age: 30 },
+      { id: 10, name: 'शांति देवी', village: 'Hasnabad', skill: '🌾 खेती', phone: '9876543219', jobsDone: 20, status: 'working', currentJob: 'धान की कटाई', wage: '₹400/दिन', gender: 'F', mapX: 68, mapY: 32, age: 50 },
+      { id: 11, name: 'बृजेश यादव', village: 'Shekhpur', skill: '🚛 ड्राइविंग', phone: '9876543220', jobsDone: 11, status: 'idle', currentJob: null, wage: '₹600/दिन', gender: 'M', mapX: 42, mapY: 58, age: 35 },
+      { id: 12, name: 'पूजा गुप्ता', village: 'Nawabganj', skill: '🍳 रसोई', phone: '9876543221', jobsDone: 9, status: 'available', currentJob: null, wage: '₹350/दिन', gender: 'F', mapX: 85, mapY: 75, age: 27 },
+    ];
+
+    const jobs = [
+      { id: 1, title: 'धान की कटाई', titleEn: 'Paddy Harvesting', category: '🌾 खेती', wage: '₹500/दिन', location: 'Ramnagar', workers: 5, filled: 3, status: 'active', urgent: true, desc: '5 मज़दूर चाहिए, 10 दिन का काम' },
+      { id: 2, title: 'मकान निर्माण', titleEn: 'House Construction', category: '🏗️ निर्माण', wage: '₹450/दिन', location: 'Shekhpur', workers: 8, filled: 8, status: 'completed', urgent: false, desc: 'पूरा हो गया' },
+      { id: 3, title: 'ट्रैक्टर ड्राइवर', titleEn: 'Tractor Driver', category: '🚛 ड्राइविंग', wage: '₹600/दिन', location: 'Hasnabad', workers: 2, filled: 0, status: 'vacant', urgent: true, desc: 'तुरंत ज़रूरत है' },
+      { id: 4, title: 'गेहूँ बुआई', titleEn: 'Wheat Sowing', category: '🌾 खेती', wage: '₹400/दिन', location: 'Nawabganj', workers: 6, filled: 2, status: 'active', urgent: false, desc: '4 और मज़दूर चाहिए' },
+      { id: 5, title: 'बिजली मरम्मत', titleEn: 'Electrical Work', category: '⚡ बिजली', wage: '₹550/दिन', location: 'Ramnagar', workers: 3, filled: 0, status: 'vacant', urgent: false, desc: 'इलेक्ट्रीशियन चाहिए' },
+      { id: 6, title: 'प्लंबिंग काम', titleEn: 'Plumbing Work', category: '🪣 प्लंबर', wage: '₹500/दिन', location: 'Shekhpur', workers: 2, filled: 0, status: 'vacant', urgent: false, desc: 'पाइप लाइन मरम्मत' },
+      { id: 7, title: 'सड़क निर्माण', titleEn: 'Road Construction', category: '🏗️ निर्माण', wage: '₹480/दिन', location: 'Hasnabad', workers: 10, filled: 7, status: 'active', urgent: false, desc: '3 और मज़दूर चाहिए' },
+      { id: 8, title: 'रसोई सहायक', titleEn: 'Kitchen Helper', category: '🍳 रसोई', wage: '₹350/दिन', location: 'Nawabganj', workers: 2, filled: 2, status: 'completed', urgent: false, desc: 'पूरा हुआ' },
+    ];
+
+    const applications = [
+      { id: 1, worker: 'रामलाल यादव', village: 'Ramnagar', job: 'धान की कटाई', jobDone: 23, date: '21 Jun', status: 'approved' },
+      { id: 2, worker: 'मुन्नी देवी', village: 'Hasnabad', job: 'गेहूँ बुआई', jobDone: 17, date: '21 Jun', status: 'pending' },
+      { id: 3, worker: 'राजकुमार पटेल', village: 'Nawabganj', job: 'ट्रैक्टर ड्राइवर', jobDone: 14, date: '20 Jun', status: 'pending' },
+      { id: 4, worker: 'गीता बाई', village: 'Ramnagar', job: 'धान की कटाई', jobDone: 12, date: '20 Jun', status: 'approved' },
+      { id: 5, worker: 'मोहन लाल', village: 'Shekhpur', job: 'बिजली मरम्मत', jobDone: 10, date: '19 Jun', status: 'working' },
+      { id: 6, worker: 'दुर्गा प्रसाद', village: 'Hasnabad', job: 'मकान निर्माण', jobDone: 8, date: '19 Jun', status: 'rejected' },
+      { id: 7, worker: 'कमला देवी', village: 'Nawabganj', job: 'गेहूँ बुआई', jobDone: 15, date: '18 Jun', status: 'working' },
+      { id: 8, worker: 'रमेश कुमार', village: 'Ramnagar', job: 'प्लंबिंग काम', jobDone: 6, date: '18 Jun', status: 'pending' },
+      { id: 9, worker: 'शांति देवी', village: 'Hasnabad', job: 'धान की कटाई', jobDone: 20, date: '17 Jun', status: 'approved' },
+      { id: 10, worker: 'बृजेश यादव', village: 'Shekhpur', job: 'ट्रैक्टर ड्राइवर', jobDone: 11, date: '17 Jun', status: 'pending' },
+      { id: 11, worker: 'पूजा गुप्ता', village: 'Nawabganj', job: 'रसोई सहायक', jobDone: 9, date: '16 Jun', status: 'approved' },
+      { id: 12, worker: 'सुरेश मौर्य', village: 'Shekhpur', job: 'सड़क निर्माण', jobDone: 19, date: '16 Jun', status: 'working' },
+    ];
+
+    const activities = [
+      { icon: '✅', color: 'var(--green-glow)', text: 'रामलाल यादव को "धान की कटाई" में assign किया गया', time: '2 मिनट पहले' },
+      { icon: '📋', color: 'var(--blue-glow)', text: 'राजकुमार पटेल ने "ट्रैक्टर ड्राइवर" के लिए आवेदन किया', time: '15 मिनट पहले' },
+      { icon: '⚡', color: 'var(--amber-glow)', text: '"बिजली मरम्मत" — urgent job post की गई (Ramnagar)', time: '32 मिनट पहले' },
+      { icon: '👷', color: 'rgba(139,92,246,0.15)', text: 'नया मज़दूर पंजीकृत: शांति देवी · Hasnabad · 🌾 खेती', time: '1 घंटा पहले' },
+      { icon: '✅', color: 'var(--green-glow)', text: 'मकान निर्माण — काम पूरा हुआ (Shekhpur)', time: '2 घंटे पहले' },
+      { icon: '❌', color: 'var(--red-glow)', text: 'दुर्गा प्रसाद का आवेदन अस्वीकार — अनुभव कम', time: '3 घंटे पहले' },
+      { icon: '📋', color: 'var(--blue-glow)', text: 'मुन्नी देवी ने "गेहूँ बुआई" के लिए आवेदन किया', time: '4 घंटे पहले' },
+      { icon: '💰', color: 'var(--green-glow)', text: 'रसोई सहायक — ₹700 मज़दूरी transfer हुई', time: 'कल' },
+    ];
+
+    // ============================================================
+    // LOGIN ROLE SWITCHING
+    // ============================================================
+    function switchLoginRole(role) {
+      const tabAdmin = document.getElementById('tabAdmin');
+      const tabWorker = document.getElementById('tabWorker');
+      const panelAdmin = document.getElementById('panelAdmin');
+      const panelWorker = document.getElementById('panelWorker');
+      if (role === 'admin') {
+        tabAdmin.className = 'role-tab active-admin';
+        tabWorker.className = 'role-tab';
+        panelAdmin.classList.add('active');
+        panelWorker.classList.remove('active');
+      } else {
+        tabWorker.className = 'role-tab active-worker';
+        tabAdmin.className = 'role-tab';
+        panelWorker.classList.add('active');
+        panelAdmin.classList.remove('active');
+      }
+    }
+
+    // ============================================================
+    // ADMIN LOGIN
+    // ============================================================
+    function doLogin() {
+      const user = document.getElementById('loginUser').value.trim();
+      const pass = document.getElementById('loginPass').value.trim();
+      const err = document.getElementById('loginError');
+      if (user === ADMIN_CREDS.user && pass === ADMIN_CREDS.pass) {
+        err.style.display = 'none';
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadRealApplications();
+        initDashboard();
+      } else {
+        err.style.display = 'block';
+        document.getElementById('loginPass').value = '';
+        document.getElementById('loginPass').focus();
+      }
+    }
+    document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+    document.getElementById('loginUser').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+    function doLogout() {
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+    }
+
+    // ============================================================
+    // WORKER LOGIN
+    // ============================================================
+    function doWorkerLogin() {
+      const phone = document.getElementById('workerPhone').value.trim();
+      const name = document.getElementById('workerName').value.trim();
+      const village = document.getElementById('workerVillage').value.trim();
+      const err = document.getElementById('workerLoginError');
+      if (!phone || phone.length < 10 || !name || !village) {
+        err.style.display = 'block';
+        return;
+      }
+      err.style.display = 'none';
+      // Save worker session
+      try { localStorage.setItem('ks_worker_session', JSON.stringify({ phone, name, village })); } catch(e) {}
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('workerDashboard').style.display = 'block';
+      // Fill worker dashboard
+      document.getElementById('wDashAvatar').textContent = name[0].toUpperCase();
+      document.getElementById('wDashName').textContent = name;
+      document.getElementById('wDashMeta').innerHTML = `📱 ${phone} &nbsp;·&nbsp; 🏘️ ${village}`;
+      loadWorkerApplications(phone, name);
+    }
+
+    document.getElementById('workerPhone').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('workerName').focus(); });
+    document.getElementById('workerName').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('workerVillage').focus(); });
+    document.getElementById('workerVillage').addEventListener('keydown', e => { if (e.key === 'Enter') doWorkerLogin(); });
+
+    function doWorkerLogout() {
+      try { localStorage.removeItem('ks_worker_session'); } catch(e) {}
+      document.getElementById('workerDashboard').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('workerPhone').value = '';
+      document.getElementById('workerName').value = '';
+      document.getElementById('workerVillage').value = '';
+    }
+
+    function loadWorkerApplications(phone, name) {
+      const cont = document.getElementById('workerApplicationsList');
+      try {
+        const stored = JSON.parse(localStorage.getItem('ks_applications') || '[]');
+        const myApps = stored.filter(a => a.phone === phone || a.worker === name);
+        if (!myApps.length) {
+          cont.innerHTML = `<div style="text-align:center; padding:32px; color:var(--text-muted); font-size:13px;">📋 अभी कोई आवेदन नहीं है<br><br><a href="jobs.html" style="color:var(--green-light); font-weight:600;">Jobs देखें और Apply करें →</a></div>`;
+          return;
+        }
+        cont.innerHTML = myApps.map(a => `
+          <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; display:flex; align-items:center; gap:14px;">
+            <div style="font-size:30px; flex-shrink:0;">${a.catIcon || '💼'}</div>
+            <div style="flex:1;">
+              <div style="font-size:14px; font-weight:700; margin-bottom:4px;">${a.job}</div>
+              <div style="font-size:12px; color:var(--text-muted);">📍 ${a.village} · 📅 ${a.date}</div>
+            </div>
+            <div>${a.status === 'approved' ? '<span class="badge green">✅ Approved</span>' : a.status === 'rejected' ? '<span class="badge red">❌ Rejected</span>' : '<span class="badge amber">⏳ Pending</span>'}</div>
+          </div>
+        `).join('');
+      } catch(e) {
+        cont.innerHTML = `<div style="color:var(--text-muted); text-align:center; padding:20px;">⚠️ Data load nahi ho paya</div>`;
+      }
+    }
+
+    // ============================================================
+    // LOAD REAL APPLICATIONS FROM LOCALSTORAGE (submitted via index.html)
+    // ============================================================
+    function loadRealApplications() {
+      try {
+        const stored = JSON.parse(localStorage.getItem('ks_applications') || '[]');
+        stored.forEach((app, i) => {
+          // Avoid duplicates
+          const exists = applications.some(a => a.worker === app.worker && a.job === app.job && a.date === app.date);
+          if (!exists) {
+            applications.unshift({
+              id: applications.length + i + 100,
+              worker: app.worker,
+              village: app.village || '-',
+              job: app.job,
+              jobsDone: app.jobsDone || 0,
+              phone: app.phone || '-',
+              skill: app.skill || '-',
+              experience: app.experience || '-',
+              wage: app.wage || '-',
+              date: app.date,
+              status: 'pending',
+              isNew: true
+            });
+          }
+        });
+        // Update pending count badge
+        const pending = applications.filter(a => a.status === 'pending').length;
+        const badge = document.getElementById('pendingCount');
+        if (badge) badge.textContent = pending;
+      } catch(e) { console.warn('Could not load real applications:', e); }
+    }
+
+    // ============================================================
+    // CLOCK
+    // ============================================================
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clockDisplay').textContent = `${h}:${m}:${s}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ============================================================
+    // INIT DASHBOARD
+    // ============================================================
+    function initDashboard() {
+      renderMiniMap();
+      renderFullMap();
+      renderRecentApps();
+      renderVacantJobs();
+      renderApplicationsTable(applications);
+      renderJobKanban();
+      renderWorkersGrid();
+      renderWorkerStatusList(workers);
+      renderAvailableWorkers();
+      renderVacantJobAssignList();
+      populateAssignSelects();
+      renderActivityFeed();
+      animateCounters();
+    }
+
+    // ============================================================
+    // PAGE SWITCHING
+    // ============================================================
+    const pageTitles = {
+      overview: '📊 Overview — सारांश',
+      tracker: '📍 Worker Tracker — लाइव ट्रैकिंग',
+      applications: '📋 Job Applications — आवेदन',
+      jobs: '💼 Jobs — काम की सूची',
+      workers: '👷 Workers — मज़दूर',
+      assign: '🤝 Assign Jobs — काम दें',
+      reports: '📈 Reports — रिपोर्ट',
+      activity: '⚡ Activity Feed — गतिविधि',
+    };
+    const pageSubs = {
+      overview: 'KaamSetu ग्राम रोज़गार पोर्टल · जिला प्रशासन',
+      tracker: 'मज़दूरों की असल-वक्त में स्थिति देखें',
+      applications: 'सभी आवेदनों का प्रबंधन करें',
+      jobs: 'सभी काम देखें, जोड़ें और प्रबंधित करें',
+      workers: 'पंजीकृत मज़दूरों की सूची',
+      assign: 'उपलब्ध मज़दूरों को खाली पदों पर लगाएं',
+      reports: 'मासिक प्रदर्शन रिपोर्ट',
+      activity: 'हालिया गतिविधियाँ',
+    };
+
+    function switchPage(pageId, clickedEl) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      const pg = document.getElementById('page-' + pageId);
+      if (pg) pg.classList.add('active');
+      if (clickedEl) clickedEl.classList.add('active');
+      document.getElementById('pageTitle').textContent = pageTitles[pageId] || pageId;
+      document.getElementById('pageSubtitle').textContent = pageSubs[pageId] || '';
+      // Close mobile sidebar
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    // ============================================================
+    // MAP RENDERING
+    // ============================================================
+    function workerEmoji(w) {
+      if (w.skill.includes('खेती')) return '👩‍🌾';
+      if (w.skill.includes('निर्माण')) return '👷';
+      if (w.skill.includes('ड्राइविंग')) return '🚛';
+      if (w.skill.includes('बिजली')) return '⚡';
+      return '👤';
+    }
+
+    function renderMiniMap() {
+      const map = document.getElementById('miniMap');
+      const subset = workers.slice(0, 8);
+      subset.forEach(w => {
+        const dot = document.createElement('div');
+        dot.className = `worker-dot ${w.status}`;
+        dot.style.left = w.mapX + '%';
+        dot.style.top = w.mapY + '%';
+        dot.style.transform = 'translate(-50%,-50%)';
+        const pulse = document.createElement('div');
+        pulse.className = 'worker-dot-pulse';
+        const tip = document.createElement('div');
+        tip.className = 'worker-tooltip';
+        tip.innerHTML = `<b>${w.name}</b><br/>${w.currentJob || w.skill}<br/>📍 ${w.village}`;
+        dot.innerHTML = workerEmoji(w);
+        dot.appendChild(pulse);
+        dot.appendChild(tip);
+        map.appendChild(dot);
+      });
+    }
+
+    function renderFullMap() {
+      const map = document.getElementById('fullMap');
+      workers.forEach(w => {
+        const dot = document.createElement('div');
+        dot.className = `worker-dot ${w.status}`;
+        dot.style.left = w.mapX + '%';
+        dot.style.top = w.mapY + '%';
+        dot.style.transform = 'translate(-50%,-50%)';
+        const pulse = document.createElement('div');
+        pulse.className = 'worker-dot-pulse';
+        const tip = document.createElement('div');
+        tip.className = 'worker-tooltip';
+        tip.innerHTML = `<b>${w.name}</b><br/>${w.currentJob ? '⚙️ ' + w.currentJob : w.skill}<br/>📍 ${w.village}<br/>💰 ${w.wage}`;
+        dot.innerHTML = workerEmoji(w);
+        dot.appendChild(pulse);
+        dot.appendChild(tip);
+        dot.onclick = () => openWorkerDetail(w);
+        map.appendChild(dot);
+      });
+
+      // Animate dots slowly
+      setInterval(() => {
+        document.querySelectorAll('.worker-dot.working').forEach(dot => {
+          const x = parseFloat(dot.style.left);
+          const y = parseFloat(dot.style.top);
+          dot.style.left = Math.max(5, Math.min(95, x + (Math.random() - 0.5) * 1.5)) + '%';
+          dot.style.top = Math.max(5, Math.min(90, y + (Math.random() - 0.5) * 1.5)) + '%';
+        });
+      }, 2500);
+    }
+
+    // ============================================================
+    // RECENT APPS (overview)
+    // ============================================================
+    function renderRecentApps() {
+      const cont = document.getElementById('recentApps');
+      const recent = applications.slice(0, 5);
+      cont.innerHTML = recent.map(a => `
+    <div class="application-row">
+      <div style="width:36px; height:36px; background:${avatarBg(a.worker)}; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; flex-shrink:0;">${a.worker[0]}</div>
+      <div style="flex:1; min-width:0;">
+        <div style="font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${a.worker}</div>
+        <div style="font-size:11px; color:var(--text-muted);">${a.job} · ${a.date}</div>
+      </div>
+      <div>${statusBadge(a.status)}</div>
+      <div style="display:flex; gap:5px;">
+        ${a.status === 'pending' ? `<button class="btn btn-primary btn-sm" onclick="approveApp(${a.id})">✅</button><button class="btn btn-red btn-sm" onclick="rejectApp(${a.id})">❌</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+    }
+
+    // ============================================================
+    // VACANT JOBS (overview)
+    // ============================================================
+    function renderVacantJobs() {
+      const cont = document.getElementById('vacantJobsList');
+      const vacant = jobs.filter(j => j.status === 'vacant');
+      cont.innerHTML = vacant.map(j => `
+    <div class="application-row">
+      <div style="font-size:24px;">${j.category.split(' ')[0]}</div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600;">${j.title}</div>
+        <div style="font-size:11px; color:var(--text-muted);">📍 ${j.location} · ${j.wage} ${j.urgent ? '⚡ Urgent' : ''}</div>
+      </div>
+      <button class="btn btn-amber btn-sm" onclick="switchPage('assign', document.querySelector('[onclick*=assign]'))">असाइन</button>
+    </div>
+  `).join('');
+    }
+
+    // ============================================================
+    // APPLICATIONS TABLE
+    // ============================================================
+    function renderApplicationsTable(data) {
+      const tbody = document.getElementById('appTableBody');
+      tbody.innerHTML = data.map(a => {
+        const isRealNew = a.isNew;
+        const phoneLink = a.phone && a.phone !== '-' ? a.phone : '';
+        const waApproveMsg = encodeURIComponent('KaamSetu: Aapka application "' + a.job + '" approve ho gaya! Admin se milein.');
+        return `
+    <tr style="${isRealNew ? 'background:rgba(76,175,80,0.04);' : ''}">
+      <td>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; background:${avatarBg(a.worker)}; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; flex-shrink:0; position:relative;">
+            ${a.worker[0]}
+            ${isRealNew ? '<div style="position:absolute; top:-2px; right:-2px; width:10px; height:10px; background:var(--green-light); border-radius:50%; border:2px solid var(--bg-primary);"></div>' : ''}
+          </div>
+          <div>
+            <div style="font-weight:600; font-size:13px; display:flex; align-items:center; gap:5px;">
+              ${a.worker}
+              ${isRealNew ? '<span style="background:rgba(76,175,80,0.15); color:var(--green-light); font-size:9px; font-weight:700; padding:1px 5px; border-radius:4px;">NEW</span>' : ''}
+            </div>
+            <div style="font-size:11px; color:var(--text-muted);">${a.village}</div>
+            ${phoneLink ? `<div style="font-size:11px; color:var(--blue); margin-top:1px;">📞 ${phoneLink}</div>` : ''}
+          </div>
+        </div>
+      </td>
+      <td style="font-size:13px; font-weight:500;">${a.job}</td>
+      <td>
+        <div style="font-size:11px; line-height:1.7;">
+          ${a.skill && a.skill !== '-' ? `<div style="color:var(--text-secondary);">🛠 ${a.skill}</div>` : ''}
+          ${a.experience && a.experience !== '-' ? `<div style="color:var(--text-muted);">⏱ ${a.experience}</div>` : ''}
+          ${a.wage && a.wage !== '-' ? `<div style="color:var(--green-light); font-weight:600;">💰 ${a.wage}</div>` : `<div style="color:var(--text-muted);">${a.jobsDone} काम</div>`}
+        </div>
+      </td>
+      <td style="font-size:12px; color:var(--text-muted);">${a.date}</td>
+      <td>${statusBadge(a.status)}</td>
+      <td>
+        <div style="display:flex; gap:5px; flex-wrap:wrap;">
+          ${a.status === 'pending' ? `
+            <button class="btn btn-primary btn-sm" onclick="approveApp(${a.id})">✅ मंज़ूर</button>
+            <button class="btn btn-red btn-sm" onclick="rejectApp(${a.id})">❌</button>
+          ` : a.status === 'approved' ? `
+            ${phoneLink ? `<a href="https://wa.me/91${phoneLink}?text=${waApproveMsg}" target="_blank" class="btn btn-amber btn-sm">💬 WhatsApp</a>` : `<button class="btn btn-amber btn-sm" onclick="showToast('WhatsApp भेजा!')">💬 WhatsApp</button>`}
+          ` : `<span style="font-size:11px; color:var(--text-muted);">—</span>`}
+        </div>
+      </td>
+    </tr>
+  `}).join('');
+      document.getElementById('appCount').textContent = data.length;
+    }
+
+    function filterTable(q) {
+      const filtered = applications.filter(a =>
+        a.worker.toLowerCase().includes(q.toLowerCase()) ||
+        a.job.toLowerCase().includes(q.toLowerCase())
+      );
+      renderApplicationsTable(filtered);
+    }
+
+    function filterByStatus(s) {
+      const filtered = s ? applications.filter(a => a.status === s) : applications;
+      renderApplicationsTable(filtered);
+    }
+
+    function approveApp(id) {
+      const app = applications.find(a => a.id === id);
+      if (app) { app.status = 'approved'; renderApplicationsTable(applications); renderRecentApps(); showToast('✅ ' + app.worker + ' का आवेदन मंज़ूर हुआ!'); }
+    }
+    function rejectApp(id) {
+      const app = applications.find(a => a.id === id);
+      if (app) { app.status = 'rejected'; renderApplicationsTable(applications); renderRecentApps(); showToast('❌ आवेदन अस्वीकार किया गया'); }
+    }
+
+    // ============================================================
+    // JOB KANBAN
+    // ============================================================
+    function renderJobKanban() {
+      const cols = [
+        { key: 'vacant', label: '🔓 खाली पद', color: 'var(--amber)', bg: 'var(--amber-glow)' },
+        { key: 'active', label: '⚙️ चल रहे', color: 'var(--green-light)', bg: 'var(--green-glow)' },
+        { key: 'completed', label: '✅ पूरे हुए', color: '#6b7280', bg: 'rgba(107,114,128,0.1)' },
+        { key: 'urgent', label: '⚡ अत्यावश्यक', color: 'var(--red)', bg: 'var(--red-glow)' },
+      ];
+      const kanban = document.getElementById('jobKanban');
+      kanban.innerHTML = cols.map(col => {
+        const colJobs = col.key === 'urgent'
+          ? jobs.filter(j => j.urgent && j.status !== 'completed')
+          : jobs.filter(j => j.status === col.key);
+        return `
+      <div class="kanban-col">
+        <div class="kanban-col-header">
+          <div class="kanban-col-title" style="color:${col.color};">${col.label}</div>
+          <div class="kanban-count" style="background:${col.bg}; color:${col.color};">${colJobs.length}</div>
+        </div>
+        <div class="kanban-items">
+          ${colJobs.map(j => `
+            <div class="kanban-item" onclick="showToast('💼 ${j.title} — ${j.location}')">
+              <div style="font-size:18px; margin-bottom:6px;">${j.category.split(' ')[0]}</div>
+              <div class="kanban-item-title">${j.title}</div>
+              <div class="kanban-item-meta">📍 ${j.location} · ${j.wage}</div>
+              <div class="kanban-item-meta" style="margin-top:4px;">👷 ${j.filled}/${j.workers} मज़दूर</div>
+              <div style="margin-top:8px;" class="prog-bar">
+                <div class="prog-fill" style="width:${(j.filled / j.workers * 100)}%; background:${j.status === 'completed' ? '#6b7280' : col.color};"></div>
+              </div>
+              ${j.status === 'vacant' ? `<button class="btn btn-amber btn-sm" style="margin-top:8px; width:100%; justify-content:center;" onclick="event.stopPropagation(); switchPage('assign', document.querySelector('[onclick*=assign]'))">🤝 असाइन करें</button>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    // ============================================================
+    // WORKERS GRID
+    // ============================================================
+    function renderWorkersGrid() {
+      const grid = document.getElementById('workersGrid');
+      grid.innerHTML = workers.map(w => {
+        const statusColor = w.status === 'working' ? 'var(--green-light)' : w.status === 'idle' ? 'var(--amber)' : 'var(--blue)';
+        const statusLabel = w.status === 'working' ? '⚙️ काम पर' : w.status === 'idle' ? '⏸️ रुके हुए' : '✅ उपलब्ध';
+        return `
+      <div class="worker-card" onclick="openWorkerDetail(workers[${w.id - 1}])">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div class="worker-avatar" style="background:${avatarBg(w.name)};">
+            ${w.name[0]}
+            <div class="worker-avatar-status" style="background:${statusColor};"></div>
+          </div>
+          <div style="flex:1; min-width:0;">
+            <div class="worker-name">${w.name}</div>
+            <div class="worker-meta">📍 ${w.village} · ${w.skill}</div>
+            <div class="worker-meta" style="margin-top:3px;">${w.wage} · ${w.age} साल</div>
+          </div>
+          <div class="badge ${w.status === 'working' ? 'green' : w.status === 'idle' ? 'amber' : 'blue'}">${statusLabel}</div>
+        </div>
+        ${w.currentJob ? `<div style="background:var(--green-glow); border:1px solid rgba(76,175,80,0.2); border-radius:8px; padding:8px 10px; font-size:11px; color:var(--green-light); font-weight:600; margin-bottom:12px;">⚙️ अभी: ${w.currentJob}</div>` : ''}
+        <div class="worker-stats-row">
+          <div class="worker-stat">
+            <div class="worker-stat-num">${w.jobsDone}</div>
+            <div class="worker-stat-label">JOBS DONE</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-num" style="font-size:14px;">${w.wage.replace('/दिन', '')}</div>
+            <div class="worker-stat-label">WAGE/DAY</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-num" style="font-size:14px; color:${statusColor};">${w.phone.slice(-4)}</div>
+            <div class="worker-stat-label">PHONE</div>
+          </div>
+        </div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    // ============================================================
+    // WORKER STATUS LIST (tracker page)
+    // ============================================================
+    function renderWorkerStatusList(data) {
+      const cont = document.getElementById('workerStatusList');
+      cont.innerHTML = data.map(w => {
+        const statusColor = w.status === 'working' ? 'var(--green-light)' : w.status === 'idle' ? 'var(--amber)' : 'var(--blue)';
+        const statusLabel = w.status === 'working' ? '⚙️ काम पर' : w.status === 'idle' ? '⏸️ रुके' : '✅ उपलब्ध';
+        return `
+      <div class="application-row" style="cursor:pointer;" onclick="openWorkerDetail(workers[${w.id - 1}])">
+        <div class="worker-avatar" style="width:38px; height:38px; background:${avatarBg(w.name)}; font-size:15px;">
+          ${w.name[0]}
+          <div class="worker-avatar-status" style="background:${statusColor};"></div>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:13px; font-weight:600;">${w.name}</div>
+          <div style="font-size:11px; color:var(--text-muted);">${w.skill} · 📍 ${w.village} · ${w.phone}</div>
+          ${w.currentJob ? `<div style="font-size:11px; color:var(--green-light); font-weight:600; margin-top:2px;">⚙️ ${w.currentJob}</div>` : ''}
+        </div>
+        <div style="text-align:right;">
+          <div class="badge ${w.status === 'working' ? 'green' : w.status === 'idle' ? 'amber' : 'blue'}">${statusLabel}</div>
+          <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">${w.jobsDone} काम किए</div>
+        </div>
+        <div style="font-size:18px;">${workerEmoji(w)}</div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    function filterWorkerList(q) {
+      const filtered = workers.filter(w =>
+        w.name.toLowerCase().includes(q.toLowerCase()) ||
+        w.village.toLowerCase().includes(q.toLowerCase())
+      );
+      renderWorkerStatusList(filtered);
+    }
+
+    // ============================================================
+    // ASSIGN PAGE
+    // ============================================================
+    function renderAvailableWorkers() {
+      const cont = document.getElementById('availableWorkerList');
+      const avail = workers.filter(w => w.status === 'available' || w.status === 'idle');
+      cont.innerHTML = avail.map(w => `
+    <div style="display:flex; align-items:center; gap:10px; padding:10px; background:var(--bg-secondary); border-radius:10px; border:1px solid var(--border);">
+      <div style="width:34px; height:34px; background:${avatarBg(w.name)}; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; color:#fff; flex-shrink:0;">${w.name[0]}</div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600;">${w.name}</div>
+        <div style="font-size:10px; color:var(--text-muted);">${w.skill} · ${w.village} · ${w.jobsDone} काम</div>
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="quickAssignWorker(${w.id})">असाइन →</button>
+    </div>
+  `).join('');
+    }
+
+    function renderVacantJobAssignList() {
+      const cont = document.getElementById('vacantJobAssignList');
+      const vacant = jobs.filter(j => j.status === 'vacant' || (j.status === 'active' && j.filled < j.workers));
+      cont.innerHTML = vacant.map(j => `
+    <div style="display:flex; align-items:center; gap:10px; padding:10px; background:var(--bg-secondary); border-radius:10px; border:1px solid var(--border);">
+      <div style="font-size:24px; flex-shrink:0;">${j.category.split(' ')[0]}</div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:600;">${j.title}</div>
+        <div style="font-size:10px; color:var(--text-muted);">${j.location} · ${j.wage} · ${j.workers - j.filled} जगह खाली</div>
+      </div>
+      ${j.urgent ? '<span class="badge red">⚡ Urgent</span>' : '<span class="badge amber">खाली</span>'}
+    </div>
+  `).join('');
+    }
+
+    function populateAssignSelects() {
+      const ws = document.getElementById('assignWorkerSelect');
+      const js = document.getElementById('assignJobSelect');
+      workers.filter(w => w.status !== 'working').forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w.id;
+        opt.textContent = w.name + ' · ' + w.skill;
+        ws.appendChild(opt);
+      });
+      jobs.filter(j => j.status !== 'completed' && j.filled < j.workers).forEach(j => {
+        const opt = document.createElement('option');
+        opt.value = j.id;
+        opt.textContent = j.title + ' · ' + j.location;
+        js.appendChild(opt);
+      });
+    }
+
+    function quickAssign() {
+      const wId = document.getElementById('assignWorkerSelect').value;
+      const jId = document.getElementById('assignJobSelect').value;
+      if (!wId || !jId) { showToast('⚠️ मज़दूर और काम दोनों चुनें!'); return; }
+      const w = workers.find(x => x.id == wId);
+      const j = jobs.find(x => x.id == jId);
+      if (w && j) {
+        w.status = 'working';
+        w.currentJob = j.title;
+        j.filled = Math.min(j.filled + 1, j.workers);
+        if (j.filled >= j.workers) j.status = 'completed';
+        showToast(`✅ ${w.name} को "${j.title}" assign किया! WhatsApp सूचना भेजी।`);
+        renderWorkersGrid();
+        renderWorkerStatusList(workers);
+        renderAvailableWorkers();
+        renderVacantJobAssignList();
+        renderJobKanban();
+      }
+    }
+
+    function quickAssignWorker(wId) {
+      document.getElementById('assignWorkerSelect').value = wId;
+      showToast('✅ मज़दूर चुना गया — अब काम चुनें');
+    }
+
+    // ============================================================
+    // ACTIVITY FEED
+    // ============================================================
+    function renderActivityFeed() {
+      const cont = document.getElementById('activityFeed');
+      cont.innerHTML = activities.map(a => `
+    <div class="activity-item">
+      <div class="activity-icon" style="background:${a.color};">${a.icon}</div>
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:500;">${a.text}</div>
+        <div class="activity-time">🕐 ${a.time}</div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    // ============================================================
+    // WORKER DETAIL MODAL
+    // ============================================================
+    function openWorkerDetail(w) {
+      const statusColor = w.status === 'working' ? 'var(--green-light)' : w.status === 'idle' ? 'var(--amber)' : 'var(--blue)';
+      const statusLabel = w.status === 'working' ? '⚙️ काम पर' : w.status === 'idle' ? '⏸️ रुके हुए' : '✅ उपलब्ध';
+      document.getElementById('workerDetailTitle').innerHTML = `👷 ${w.name} — विवरण`;
+      document.getElementById('workerDetailBody').innerHTML = `
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:20px;">
+      <div style="width:60px; height:60px; background:${avatarBg(w.name)}; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:700; color:#fff;">${w.name[0]}</div>
+      <div>
+        <div style="font-size:18px; font-weight:700;">${w.name}</div>
+        <div style="font-size:13px; color:var(--text-muted);">${w.skill} · ${w.village} · ${w.age} साल</div>
+        <div style="margin-top:5px;" class="badge ${w.status === 'working' ? 'green' : w.status === 'idle' ? 'amber' : 'blue'}">${statusLabel}</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+      <div style="background:var(--bg-secondary); border-radius:10px; padding:12px;">
+        <div style="font-size:10px; color:var(--text-muted); font-weight:600; margin-bottom:4px;">📞 फ़ोन</div>
+        <div style="font-size:14px; font-weight:600;">${w.phone}</div>
+      </div>
+      <div style="background:var(--bg-secondary); border-radius:10px; padding:12px;">
+        <div style="font-size:10px; color:var(--text-muted); font-weight:600; margin-bottom:4px;">💰 मज़दूरी</div>
+        <div style="font-size:14px; font-weight:600;">${w.wage}</div>
+      </div>
+      <div style="background:var(--green-glow); border:1px solid rgba(76,175,80,0.2); border-radius:10px; padding:12px;">
+        <div style="font-size:10px; color:var(--text-muted); font-weight:600; margin-bottom:4px;">✅ कुल काम किए</div>
+        <div style="font-size:22px; font-weight:800; color:var(--green-light);">${w.jobsDone}</div>
+      </div>
+      <div style="background:var(--bg-secondary); border-radius:10px; padding:12px;">
+        <div style="font-size:10px; color:var(--text-muted); font-weight:600; margin-bottom:4px;">📍 गाँव</div>
+        <div style="font-size:14px; font-weight:600;">${w.village}</div>
+      </div>
+    </div>
+    ${w.currentJob ? `<div style="background:var(--green-glow); border:1px solid rgba(76,175,80,0.2); border-radius:10px; padding:12px; margin-bottom:16px;"><div style="font-size:11px; color:var(--green-light); font-weight:600; margin-bottom:2px;">⚙️ अभी किस काम पर हैं</div><div style="font-size:14px; font-weight:700;">${w.currentJob}</div></div>` : ''}
+    <div style="display:flex; gap:10px; margin-top:4px;">
+      <button class="btn btn-primary" style="flex:1; justify-content:center;" onclick="showToast('💬 WhatsApp message भेजा गया: ${w.name}')">💬 WhatsApp</button>
+      <button class="btn btn-amber" style="flex:1; justify-content:center;" onclick="closeModal('workerDetailModal'); switchPage('assign', document.querySelector('[onclick*=assign]'))">🤝 काम दें</button>
+      <button class="btn btn-ghost" onclick="closeModal('workerDetailModal')">बंद करें</button>
+    </div>
+  `;
+      document.getElementById('workerDetailModal').classList.add('open');
+    }
+
+    // ============================================================
+    // MODALS
+    // ============================================================
+    function openAddJobModal() { document.getElementById('addJobModal').classList.add('open'); }
+    function openAddWorkerModal() { document.getElementById('addWorkerModal').classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+    document.querySelectorAll('.modal-overlay').forEach(m => {
+      m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+    });
+
+    function addNewJob() {
+      const title = document.getElementById('newJobTitle').value.trim();
+      const cat = document.getElementById('newJobCat').value;
+      const wage = document.getElementById('newJobWage').value;
+      const loc = document.getElementById('newJobLoc').value.trim();
+      const workers_needed = parseInt(document.getElementById('newJobWorkers').value) || 1;
+      const urgent = document.getElementById('newJobUrgent').value === '1';
+      if (!title || !loc) { showToast('⚠️ नाम और स्थान ज़रूरी है'); return; }
+      const newJob = { id: jobs.length + 1, title, category: cat, wage: `₹${wage}/दिन`, location: loc, workers: workers_needed, filled: 0, status: 'vacant', urgent, desc: `${workers_needed} मज़दूर चाहिए` };
+      jobs.push(newJob);
+      closeModal('addJobModal');
+      renderJobKanban();
+      renderVacantJobs();
+      document.getElementById('s-vacant').textContent = jobs.filter(j => j.status === 'vacant').length;
+      showToast('✅ नया काम जोड़ा गया: ' + title);
+    }
+
+    function addNewWorker() {
+      const name = document.getElementById('newWorkerName').value.trim();
+      const phone = document.getElementById('newWorkerPhone').value.trim();
+      const village = document.getElementById('newWorkerVillage').value.trim();
+      const skill = document.getElementById('newWorkerSkill').value;
+      if (!name || !village) { showToast('⚠️ नाम और गाँव ज़रूरी है'); return; }
+      const newW = { id: workers.length + 1, name, village, skill, phone: phone || 'XXXXXXXXXX', jobsDone: 0, status: 'available', currentJob: null, wage: '₹400/दिन', gender: 'M', mapX: Math.random() * 80 + 10, mapY: Math.random() * 80 + 10, age: 30 };
+      workers.push(newW);
+      closeModal('addWorkerModal');
+      renderWorkersGrid();
+      renderWorkerStatusList(workers);
+      renderAvailableWorkers();
+      document.getElementById('s-workers').textContent = workers.length;
+      showToast('✅ नया मज़दूर जोड़ा गया: ' + name);
+    }
+
+    // ============================================================
+    // TOAST
+    // ============================================================
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    // ============================================================
+    // EXPORT
+    // ============================================================
+    function exportData() {
+      const csv = ['मज़दूर,काम,स्थान,किए काम,दिनांक,स्थिति'].concat(
+        applications.map(a => `${a.worker},${a.job},${a.village},${a.jobsDone},${a.date},${a.status}`)
+      ).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'kaamsetu_applications.csv';
+      a.click();
+      showToast('📥 CSV Export हो रही है...');
+    }
+
+    // ============================================================
+    // ANIMATED COUNTERS
+    // ============================================================
+    function animateCounters() {
+      const targets = [
+        { el: 's-applied', end: 142 },
+        { el: 's-working', end: 38 },
+        { el: 's-vacant', end: jobs.filter(j => j.status === 'vacant').length },
+        { el: 's-workers', end: workers.length },
+      ];
+      targets.forEach(({ el, end }) => {
+        const elem = document.getElementById(el);
+        let cur = 0;
+        const step = end / 40;
+        const iv = setInterval(() => {
+          cur = Math.min(cur + step, end);
+          elem.textContent = Math.round(cur);
+          if (cur >= end) clearInterval(iv);
+        }, 30);
+      });
+    }
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    const AVATAR_COLORS = ['#2e7d32', '#1565c0', '#b45309', '#7c3aed', '#0f766e', '#c2410c', '#1d4ed8', '#92400e'];
+    function avatarBg(name) { return AVATAR_COLORS[name.charCodeAt(0) % AVATAR_COLORS.length]; }
+
+    function statusBadge(s) {
+      const map = {
+        pending: '<span class="badge amber">⏳ Pending</span>',
+        approved: '<span class="badge green">✅ Approved</span>',
+        working: '<span class="badge blue">⚙️ Working</span>',
+        rejected: '<span class="badge red">❌ Rejected</span>',
+      };
+      return map[s] || s;
+    }
+  </script>
+</body>
+
+</html>
